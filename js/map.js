@@ -9,6 +9,17 @@ var height;
 var projection, svg, path, g;
 var boundaries, units;
 
+// variables for current stats of each district
+var mapStats;
+
+function readJSON() {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "https://markjswan.github.io/covid-maps/json/sco/all_data.json", false ); // false for synchronous request
+    xmlHttp.send( null );
+    console.log(Object.keys(JSON.parse(xmlHttp.responseText)));
+    mapStats = JSON.parse(xmlHttp.responseText);
+}
+
 function compute_size() {
     var margin = 50;
     width = parseInt(d3.select("#map").style("width"));
@@ -23,9 +34,9 @@ init(width, height);
 // remove any data when we lose selection of a map unit
 function deselect() {
     d3.selectAll(".selected")
-        .attr("class", "area"); 
+        .attr("class", "area");
     d3.select("#data_table")
-        .html("");      
+        .html("");
 }
 
 
@@ -57,18 +68,28 @@ function init(width, height) {
 }
 
 // create a HTML table to display any properties about the selected item
-function create_table(properties) {
-    var keys = Object.keys(properties);
-
+function create_table(properties, id) {
+    // BELOW LINE SHOULD BE MOVED ELSEWHERE TO IMPROVE EFFICIENCY
     table_string = "<table>";
-    table_string += "<th>Property</th><th>Value</th>";
-    for (var i = 0; i < keys.length; i++) {
-        table_string += "<tr><td>" + keys[i] + "</td><td>" + properties[keys[i]] + "</td></tr>";
+    //console.log(mapStats);
+    //console.log(mapStats["all_deaths_hospital"]["S12000006"])
+    if (id != undefined){
+        var keys = Object.keys(mapStats);
+        readJSON("json/sco/all_data.json");
+        table_string += "<th>Property</th><th>Value</th>";
+        for (var i = 0; i < keys.length; i++) {
+            console.log(id);
+            table_string += "<tr><td>" + prettify(keys[i]) + "</td><td>" + mapStats[keys[i]][id] + "</td></tr>";
+        }
     }
     table_string += "</table>";
     return table_string;
 }
 
+function prettify(input){
+    str = input.toString();
+    return str.replace(/_/g, " ");
+}
 // select a map area
 function select(d) {
     // get the id of the selected map area
@@ -81,7 +102,7 @@ function select(d) {
         .attr("class", "selected area")
     // add the area properties to the data_table section
     d3.select("#data_table")
-        .html(create_table(d.properties));
+        .html(create_table(d.properties, d.id));
 }
 
 // draw our map on the SVG element
@@ -95,7 +116,7 @@ function draw(boundaries) {
     var b = path.bounds(topojson.feature(boundaries, boundaries.objects[units]));
     var s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height);
     var t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
-    
+
     projection
         .scale(s)
         .translate(t);
@@ -133,6 +154,7 @@ function redraw() {
 function load_data(filename, u) {
     // clear any selection
     deselect();
+    readJSON();
 
     units = u;
     var f = filename;
@@ -141,10 +163,8 @@ function load_data(filename, u) {
         if (error) return console.error(error);
         boundaries = b;
         redraw();
-    });    
+    });
 }
 
 // when the window is resized, redraw the map
 window.addEventListener('resize', redraw);
-
-
