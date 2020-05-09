@@ -50,7 +50,7 @@ function init(width, height) {
         .projection(projection);
 
     // create the svg element for drawing onto
-    svg = d3.select("#map").append("svg")
+    svg = d3.select("map").append("svg")
         .attr("width", width)
         .attr("height", height);
         .call(d3.zoom().on("zoom", function() {
