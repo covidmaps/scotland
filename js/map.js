@@ -50,7 +50,7 @@ function init(width, height) {
         .projection(projection);
 
     // create the svg element for drawing onto
-    svg = d3.select("map").append("svg")
+    svg = d3.select("#map").append("svg")
         .attr("width", width)
         .attr("height", height);
         .call(d3.zoom().on("zoom", function() {
@@ -132,7 +132,7 @@ function draw(boundaries) {
         .attr("id", function(d) {return d.id})
         .attr("properties_table", function(d) { return create_table(d.properties)})
         .attr("d", path)
-        .on("mouseover", function(d){ return select(d)});
+        .on("click", function(d){ return select(d)});
 
     // add a boundary between areas
     g.append("path")
