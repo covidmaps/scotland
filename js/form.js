@@ -66,8 +66,9 @@ function update_resolution_select() {
 
 function change_area() {
     d3.select('#download').html("");
-    var resolution_select = document.getElementById('resolution');
-    units = resolution_select.options[resolution_select.selectedIndex].value;
+    //var resolution_select = document.getElementById('resolution');
+    //units = resolution_select.options[resolution_select.selectedIndex].value;
+    units = 'lad';
 
     var top_level_select = document.getElementById('top_level');
     var area = top_level_select.options[top_level_select.selectedIndex].value;
