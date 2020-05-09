@@ -132,7 +132,7 @@ function draw(boundaries) {
         .attr("id", function(d) {return d.id})
         .attr("properties_table", function(d) { return create_table(d.properties)})
         .attr("d", path)
-        .on("click", function(d){ return select(d)});
+        .on("mouseover", function(d){ return select(d)});
 
     // add a boundary between areas
     g.append("path")
