@@ -54,7 +54,7 @@ function init(width, height) {
         .attr("width", width)
         .attr("height", height);
         .call(d3.zoom().on("zoom", function() {
-          svg.att("transform", d3.event.transform)
+          svg.attr("transform", d3.event.transform)
         }))
 
     // graphics go here
