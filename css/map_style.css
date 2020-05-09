@@ -88,8 +88,8 @@ th, td {
 }
 
 .selected {
-    fill: #fff;
-    stroke: #777;
-    stroke-dasharray: 2,2;
+    fill: #99cccc;
+    stroke: black;
+    stroke-width: 2;
     stroke-linejoin: round;
 }
