@@ -1,7 +1,10 @@
+area = 'sco'
+lad='national'
+
 
 function update_lad_select() {
     var top_level_select = document.getElementById('top_level');
-    var area = top_level_select.options[top_level_select.selectedIndex].value;
+    //var area = top_level_select.options[top_level_select.selectedIndex].value;
 
     options_string = '<option value="national">National</option><option disabled>──────────</option>';
     if(area === 'eng') {
@@ -21,7 +24,7 @@ function update_lad_select() {
             if (w_lads.hasOwnProperty(key)) {
                 options_string += '<option value=' + key + '>' + w_lads[key] + '</option>';
             }
-        } 
+        }
     }
     d3.select('#lad').html(options_string);
 }
@@ -29,10 +32,10 @@ function update_lad_select() {
 
 function update_resolution_select() {
     var top_level_select = document.getElementById('top_level');
-    var area = top_level_select.options[top_level_select.selectedIndex].value;
+    //var area = top_level_select.options[top_level_select.selectedIndex].value;
 
     var lad_select = document.getElementById('lad');
-    var lad = lad_select.options[lad_select.selectedIndex].value;   
+    //var lad = lad_select.options[lad_select.selectedIndex].value;
 
     options_string = '';
     if(lad === 'national') {
@@ -42,7 +45,7 @@ function update_resolution_select() {
             options_string += '<option value = "nawer">National Assembly Wales Electoral Regions</option>';
         } else if(area === 'sco') {
             options_string += '<option value = "spc">Scottish Parliament Constituencies</option>';
-            options_string += '<option value = "sper">Scottish Parliament Electoral Regions</option>';            
+            options_string += '<option value = "sper">Scottish Parliament Electoral Regions</option>';
         } else if (area === 'ni') {
             options_string = '<option value="wpc">Westminster Parliamentary Constituencies</option><option value="wards">Westminster Parliamentary Wards</option><option value="lgd">Local Government Districts</option>';
         }
@@ -101,4 +104,3 @@ d3.select("#resolution").on('change', function(){
 
 update_lad_select();
 change_area();
-
