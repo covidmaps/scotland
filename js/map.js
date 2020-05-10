@@ -12,6 +12,7 @@ var boundaries, units;
 // variables for current stats of each district
 var mapStats;
 
+//
 function readJSON() {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", "https://markjswan.github.io/covid-maps/json/sco/all_data.json", false ); // false for synchronous request
@@ -69,16 +70,11 @@ function init(width, height) {
 
 // create a HTML table to display any properties about the selected item
 function create_table(properties, id) {
-    // BELOW LINE SHOULD BE MOVED ELSEWHERE TO IMPROVE EFFICIENCY
     table_string = "<table>";
-    //console.log(mapStats);
-    //console.log(mapStats["all_deaths_hospital"]["S12000006"])
     if (id != undefined){
         var keys = Object.keys(mapStats);
-        readJSON("json/sco/all_data.json");
         table_string += "<th>Property</th><th>Value</th>";
         for (var i = 0; i < keys.length; i++) {
-            console.log(id);
             table_string += "<tr><td>" + prettify(keys[i]) + "</td><td>" + mapStats[keys[i]][id] + "</td></tr>";
         }
     }
@@ -86,10 +82,19 @@ function create_table(properties, id) {
     return table_string;
 }
 
+// Return a better looking version of property
+var prettyProps = {'lad':"District", "all_deaths_hospital": "Hospital Deaths", 'all_deaths_carehome': "Carehome Deaths",
+                'all_deaths_non-institution': "Non-Institution Deaths", 'all_deaths_other': "Other Deaths",
+            'all_deaths_total': "Total Deaths", 'covid_deaths_hospital': "COVID Hospital Deaths",
+        'covid_deaths_carehome': "COVID Carehome Deaths", 'covid_deaths_non-institution': "COVID Non-Institution Deaths",
+    'covid_deaths_other': "COVID Other Deaths", 'covid_deaths_total': "COVID Total Deaths",
+    'ratio_hospital_death_covid': "Ratio of COVID hospital deaths", 'ratio_carehome_death_covid': "Ratio of COVID Carehome Deaths",
+'ratio_noninst_death_covid': "Ratio of Non-Institution COVID Deaths", 'ratio_total_death_covid': "Ratio of Total COVID Deaths"}
 function prettify(input){
     str = input.toString();
-    return str.replace(/_/g, " ");
+    return prettyProps[input];
 }
+
 // select a map area
 function select(d) {
     // get the id of the selected map area
