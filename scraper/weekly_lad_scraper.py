@@ -157,7 +157,7 @@ def get_death_locations_df_NEW(path, week):
 
 def create_all_data_df(path):
 
-    df_death_locations = get_death_locations_df(path)
+    df_death_locations = get_death_locations_df_NEW(path)
 
     df_all = df_death_locations.reset_index(drop=True, inplace=False)
     headings = ['lad', 'covid_deaths_carehome', 'covid_deaths_non-institution', 'covid_deaths_hospital', 'covid_deaths_other', 'covid_deaths_total', 'blank1', 'all_deaths_carehome', 'all_deaths_non-institution', 'all_deaths_hospital', 'all_deaths_other', 'all_deaths_total']
