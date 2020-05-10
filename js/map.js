@@ -255,7 +255,6 @@ function load_data(filename, u) {
 
     //Import the array of interpolated colors
     interpolated = interpolateColors("rgb(255, 0, 0)", "rgb(255, 255, 255)", 32).reverse();
-    console.log(interpolated);
 
     // Sort based on general property
     sort("ratio_total_death_covid");
