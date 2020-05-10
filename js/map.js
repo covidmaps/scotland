@@ -54,9 +54,11 @@ function init(width, height) {
     svg = d3.select("#map").append("svg")
         .attr("width", width)
         .attr("height", height);
+        /* UNEXPECTED '.' WHEN LOADING PAGE
         .call(d3.zoom().on("zoom", function () {
-       svg.attr("transform", d3.event.transform)
-      }))
+           svg.attr("transform", d3.event.transform)
+        }))
+        */
 
     // graphics go here
     g = svg.append("g");
@@ -93,6 +95,7 @@ var prettyProps = {'lad':"District", "all_deaths_hospital": "Hospital Deaths", '
     'covid_deaths_other': "COVID Other Deaths", 'covid_deaths_total': "COVID Total Deaths",
     'ratio_hospital_death_covid': "Ratio of COVID hospital deaths", 'ratio_carehome_death_covid': "Ratio of COVID Carehome Deaths",
 'ratio_noninst_death_covid': "Ratio of Non-Institution COVID Deaths", 'ratio_total_death_covid': "Ratio of Total COVID Deaths"}
+
 function prettify(input){
     str = input.toString();
     return prettyProps[input];
