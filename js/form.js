@@ -99,7 +99,7 @@ d3.select("#top_level").on('change', function(){
     change_area();
 });
 
-d3.select("#resolution").on('change', function(){
+d3.select("#criteria").on('change', function(){
     change_area();
 });
 

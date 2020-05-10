@@ -15,6 +15,9 @@ var mapStats;
 // Array to hold the IDs of the sorted districts
 var sorted;
 
+// current selected criteria
+var criteria;
+
 // array to hold the interpolated
 var interpolated;
 
@@ -23,7 +26,6 @@ function readJSON() {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", "https://markjswan.github.io/covid-maps/json/sco/all_data.json", false ); // false for synchronous request
     xmlHttp.send( null );
-    console.log(Object.keys(JSON.parse(xmlHttp.responseText)));
     mapStats = JSON.parse(xmlHttp.responseText);
 }
 
@@ -123,7 +125,7 @@ function select(d) {
 }
 
 // draw our map on the SVG element
-function draw(boundaries, property) {
+function draw(boundaries) {
 
     projection
         .scale(1)
@@ -146,7 +148,6 @@ function draw(boundaries, property) {
         .attr("id", function(d) {return d.id})
         .attr("properties_table", function(d) { return create_table(d.properties)})
         .attr("d", path)
-        //.attr("fill", colourPicker(property, colourPicker()))
         .on("click", function(d){ return select(d)});
 
     colourMap();
@@ -159,12 +160,13 @@ function draw(boundaries, property) {
 }
 
 // For given property return a sorted list of keys based on their values
-function sort(property) {
-
-    dict = mapStats[property];
+function sort() {
+    console.log(criteria);
+    dict = mapStats[criteria];
+    console.log(dict);
     var sortable = [];
-    for (var area in mapStats[property]) {
-      sortable.push([area, mapStats[property][area]]);
+    for (var area in mapStats[criteria]) {
+      sortable.push([area, mapStats[criteria][area]]);
     }
 
     sortable.sort(function(a,b) {
@@ -217,6 +219,11 @@ function interpolateColors(color1, color2, steps) {
     return interpolatedColorArray;
 }
 
+function update_criteria(){
+    var top_level_select = document.getElementById('criteria');
+    criteria = top_level_select.options[top_level_select.selectedIndex].value;
+}
+
 function componentToHex(c) {
   var hex = c.toString(16);
   return hex.length == 1 ? "0" + hex : hex;
@@ -229,6 +236,9 @@ function rgbToHex(r, g, b) {
 // Selects the gradient associated with the ID
 function colourGradient(id)
 {
+    console.log(id);
+    console.log(sorted);
+    console.log(interpolated);
     rgb = interpolated[sorted.indexOf(id)];
     return rgbToHex(rgb[0], rgb[1], rgb[2]);
 }
@@ -242,11 +252,13 @@ function redraw() {
     d3.select("svg").remove();
 
     init(width, height);
-    draw(boundaries, "ratio_total_death_covid");
+    draw(boundaries);
 }
 
 // loads data from the given file and redraws the map
 function load_data(filename, u) {
+
+    update_criteria();
     // clear any selection
     deselect();
 
@@ -256,8 +268,8 @@ function load_data(filename, u) {
     //Import the array of interpolated colors
     interpolated = interpolateColors("rgb(255, 0, 0)", "rgb(255, 255, 255)", 32).reverse();
 
-    // Sort based on general property
-    sort("ratio_total_death_covid");
+    // Sort based on criteria
+    sort();
 
     units = u;
     var f = filename;
