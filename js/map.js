@@ -266,7 +266,7 @@ function load_data(filename, u) {
     readJSON();
 
     //Import the array of interpolated colors
-    interpolated = interpolateColors("rgb(255, 0, 0)", "rgb(255, 255, 255)", 32).reverse();
+    interpolated = interpolateColors("rgb(255, 0, 0)", "rgb(255, 225, 225)", 32).reverse();
 
     // Sort based on criteria
     sort();

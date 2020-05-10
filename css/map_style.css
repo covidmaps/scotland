@@ -5,6 +5,7 @@ body {
   font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#777;
   font-weight:300;
+  display: flex;
 }
 
 h1 {
@@ -75,6 +76,18 @@ th, td {
     float: right;
     font-size:28px;
     font-weight: 700;
+}
+
+.key {
+
+}
+
+#grad {
+  height: 200px;
+  background-color: red; /* For browsers that do not support gradients */
+  background-image: linear-gradient(red, white); /* Standard syntax (must be last) */
+  width: 50px;
+  height: 150px;
 }
 
 .area{
