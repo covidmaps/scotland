@@ -144,7 +144,7 @@ function draw(boundaries, property) {
         .on("click", function(d){ return select(d)});
 
     colourMap();
-    
+
     // add a boundary between areas
     g.append("path")
         .datum(topojson.mesh(boundaries, boundaries.objects[units], function(a, b){ return a !== b }))
@@ -155,10 +155,24 @@ function draw(boundaries, property) {
 // For given property return a sorted list of keys based on their values
 function sort(property) {
 
-    values = Object.values(mapStats[property]);
-    console.log(values);
-    // values.sort(function(a, b){return b - a})); SORTS VALUES FROM MIN TO MAX
+    dict = mapStats[property];
+    var sortable = [];
+    for (var area in mapStats[property]) {
+      sortable.push([area, mapStats[property][area]]);
+    }
 
+    sortable.sort(function(a,b) {
+      return a[1] - b[1];
+    });
+
+    sortedID = [];
+    for (var id in sortable) {
+      sortedID.push(sortable[id][0]);
+    }
+
+    console.log(sortedID);
+
+    return sortedID;
 }
 
 // Given a list of countries from worst to best assigns colours
@@ -198,7 +212,7 @@ function load_data(filename, u) {
     readJSON();
 
     // Sort based on general property
-    //sort("ratio_total_death_covid");
+    sort("ratio_total_death_covid");
 
     units = u;
     var f = filename;
