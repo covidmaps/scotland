@@ -12,6 +12,12 @@ var boundaries, units;
 // variables for current stats of each district
 var mapStats;
 
+// Array to hold the IDs of the sorted districts
+var sorted;
+
+// array to hold the interpolated
+var interpolated;
+
 //
 function readJSON() {
     var xmlHttp = new XMLHttpRequest();
@@ -172,7 +178,8 @@ function sort(property) {
 
     console.log(sortedID);
 
-    return sortedID;
+    //Overwrite the global sorted array with the new one
+    sorted = sortedID;
 }
 
 // Given a list of countries from worst to best assigns colours
@@ -183,12 +190,47 @@ function colourMap()
     });
 }
 
-// Depending on the
+
+function interpolateColor(color1, color2, factor) {
+    if (arguments.length < 3) {
+        factor = 0.5;
+    }
+    var result = color1.slice();
+    for (var i = 0; i < 3; i++) {
+        result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
+    }
+    return result;
+};
+
+
+function interpolateColors(color1, color2, steps) {
+    var stepFactor = 1 / (steps - 1),
+        interpolatedColorArray = [];
+
+    color1 = color1.match(/\d+/g).map(Number);
+    color2 = color2.match(/\d+/g).map(Number);
+
+    for(var i = 0; i < steps; i++) {
+        interpolatedColorArray.push(interpolateColor(color1, color2, stepFactor * i));
+    }
+
+    return interpolatedColorArray;
+}
+
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+// Selects the gradient associated with the ID
 function colourGradient(id)
 {
-    var val = "#" + Math.floor(Math.random() * (999999 - 100000 + 1) + 100000);
-    console.log(val);
-    return val;
+    rgb = interpolated[sorted.indexOf(id)];
+    return rgbToHex(rgb[0], rgb[1], rgb[2]);
 }
 
 // called to redraw the map - removes map completely and starts from scratch
@@ -210,6 +252,10 @@ function load_data(filename, u) {
 
     //Import the map data
     readJSON();
+
+    //Import the array of interpolated colors
+    interpolated = interpolateColors("rgb(255, 0, 0)", "rgb(255, 255, 255)", 32).reverse();
+    console.log(interpolated);
 
     // Sort based on general property
     sort("ratio_total_death_covid");
