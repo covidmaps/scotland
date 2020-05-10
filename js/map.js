@@ -1,4 +1,9 @@
-
+/*
+TODO:
+ - change key in HBO mode
+ - remove LAD borders in HBO mode
+ - Add multiple districts to be highlighted in hover mode
+*/
 
 // get the width of the area we're displaying in
 var width;
@@ -125,6 +130,7 @@ function select(d) {
     // add the area properties to the data_table section
     d3.select("#data_table")
         .html(create_table(d.properties, d.id));
+        //TODO: SELECT ALL OTHER DISTRICTS IN THE SAME HBO
 }
 
 // draw our map on the SVG element
