@@ -85,7 +85,7 @@ th, td {
 #grad {
   height: 200px;
   background-color: red; /* For browsers that do not support gradients */
-  background-image: linear-gradient(red, white); /* Standard syntax (must be last) */
+  background-image: linear-gradient(rgba(255,0,0), rgba(255,225,225)); /* Standard syntax (must be last) */
   width: 50px;
   height: 150px;
 }

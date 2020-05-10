@@ -34,32 +34,26 @@ function update_resolution_select() {
     var top_level_select = document.getElementById('top_level');
     //var area = top_level_select.options[top_level_select.selectedIndex].value;
 
-    var lad_select = document.getElementById('lad');
+    var lad_select = 'national'
     //var lad = lad_select.options[lad_select.selectedIndex].value;
 
     options_string = '';
-    if(lad === 'national') {
-        options_string += '<option value="eer">European Electoral Regions</option><option value="wpc">Westminster Parliamentary Constituencies</option><option value="wards">Westminster Parliamentary Wards</option><option value="lad">Local Authority Districts</option>';
-        if(area === 'wal') {
-            options_string += '<option value = "nawc">National Assembly Wales Constituencies</option>';
-            options_string += '<option value = "nawer">National Assembly Wales Electoral Regions</option>';
-        } else if(area === 'sco') {
-            options_string += '<option value = "spc">Scottish Parliament Constituencies</option>';
-            options_string += '<option value = "sper">Scottish Parliament Electoral Regions</option>';
-        } else if (area === 'ni') {
-            options_string = '<option value="wpc">Westminster Parliamentary Constituencies</option><option value="wards">Westminster Parliamentary Wards</option><option value="lgd">Local Government Districts</option>';
-        }
-    } else {
-        options_string += '<option value="wpc">Westminster Parliamentary Constituencies</option><option value="wards">Westminster Parliamentary Wards</option>';
-        if(area === 'eng' || area === 'wal') {
-            options_string += '<option value="msoa">Middle Layer Super Output Areas</option>';
-            options_string += '<option value="lsoa">Lower Layer Super Output Areas</option>';
-        } else if (area === 'sco') {
-            options_string += '<option value="idz">Intermediate Data Zones</option>';
-            options_string += '<option value="dz">Data Zones</option>';
-        }
-        options_string += '<option value="oa">Output Areas</option>';
+    options_string += '<option value="eer">European Electoral Regions</option><option value="wpc">Westminster Parliamentary Constituencies</option><option value="wards">Westminster Parliamentary Wards</option><option value="lad">Local Authority Districts</option>';
+    //Currently only Scotland being used
+    /*
+    if(area === 'wal') {
+        options_string += '<option value = "nawc">National Assembly Wales Constituencies</option>';
+        options_string += '<option value = "nawer">National Assembly Wales Electoral Regions</option>';
+    } else if(area === 'sco') {
+        */
+        options_string += '<option value = "spc">Scottish Parliament Constituencies</option>';
+        options_string += '<option value = "sper">Scottish Parliament Electoral Regions</option>';
+        /*
+    } else if (area === 'ni') {
+        options_string = '<option value="wpc">Westminster Parliamentary Constituencies</option><option value="wards">Westminster Parliamentary Wards</option><option value="lgd">Local Government Districts</option>';
     }
+    */
+    //options_string += '<option value="oa">Output Areas</option>';
     d3.select('#resolution').html(options_string);
 }
 
@@ -74,18 +68,11 @@ function change_area() {
     var area = top_level_select.options[top_level_select.selectedIndex].value;
 
     var lad_select = document.getElementById('lad');
-    var lad = lad_select.options[lad_select.selectedIndex].value;
+    var lad = 'national';
 
-    var f;
-    if(lad === 'national') {
-        var f = 'json/' + area + '/topo_' + units + '.json';
-        d3.select('#download').attr('href', f).attr('target', '_blank').text('download topoJSON');
-        load_data(f, units);
-    } else {
-        var f = 'json/' + area + '/' + units + '_by_lad/topo_' + lad + '.json';
-        d3.select('#download').attr('href', f).attr('target', '_blank').text('download topoJSON');
-        load_data(f, lad);
-    }
+    var f = 'json/' + area + '/topo_' + units + '.json';
+    d3.select('#download').attr('href', f).attr('target', '_blank').text('download topoJSON');
+    load_data(f, units);
 }
 
 d3.select('#lad').on('change', function(){
