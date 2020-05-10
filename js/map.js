@@ -149,6 +149,19 @@ function draw(boundaries) {
         .attr('class', 'boundary');
 }
 
+// return list of max to min based on given property
+function sort(property) {
+    console.log(mapStats[property]);
+    values = Object.values(mapStats[property]);
+    console.log(values.sort(function(a, b){return b - a}));
+}
+
+// Given a list of countries from worst to best assigns colours
+function colourMap(sortedList)
+{
+
+}
+
 // called to redraw the map - removes map completely and starts from scratch
 function redraw() {
     compute_size();
@@ -165,7 +178,12 @@ function redraw() {
 function load_data(filename, u) {
     // clear any selection
     deselect();
+
+    //Import the map data
     readJSON();
+
+    //
+    sort("ratio_total_death_covid");
 
     units = u;
     var f = filename;
