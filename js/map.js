@@ -18,15 +18,18 @@ var sorted;
 // current selected criteria
 var criteria;
 
+// resolution of the maps
+var res;
 // array to hold the interpolated
 var interpolated;
 
 //
 function readJSON() {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://markjswan.github.io/covid-maps/json/sco/all_data.json", false ); // false for synchronous request
+    xmlHttp.open( "GET", "https://markjswan.github.io/covid-maps/json/sco/"+ /*res*/ "new_test" +".json", false ); // false for synchronous request
     xmlHttp.send( null );
     mapStats = JSON.parse(xmlHttp.responseText);
+    console.log(mapStats);
 }
 
 function compute_size() {
@@ -102,7 +105,7 @@ var prettyProps = {'lad':"District", "all_deaths_hospital": "Hospital Deaths", '
         'covid_deaths_carehome': "COVID Carehome Deaths", 'covid_deaths_non-institution': "COVID Non-Institution Deaths",
     'covid_deaths_other': "COVID Other Deaths", 'covid_deaths_total': "COVID Total Deaths",
     'ratio_hospital_death_covid': "Ratio of COVID hospital deaths", 'ratio_carehome_death_covid': "Ratio of COVID Carehome Deaths",
-'ratio_noninst_death_covid': "Ratio of Non-Institution COVID Deaths", 'ratio_total_death_covid': "Ratio of Total COVID Deaths"}
+    'ratio_total_death_covid': "Ratio of Total COVID Deaths"}
 
 function prettify(input){
     str = input.toString();
@@ -150,6 +153,7 @@ function draw(boundaries) {
         .attr("d", path)
         .on("mouseover", function(d){ return select(d)});
 
+
     colourMap();
 
     // add a boundary between areas
@@ -161,8 +165,9 @@ function draw(boundaries) {
 
 // For given property return a sorted list of keys based on their values
 function sort() {
-    console.log(criteria);
     dict = mapStats[criteria];
+    console.log(mapStats);
+    console.log(criteria);
     console.log(dict);
     var sortable = [];
     for (var area in mapStats[criteria]) {
@@ -177,21 +182,46 @@ function sort() {
     for (var id in sortable) {
       sortedID.push(sortable[id][0]);
     }
-
-    console.log(sortedID);
-
     //Overwrite the global sorted array with the new one
     sorted = sortedID;
 }
 
-// Given a list of countries from worst to best assigns colours
+// Goes through each district and assigns correct colour
 function colourMap()
 {
-    g.selectAll(".area").each(function(d) {
-        d3.select(this).attr('fill', colourGradient(d3.select(this).attr('id')));
-    });
+    console.log(res);
+    if (res == "lad")
+    {
+        g.selectAll(".area").each(function(d) {
+            d3.select(this).attr('fill', colourGradient(d3.select(this).attr('id')));
+        });
+    }
+    if (res == "hbo")
+    {
+        g.selectAll(".area").each(function(d) {
+            d3.select(this).attr('fill', hboColours[d3.select(this).attr('id')]);
+        });
+    }
 }
 
+// Selects the gradient associated with the ID
+function colourGradient(id)
+{
+    console.log(id);
+    console.log(sorted.indexOf(id));
+    rgb = interpolated[sorted.indexOf(id)];
+    return rgbToHex(rgb[0], rgb[1], rgb[2]);
+}
+
+// Converts an RGB value to hex
+function rgbToHex(r, g, b) {
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
 
 function interpolateColor(color1, color2, factor) {
     if (arguments.length < 3) {
@@ -203,7 +233,6 @@ function interpolateColor(color1, color2, factor) {
     }
     return result;
 };
-
 
 function interpolateColors(color1, color2, steps) {
     var stepFactor = 1 / (steps - 1),
@@ -219,29 +248,27 @@ function interpolateColors(color1, color2, steps) {
     return interpolatedColorArray;
 }
 
+hboColours = { "S12000008": '#a43829', "S12000021": '#a43829', "S12000028": '#a43829', // 1
+            "S12000026": '#1d168e', // 2
+            "S12000006": '#d51654', // 3
+            "S12000013": '#6e27b8', // 4
+            "S12000015": '#e66d66', // 5
+            "S12000030": '#42cc82', "S12000014": '#42cc82', 'S12000005': '#42cc82', // 6
+            "S12000033": '#655a79', "S12000034": '#655a79', "S12000020": '#655a79', //7
+            "S12000045": '#df4d2e', "S12000046": '#df4d2e', "S12000038": '#df4d2e', "S12000039": '#df4d2e', "S12000018": '#df4d2e', "S12000011": '#df4d2e', // 8
+            "S12000017": '#93d7c0', "S12000035": '#93d7c0', // 9
+            "S12000044": '#85bf1d', "S12000029": '#85bf1d', // 10
+            "S12000010": '#ff0000', "S12000019": '#ff0000', "S12000036": '#ff0000', "S12000040": '#ff0000', // 11
+            "S12000023": '#ffff00', // 12
+            "S12000027": '#ff00f2', // 13
+            "S12000024": '#0800ff', "S12000042": '#0800ff', "S12000041": '#0800ff'} // 14
+
+// Gets the current criteria selected
 function update_criteria(){
     var top_level_select = document.getElementById('criteria');
     criteria = top_level_select.options[top_level_select.selectedIndex].value;
 }
 
-function componentToHex(c) {
-  var hex = c.toString(16);
-  return hex.length == 1 ? "0" + hex : hex;
-}
-
-function rgbToHex(r, g, b) {
-  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-}
-
-// Selects the gradient associated with the ID
-function colourGradient(id)
-{
-    console.log(id);
-    console.log(sorted);
-    console.log(interpolated);
-    rgb = interpolated[sorted.indexOf(id)];
-    return rgbToHex(rgb[0], rgb[1], rgb[2]);
-}
 
 // called to redraw the map - removes map completely and starts from scratch
 function redraw() {
@@ -255,10 +282,18 @@ function redraw() {
     draw(boundaries);
 }
 
+function get_resolution(){
+    var top_level_select = document.getElementById('resolution');
+    res = top_level_select.options[top_level_select.selectedIndex].value;
+}
+
 // loads data from the given file and redraws the map
 function load_data(filename, u) {
 
+    get_resolution();
+
     update_criteria();
+
     // clear any selection
     deselect();
 
