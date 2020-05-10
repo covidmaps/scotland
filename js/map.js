@@ -153,9 +153,24 @@ function draw(boundaries) {
 // For given property return a sorted list of keys based on their values
 function sort(property) {
 
-    values = Object.values(mapStats[property]);
-    // values.sort(function(a, b){return b - a})); SORTS VALUES FROM MIN TO MAX
-    
+    dict = mapStats[property];
+    var sortable = [];
+    for (var area in mapStats[property]) {
+      sortable.push([area, mapStats[property][area]]);
+    }
+
+    sortable.sort(function(a,b) {
+      return a[1] - b[1];
+    });
+
+    sortedID = [];
+    for (var id in sortable) {
+      sortedID.push(sortable[id][0]);
+    }
+
+    console.log(sortedID);
+
+    return sortedID;
 }
 
 // Given a list of countries from worst to best assigns colours
@@ -209,7 +224,7 @@ function load_data(filename, u) {
     readJSON();
 
     // Sort based on general property
-    //sort("ratio_total_death_covid");
+    sort("ratio_total_death_covid");
 
     //Pass sorted array to colour the map
     colourMap(Object.keys(mapStats["ratio_total_death_covid"]));
