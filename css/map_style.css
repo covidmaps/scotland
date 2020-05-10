@@ -84,7 +84,8 @@ th, td {
 
 .boundary {
     fill: none;
-    stroke: #777;
+    stroke: #5c5857;
+    stroke-width:1.5;
 }
 
 .selected {
