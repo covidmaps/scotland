@@ -117,7 +117,7 @@ function select(d) {
 }
 
 // draw our map on the SVG element
-function draw(boundaries) {
+function draw(boundaries, property) {
 
     projection
         .scale(1)
@@ -140,9 +140,11 @@ function draw(boundaries) {
         .attr("id", function(d) {return d.id})
         .attr("properties_table", function(d) { return create_table(d.properties)})
         .attr("d", path)
-        .attr("fill", "#C0C0C0")
+        //.attr("fill", colourPicker(property, colourPicker()))
         .on("click", function(d){ return select(d)});
 
+    colourMap();
+    
     // add a boundary between areas
     g.append("path")
         .datum(topojson.mesh(boundaries, boundaries.objects[units], function(a, b){ return a !== b }))
@@ -154,38 +156,25 @@ function draw(boundaries) {
 function sort(property) {
 
     values = Object.values(mapStats[property]);
+    console.log(values);
     // values.sort(function(a, b){return b - a})); SORTS VALUES FROM MIN TO MAX
-    
+
 }
 
 // Given a list of countries from worst to best assigns colours
-function colourMap(sortedList)
+function colourMap()
 {
-    console.log(sortedList);
-    for (var district in Object.values(sortedList))
-    {
-        /*
-        console.log(sortedList[district]);
-        d3.select("g#"+district) //select the group matching the id
-        .datum(d) //attach this data for future reference
-        .selectAll("path, polygon") //grab the shapes
-        .datum(d) //attach the data directly to *each* shape for future reference
-        .attr("fill", colour(#fcba03) ); //colour based on the data
-        */
-        d3.selectAll(".area").attr("fill", "#ffffff");
-        //d3.select(sortedList[district]).selectAll("path, polygon").attr("fill", "#fcba03");
-        /*
-        var district = d3.select(sortedList[district]);
-        district.style("fill", "#fcba03");
-        */
-        /*
-        svg.style("fill", "#fcba03");
-        var myColor = d3.scale.linear().domain([1,31])
-        .range(["white", "red"])
-        svg.selectAll(district).data(data).enter().append("circle").attr("cx", function(d,i){return 30 + i*60}).attr("cy", 50).attr("r", 19).attr("fill", function(d){return myColor(d) })
-        */
-    }
+    g.selectAll(".area").each(function(d) {
+        d3.select(this).attr('fill', colourGradient(d3.select(this).attr('id')));
+    });
+}
 
+// Depending on the
+function colourGradient(id)
+{
+    var val = "#" + Math.floor(Math.random() * (999999 - 100000 + 1) + 100000);
+    console.log(val);
+    return val;
 }
 
 // called to redraw the map - removes map completely and starts from scratch
@@ -197,7 +186,7 @@ function redraw() {
     d3.select("svg").remove();
 
     init(width, height);
-    draw(boundaries);
+    draw(boundaries, "ratio_total_death_covid");
 }
 
 // loads data from the given file and redraws the map
@@ -210,9 +199,6 @@ function load_data(filename, u) {
 
     // Sort based on general property
     //sort("ratio_total_death_covid");
-
-    //Pass sorted array to colour the map
-    colourMap(Object.keys(mapStats["ratio_total_death_covid"]));
 
     units = u;
     var f = filename;
