@@ -140,6 +140,7 @@ function draw(boundaries) {
         .attr("id", function(d) {return d.id})
         .attr("properties_table", function(d) { return create_table(d.properties)})
         .attr("d", path)
+        .attr("fill", "#C0C0C0")
         .on("click", function(d){ return select(d)});
 
     // add a boundary between areas
@@ -149,16 +150,41 @@ function draw(boundaries) {
         .attr('class', 'boundary');
 }
 
-// return list of max to min based on given property
+// For given property return a sorted list of keys based on their values
 function sort(property) {
-    console.log(mapStats[property]);
+
     values = Object.values(mapStats[property]);
-    console.log(values.sort(function(a, b){return b - a}));
+    // values.sort(function(a, b){return b - a})); SORTS VALUES FROM MIN TO MAX
+    
 }
 
 // Given a list of countries from worst to best assigns colours
 function colourMap(sortedList)
 {
+    console.log(sortedList);
+    for (var district in Object.values(sortedList))
+    {
+        /*
+        console.log(sortedList[district]);
+        d3.select("g#"+district) //select the group matching the id
+        .datum(d) //attach this data for future reference
+        .selectAll("path, polygon") //grab the shapes
+        .datum(d) //attach the data directly to *each* shape for future reference
+        .attr("fill", colour(#fcba03) ); //colour based on the data
+        */
+        d3.selectAll(".area").attr("fill", "#ffffff");
+        //d3.select(sortedList[district]).selectAll("path, polygon").attr("fill", "#fcba03");
+        /*
+        var district = d3.select(sortedList[district]);
+        district.style("fill", "#fcba03");
+        */
+        /*
+        svg.style("fill", "#fcba03");
+        var myColor = d3.scale.linear().domain([1,31])
+        .range(["white", "red"])
+        svg.selectAll(district).data(data).enter().append("circle").attr("cx", function(d,i){return 30 + i*60}).attr("cy", 50).attr("r", 19).attr("fill", function(d){return myColor(d) })
+        */
+    }
 
 }
 
@@ -182,8 +208,11 @@ function load_data(filename, u) {
     //Import the map data
     readJSON();
 
-    //
-    sort("ratio_total_death_covid");
+    // Sort based on general property
+    //sort("ratio_total_death_covid");
+
+    //Pass sorted array to colour the map
+    colourMap(Object.keys(mapStats["ratio_total_death_covid"]));
 
     units = u;
     var f = filename;
