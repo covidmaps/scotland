@@ -1,9 +1,9 @@
 /*
 TODO:
- - change key in HBO mode
- - remove LAD borders in HBO mode
- - Add multiple districts to be highlighted in hover mode
- - Improve how countries are sorted by health district
+ [] change key in HBO mode
+ [] remove LAD borders in HBO mode
+ [X] Add multiple districts to be highlighted in hover mode
+ [] Improve how countries are sorted by health district
  perhaps this can be done by having two dicts (1. board No. to colour
 2. district to board no.)
 */
@@ -139,8 +139,8 @@ function select(d) {
         //TODO: SELECT ALL OTHER DISTRICTS IN THE SAME HBO
 }
 
+// Highlights all districts in selected health board
 function highlightBoard(id){
-
     // Get colour of current country
     var boardColour = hboColours[id];
 
@@ -155,6 +155,19 @@ function highlightBoard(id){
             d3.select(this).attr("class", "selected")
         }
     });
+}
+
+// Hides the key
+function toggle_key(){
+  var x = document.getElementById("key");
+  console.log(res);
+  console.log(res == 'hbo')
+  if (res === 'hbo') {
+    x.style.display = "none";
+  }
+  else {
+    x.style.display = "block";
+  }
 }
 
 // draw our map on the SVG element
@@ -318,6 +331,9 @@ function load_data(filename, u) {
 
     update_criteria();
 
+    // Toggle the visibility of the key
+    toggle_key();
+    
     // clear any selection
     deselect();
 
