@@ -61,7 +61,7 @@ function display_graphHBO(hb, filter){
         svg.append("path")
           .datum(data)
           .attr("fill", "none")
-          .attr("stroke", "#33de61")
+          .attr("stroke", "#ff867b")
           .attr("stroke-width", 4)
           .attr("d", d3.line()
             .x(function(d) { return x(d.date) })
