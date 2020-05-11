@@ -2,7 +2,7 @@
 function display_graphHBO(hb, filter){
 
     // set the dimensions and margins of the graph
-    var margin = {top: 10, right: 30, bottom: 60, left: 60},
+    var margin = {top: 30, right: 30, bottom: 60, left: 60},
         width = 500 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
@@ -57,27 +57,23 @@ function display_graphHBO(hb, filter){
         svg.append("g")
           .call(d3.axisLeft(y));
 
-        // Add Y Axis label
-        svg.append("text")
-        .attr("class", "y label")
-        .attr("text-anchor", "end")
-        .attr("y", -50)
-        .attr("dy", ".75em")
-        .attr("transform", "rotate(-90)")
-        .text(prettifyFilter[filter]);
-
         // Add the line
         svg.append("path")
           .datum(data)
           .attr("fill", "none")
-          .attr("stroke", "steelblue")
-          .attr("stroke-width", 1.5)
+          .attr("stroke", "#33de61")
+          .attr("stroke-width", 4)
           .attr("d", d3.line()
             .x(function(d) { return x(d.date) })
             .y(function(d) { return y(d.value) })
             )
 
     })
+}
+
+function update_graph_title(filter)
+{
+    document.getElementById('graphTitle').innerHTML = prettifyFilter[filter];
 }
 
 function get_filter(){
@@ -97,6 +93,8 @@ function graph_init(res, id){
             var filter = get_filter();
 
             var health_board = hboDistricts[id];
+
+            update_graph_title(filter);
 
             display_graphHBO(health_board, filter);
         }
