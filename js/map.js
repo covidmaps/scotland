@@ -1,12 +1,11 @@
 /*
 TODO:
  [] change key in HBO mode
- [] remove LAD borders in HBO mode
+ [X] remove LAD borders in HBO mode
  [X] Add multiple districts to be highlighted in hover mode
  [] Improve how countries are sorted by health district
  perhaps this can be done by having two dicts (1. board No. to colour
 2. district to board no.)
- []
 */
 
 // get the width of the area we're displaying in
@@ -41,7 +40,7 @@ var zoom = d3.behavior.zoom()
 function zoomed() {
   g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 }
- // Colours associated with each
+ // colours associated with each
 hboColours = { "S12000008": '#1261A0', "S12000021": '#1261A0', "S12000028": '#1261A0', // 1
             "S12000026": '#FF0000', // 2
             "S12000006": '#654321', // 3
@@ -57,6 +56,20 @@ hboColours = { "S12000008": '#1261A0', "S12000021": '#1261A0', "S12000028": '#12
             "S12000027": '#9DC183', // 13
             "S12000024": '#EFCC44', "S12000042": '#EFCC44', "S12000041": '#EFCC44'} // 14
 
+hboDistricts = { "S12000008": '1', "S12000021": '1', "S12000028": '1', // 1
+                        "S12000026": '2', // 2
+                        "S12000006": '3', // 3
+                        "S12000013": '4', // 4
+                        "S12000015": '5', // 5
+                        "S12000030": '6', "S12000014": '6', 'S12000005': '6', // 6
+                        "S12000033": '7', "S12000034": '7', "S12000020": '7', //7
+                        "S12000045": '8', "S12000046": '8', "S12000038": '8', "S12000039": '8', "S12000018": '8', "S12000011": '8', // 8
+                        "S12000017": '9', "S12000035": '9', // 9
+                        "S12000044": '10', "S12000029": '10', // 10
+                        "S12000010": '11', "S12000019": '11', "S12000036": '11', "S12000040": '11', // 11
+                        "S12000023": '12', // 12
+                        "S12000027": '13', // 13
+                        "S12000024": '14', "S12000042": '14', "S12000041": '14'} // 14
 //
 function readJSON() {
     var xmlHttp = new XMLHttpRequest();
@@ -97,20 +110,13 @@ function init(width, height) {
     // create the svg element for drawing onto
     svg = d3.select("#map").append("svg")
         .attr("width", width)
-        .attr("height", height)
-        /* UNEXPECTED '.' WHEN LOADING PAGE
-        .call(d3.zoom().on("zoom", function () {
-           svg.attr("transform", d3.event.transform)
-       })) */
-       ;
+        .attr("height", height);
 
     // graphics go here
     g = svg.append("g");
 
-
-    svg
-        .call(zoom)
-        .call(zoom.event);
+    // add zoom to svg
+    svg.call(zoom).call(zoom.event);
 
     // add a white rectangle as background to enable us to deselect a map selection
     g.append("rect")
@@ -123,7 +129,8 @@ function init(width, height) {
 }
 
 // create a HTML table to display any properties about the selected item
-function create_table(properties, id) {
+function create_table(properties, id)
+{
     table_string = "<table>";
     if (id != undefined){
         var keys = Object.keys(mapStats);
@@ -136,7 +143,25 @@ function create_table(properties, id) {
     return table_string;
 }
 
-// Return a better looking version of property
+function show_data(properties, id) {
+
+    var vopt = get_view_option();
+
+    console.log(vopt);
+
+    if (vopt == 'tbl')
+    {
+        return create_table(properties, id);
+    }
+    if (vopt == 'grh')
+    {
+        var health_board = hboDistricts[id];
+        console.log(health_board);
+        //return populate_graphs(health_board);
+    }
+}
+
+// Return a better looking version of property header
 var prettyProps = {'lad':"District", "all_deaths_hospital": "Hospital Deaths", 'all_deaths_carehome': "Carehome Deaths",
                 'all_deaths_non-institution': "Non-Institution Deaths", 'all_deaths_other': "Other Deaths",
             'all_deaths_total': "Total Deaths", 'covid_deaths_hospital': "COVID Hospital Deaths",
@@ -166,8 +191,7 @@ function select(d) {
     }
     // add the area properties to the data_table section
     d3.select("#data_table")
-        .html(create_table(d.properties, d.id));
-        //TODO: SELECT ALL OTHER DISTRICTS IN THE SAME HBO
+        .html(show_data(d.properties, d.id));
 }
 
 // Highlights all districts in selected health board
@@ -221,7 +245,7 @@ function draw(boundaries) {
         .enter().append("path")
         .attr("class", "area")
         .attr("id", function(d) {return d.id})
-        .attr("properties_table", function(d) { return create_table(d.properties)})
+        .attr("properties_table", function(d) { return show_data(d.properties)})
         .attr("d", path)
         .on("mouseover", function(d){ return select(d)});
 
@@ -336,9 +360,16 @@ function redraw() {
     draw(boundaries);
 }
 
+// get the selected resolution
 function get_resolution(){
     var top_level_select = document.getElementById('resolution');
     res = top_level_select.options[top_level_select.selectedIndex].value;
+}
+
+// get the selected view option
+function get_view_option(){
+    var top_level_select = document.getElementById('view_option');
+    return top_level_select.options[top_level_select.selectedIndex].value;
 }
 
 // loads data from the given file and redraws the map
