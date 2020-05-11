@@ -1,0 +1,327 @@
+﻿LAD13CD,LAD13CDO,LAD13NM,NUTS315CD,NUTS315NM,NUTS215CD,NUTS215NM,NUT115CD,NUTS115NM,FID
+E06000001,00EB,Hartlepool,UKC11,Hartlepool and Stockton-on-Tees,UKC1,Tees Valley and Durham,UKC,North East (England),1
+E06000002,00EC,Middlesbrough,UKC12,South Teesside,UKC1,Tees Valley and Durham,UKC,North East (England),2
+E06000003,00EE,Redcar and Cleveland,UKC12,South Teesside,UKC1,Tees Valley and Durham,UKC,North East (England),3
+E06000004,00EF,Stockton-on-Tees,UKC11,Hartlepool and Stockton-on-Tees,UKC1,Tees Valley and Durham,UKC,North East (England),4
+E06000005,00EH,Darlington,UKC13,Darlington,UKC1,Tees Valley and Durham,UKC,North East (England),5
+E06000006,00ET,Halton,UKD71,East Merseyside,UKD7,Merseyside,UKD,North West (England),6
+E06000007,00EU,Warrington,UKD61,Warrington,UKD6,Cheshire,UKD,North West (England),7
+E06000008,00EX,Blackburn with Darwen,UKD41,Blackburn with Darwen,UKD4,Lancashire,UKD,North West (England),8
+E06000009,00EY,Blackpool,UKD42,Blackpool,UKD4,Lancashire,UKD,North West (England),9
+E06000010,00FA,"Kingston upon Hull, City of",UKE11,"Kingston upon Hull, City of",UKE1,East Yorkshire and Northern Lincolnshire,UKE,Yorkshire and The Humber,10
+E06000011,00FB,East Riding of Yorkshire,UKE12,East Riding of Yorkshire,UKE1,East Yorkshire and Northern Lincolnshire,UKE,Yorkshire and The Humber,11
+E06000012,00FC,North East Lincolnshire,UKE13,North and North East Lincolnshire,UKE1,East Yorkshire and Northern Lincolnshire,UKE,Yorkshire and The Humber,12
+E06000013,00FD,North Lincolnshire,UKE13,North and North East Lincolnshire,UKE1,East Yorkshire and Northern Lincolnshire,UKE,Yorkshire and The Humber,13
+E06000014,00FF,York,UKE21,York,UKE2,North Yorkshire,UKE,Yorkshire and The Humber,14
+E06000015,00FK,Derby,UKF11,Derby,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),15
+E06000016,00FN,Leicester,UKF21,Leicester,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),16
+E06000017,00FP,Rutland,UKF22,Leicestershire CC and Rutland,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),17
+E06000018,00FY,Nottingham,UKF14,Nottingham,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),18
+E06000019,00GA,"Herefordshire, County of",UKG11,"Herefordshire, County of",UKG1,"Herefordshire, Worcestershire and Warwickshire",UKG,West Midlands (England),19
+E06000020,00GF,Telford and Wrekin,UKG21,Telford and Wrekin,UKG2,Shropshire and Staffordshire,UKG,West Midlands (England),20
+E06000021,00GL,Stoke-on-Trent,UKG23,Stoke-on-Trent,UKG2,Shropshire and Staffordshire,UKG,West Midlands (England),21
+E06000022,00HA,Bath and North East Somerset,UKK12,"Bath and North East Somerset, North Somerset and South Gloucestershire",UKK1,"Gloucestershire, Wiltshire and Bath/Bristol area",UKK,South West (England),22
+E06000023,00HB,"Bristol, City of",UKK11,"Bristol, City of",UKK1,"Gloucestershire, Wiltshire and Bath/Bristol area",UKK,South West (England),23
+E06000024,00HC,North Somerset,UKK12,"Bath and North East Somerset, North Somerset and South Gloucestershire",UKK1,"Gloucestershire, Wiltshire and Bath/Bristol area",UKK,South West (England),24
+E06000025,00HD,South Gloucestershire,UKK12,"Bath and North East Somerset, North Somerset and South Gloucestershire",UKK1,"Gloucestershire, Wiltshire and Bath/Bristol area",UKK,South West (England),25
+E06000026,00HG,Plymouth,UKK41,Plymouth,UKK4,Devon,UKK,South West (England),26
+E06000027,00HH,Torbay,UKK42,Torbay,UKK4,Devon,UKK,South West (England),27
+E06000028,00HN,Bournemouth,UKK21,Bournemouth and Poole,UKK2,Dorset and Somerset,UKK,South West (England),28
+E06000029,00HP,Poole,UKK21,Bournemouth and Poole,UKK2,Dorset and Somerset,UKK,South West (England),29
+E06000030,00HX,Swindon,UKK14,Swindon,UKK1,"Gloucestershire, Wiltshire and Bath/Bristol area",UKK,South West (England),30
+E06000031,00JA,Peterborough,UKH11,Peterborough,UKH1,East Anglia,UKH,East of England,31
+E06000032,00KA,Luton,UKH21,Luton,UKH2,Bedfordshire and Hertfordshire,UKH,East of England,32
+E06000033,00KF,Southend-on-Sea,UKH31,Southend-on-Sea,UKH3,Essex,UKH,East of England,33
+E06000034,00KG,Thurrock,UKH32,Thurrock,UKH3,Essex,UKH,East of England,34
+E06000035,00LC,Medway,UKJ41,Medway,UKJ4,Kent,UKJ,South East (England),35
+E06000036,00MA,Bracknell Forest,UKJ11,Berkshire,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),36
+E06000037,00MB,West Berkshire,UKJ11,Berkshire,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),37
+E06000038,00MC,Reading,UKJ11,Berkshire,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),38
+E06000039,00MD,Slough,UKJ11,Berkshire,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),39
+E06000040,00ME,Windsor and Maidenhead,UKJ11,Berkshire,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),40
+E06000041,00MF,Wokingham,UKJ11,Berkshire,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),41
+E06000042,00MG,Milton Keynes,UKJ12,Milton Keynes,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),42
+E06000043,00ML,Brighton and Hove,UKJ21,Brighton and Hove,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),43
+E06000044,00MR,Portsmouth,UKJ31,Portsmouth,UKJ3,Hampshire and Isle of Wight,UKJ,South East (England),44
+E06000045,00MS,Southampton,UKJ32,Southampton,UKJ3,Hampshire and Isle of Wight,UKJ,South East (England),45
+E06000046,00MW,Isle of Wight,UKJ34,Isle of Wight,UKJ3,Hampshire and Isle of Wight,UKJ,South East (England),46
+E06000047,00EJ,County Durham,UKC14,Durham CC,UKC1,Tees Valley and Durham,UKC,North East (England),47
+E06000049,00EQ,Cheshire East,UKD62,Cheshire East,UKD6,Cheshire,UKD,North West (England),48
+E06000050,00EW,Cheshire West and Chester,UKD63,Cheshire West and Chester,UKD6,Cheshire,UKD,North West (England),49
+E06000051,00GG,Shropshire,UKG22,Shropshire CC,UKG2,Shropshire and Staffordshire,UKG,West Midlands (England),50
+E06000052,00HE,Cornwall,UKK30,Cornwall and Isles of Scilly,UKK3,Cornwall and Isles of Scilly,UKK,South West (England),51
+E06000053,00HF,Isles of Scilly,UKK30,Cornwall and Isles of Scilly,UKK3,Cornwall and Isles of Scilly,UKK,South West (England),52
+E06000054,00HY,Wiltshire,UKK15,Wiltshire,UKK1,"Gloucestershire, Wiltshire and Bath/Bristol area",UKK,South West (England),53
+E06000055,00KB,Bedford,UKH24,Bedford,UKH2,Bedfordshire and Hertfordshire,UKH,East of England,54
+E06000056,00KC,Central Bedfordshire,UKH25,Central Bedfordshire,UKH2,Bedfordshire and Hertfordshire,UKH,East of England,55
+E06000057,00EM,Northumberland,UKC21,Northumberland,UKC2,Northumberland and Tyne and Wear,UKC,North East (England),56
+E07000004,11UB,Aylesbury Vale,UKJ13,Buckinghamshire CC,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),57
+E07000005,11UC,Chiltern,UKJ13,Buckinghamshire CC,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),58
+E07000006,11UE,South Bucks,UKJ13,Buckinghamshire CC,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),59
+E07000007,11UF,Wycombe,UKJ13,Buckinghamshire CC,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),60
+E07000008,12UB,Cambridge,UKH12,Cambridgeshire CC,UKH1,East Anglia,UKH,East of England,61
+E07000009,12UC,East Cambridgeshire,UKH12,Cambridgeshire CC,UKH1,East Anglia,UKH,East of England,62
+E07000010,12UD,Fenland,UKH12,Cambridgeshire CC,UKH1,East Anglia,UKH,East of England,63
+E07000011,12UE,Huntingdonshire,UKH12,Cambridgeshire CC,UKH1,East Anglia,UKH,East of England,64
+E07000012,12UG,South Cambridgeshire,UKH12,Cambridgeshire CC,UKH1,East Anglia,UKH,East of England,65
+E07000026,16UB,Allerdale,UKD11,West Cumbria,UKD1,Cumbria,UKD,North West (England),66
+E07000027,16UC,Barrow-in-Furness,UKD11,West Cumbria,UKD1,Cumbria,UKD,North West (England),67
+E07000028,16UD,Carlisle,UKD12,East Cumbria,UKD1,Cumbria,UKD,North West (England),68
+E07000029,16UE,Copeland,UKD11,West Cumbria,UKD1,Cumbria,UKD,North West (England),69
+E07000030,16UF,Eden,UKD12,East Cumbria,UKD1,Cumbria,UKD,North West (England),70
+E07000031,16UG,South Lakeland,UKD12,East Cumbria,UKD1,Cumbria,UKD,North West (England),71
+E07000032,17UB,Amber Valley,UKF13,South and West Derbyshire,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),72
+E07000033,17UC,Bolsover,UKF12,East Derbyshire,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),73
+E07000034,17UD,Chesterfield,UKF12,East Derbyshire,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),74
+E07000035,17UF,Derbyshire Dales,UKF13,South and West Derbyshire,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),75
+E07000036,17UG,Erewash,UKF13,South and West Derbyshire,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),76
+E07000037,17UH,High Peak,UKF13,South and West Derbyshire,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),77
+E07000038,17UJ,North East Derbyshire,UKF12,East Derbyshire,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),78
+E07000039,17UK,South Derbyshire,UKF13,South and West Derbyshire,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),79
+E07000040,18UB,East Devon,UKK43,Devon CC,UKK4,Devon,UKK,South West (England),80
+E07000041,18UC,Exeter,UKK43,Devon CC,UKK4,Devon,UKK,South West (England),81
+E07000042,18UD,Mid Devon,UKK43,Devon CC,UKK4,Devon,UKK,South West (England),82
+E07000043,18UE,North Devon,UKK43,Devon CC,UKK4,Devon,UKK,South West (England),83
+E07000044,18UG,South Hams,UKK43,Devon CC,UKK4,Devon,UKK,South West (England),84
+E07000045,18UH,Teignbridge,UKK43,Devon CC,UKK4,Devon,UKK,South West (England),85
+E07000046,18UK,Torridge,UKK43,Devon CC,UKK4,Devon,UKK,South West (England),86
+E07000047,18UL,West Devon,UKK43,Devon CC,UKK4,Devon,UKK,South West (England),87
+E07000048,19UC,Christchurch,UKK22,Dorset CC,UKK2,Dorset and Somerset,UKK,South West (England),88
+E07000049,19UD,East Dorset,UKK22,Dorset CC,UKK2,Dorset and Somerset,UKK,South West (England),89
+E07000050,19UE,North Dorset,UKK22,Dorset CC,UKK2,Dorset and Somerset,UKK,South West (England),90
+E07000051,19UG,Purbeck,UKK22,Dorset CC,UKK2,Dorset and Somerset,UKK,South West (England),91
+E07000052,19UH,West Dorset,UKK22,Dorset CC,UKK2,Dorset and Somerset,UKK,South West (England),92
+E07000053,19UJ,Weymouth and Portland,UKK22,Dorset CC,UKK2,Dorset and Somerset,UKK,South West (England),93
+E07000061,21UC,Eastbourne,UKJ22,East Sussex CC,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),94
+E07000062,21UD,Hastings,UKJ22,East Sussex CC,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),95
+E07000063,21UF,Lewes,UKJ22,East Sussex CC,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),96
+E07000064,21UG,Rother,UKJ22,East Sussex CC,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),97
+E07000065,21UH,Wealden,UKJ22,East Sussex CC,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),98
+E07000066,22UB,Basildon,UKH37,Essex Thames Gateway,UKH3,Essex,UKH,East of England,99
+E07000067,22UC,Braintree,UKH34,Essex Haven Gateway,UKH3,Essex,UKH,East of England,100
+E07000068,22UD,Brentwood,UKH36,Heart of Essex,UKH3,Essex,UKH,East of England,101
+E07000069,22UE,Castle Point,UKH37,Essex Thames Gateway,UKH3,Essex,UKH,East of England,102
+E07000070,22UF,Chelmsford,UKH36,Heart of Essex,UKH3,Essex,UKH,East of England,103
+E07000071,22UG,Colchester,UKH34,Essex Haven Gateway,UKH3,Essex,UKH,East of England,104
+E07000072,22UH,Epping Forest,UKH35,West Essex,UKH3,Essex,UKH,East of England,105
+E07000073,22UJ,Harlow,UKH35,West Essex,UKH3,Essex,UKH,East of England,106
+E07000074,22UK,Maldon,UKH36,Heart of Essex,UKH3,Essex,UKH,East of England,107
+E07000075,22UL,Rochford,UKH37,Essex Thames Gateway,UKH3,Essex,UKH,East of England,108
+E07000076,22UN,Tendring,UKH34,Essex Haven Gateway,UKH3,Essex,UKH,East of England,109
+E07000077,22UQ,Uttlesford,UKH35,West Essex,UKH3,Essex,UKH,East of England,110
+E07000078,23UB,Cheltenham,UKK13,Gloucestershire,UKK1,"Gloucestershire, Wiltshire and Bath/Bristol area",UKK,South West (England),111
+E07000079,23UC,Cotswold,UKK13,Gloucestershire,UKK1,"Gloucestershire, Wiltshire and Bath/Bristol area",UKK,South West (England),112
+E07000080,23UD,Forest of Dean,UKK13,Gloucestershire,UKK1,"Gloucestershire, Wiltshire and Bath/Bristol area",UKK,South West (England),113
+E07000081,23UE,Gloucester,UKK13,Gloucestershire,UKK1,"Gloucestershire, Wiltshire and Bath/Bristol area",UKK,South West (England),114
+E07000082,23UF,Stroud,UKK13,Gloucestershire,UKK1,"Gloucestershire, Wiltshire and Bath/Bristol area",UKK,South West (England),115
+E07000083,23UG,Tewkesbury,UKK13,Gloucestershire,UKK1,"Gloucestershire, Wiltshire and Bath/Bristol area",UKK,South West (England),116
+E07000084,24UB,Basingstoke and Deane,UKJ37,North Hampshire,UKJ3,Hampshire and Isle of Wight,UKJ,South East (England),117
+E07000085,24UC,East Hampshire,UKJ36,Central Hampshire,UKJ3,Hampshire and Isle of Wight,UKJ,South East (England),118
+E07000086,24UD,Eastleigh,UKJ35,South Hampshire,UKJ3,Hampshire and Isle of Wight,UKJ,South East (England),119
+E07000087,24UE,Fareham,UKJ35,South Hampshire,UKJ3,Hampshire and Isle of Wight,UKJ,South East (England),120
+E07000088,24UF,Gosport,UKJ35,South Hampshire,UKJ3,Hampshire and Isle of Wight,UKJ,South East (England),121
+E07000089,24UG,Hart,UKJ37,North Hampshire,UKJ3,Hampshire and Isle of Wight,UKJ,South East (England),122
+E07000090,24UH,Havant,UKJ35,South Hampshire,UKJ3,Hampshire and Isle of Wight,UKJ,South East (England),123
+E07000091,24UJ,New Forest,UKJ36,Central Hampshire,UKJ3,Hampshire and Isle of Wight,UKJ,South East (England),124
+E07000092,24UL,Rushmoor,UKJ37,North Hampshire,UKJ3,Hampshire and Isle of Wight,UKJ,South East (England),125
+E07000093,24UN,Test Valley,UKJ36,Central Hampshire,UKJ3,Hampshire and Isle of Wight,UKJ,South East (England),126
+E07000094,24UP,Winchester,UKJ36,Central Hampshire,UKJ3,Hampshire and Isle of Wight,UKJ,South East (England),127
+E07000095,26UB,Broxbourne,UKH23,Hertfordshire,UKH2,Bedfordshire and Hertfordshire,UKH,East of England,128
+E07000096,26UC,Dacorum,UKH23,Hertfordshire,UKH2,Bedfordshire and Hertfordshire,UKH,East of England,129
+E07000098,26UE,Hertsmere,UKH23,Hertfordshire,UKH2,Bedfordshire and Hertfordshire,UKH,East of England,130
+E07000099,26UF,North Hertfordshire,UKH23,Hertfordshire,UKH2,Bedfordshire and Hertfordshire,UKH,East of England,131
+E07000102,26UJ,Three Rivers,UKH23,Hertfordshire,UKH2,Bedfordshire and Hertfordshire,UKH,East of England,132
+E07000103,26UK,Watford,UKH23,Hertfordshire,UKH2,Bedfordshire and Hertfordshire,UKH,East of England,133
+E07000105,29UB,Ashford,UKJ45,Mid Kent,UKJ4,Kent,UKJ,South East (England),134
+E07000106,29UC,Canterbury,UKJ44,East Kent,UKJ4,Kent,UKJ,South East (England),135
+E07000107,29UD,Dartford,UKJ43,Kent Thames Gateway,UKJ4,Kent,UKJ,South East (England),136
+E07000108,29UE,Dover,UKJ44,East Kent,UKJ4,Kent,UKJ,South East (England),137
+E07000109,29UG,Gravesham,UKJ43,Kent Thames Gateway,UKJ4,Kent,UKJ,South East (England),138
+E07000110,29UH,Maidstone,UKJ45,Mid Kent,UKJ4,Kent,UKJ,South East (England),139
+E07000111,29UK,Sevenoaks,UKJ46,West Kent,UKJ4,Kent,UKJ,South East (England),140
+E07000112,29UL,Shepway,UKJ44,East Kent,UKJ4,Kent,UKJ,South East (England),141
+E07000113,29UM,Swale,UKJ43,Kent Thames Gateway,UKJ4,Kent,UKJ,South East (England),142
+E07000114,29UN,Thanet,UKJ44,East Kent,UKJ4,Kent,UKJ,South East (England),143
+E07000115,29UP,Tonbridge and Malling,UKJ46,West Kent,UKJ4,Kent,UKJ,South East (England),144
+E07000116,29UQ,Tunbridge Wells,UKJ46,West Kent,UKJ4,Kent,UKJ,South East (England),145
+E07000117,30UD,Burnley,UKD46,East Lancashire,UKD4,Lancashire,UKD,North West (England),146
+E07000118,30UE,Chorley,UKD47,Chorley and West Lancashire,UKD4,Lancashire,UKD,North West (England),147
+E07000119,30UF,Fylde,UKD45,Mid Lancashire,UKD4,Lancashire,UKD,North West (England),148
+E07000120,30UG,Hyndburn,UKD46,East Lancashire,UKD4,Lancashire,UKD,North West (England),149
+E07000121,30UH,Lancaster,UKD44,Lancaster and Wyre,UKD4,Lancashire,UKD,North West (England),150
+E07000122,30UJ,Pendle,UKD46,East Lancashire,UKD4,Lancashire,UKD,North West (England),151
+E07000123,30UK,Preston,UKD45,Mid Lancashire,UKD4,Lancashire,UKD,North West (England),152
+E07000124,30UL,Ribble Valley,UKD45,Mid Lancashire,UKD4,Lancashire,UKD,North West (England),153
+E07000125,30UM,Rossendale,UKD46,East Lancashire,UKD4,Lancashire,UKD,North West (England),154
+E07000126,30UN,South Ribble,UKD45,Mid Lancashire,UKD4,Lancashire,UKD,North West (England),155
+E07000127,30UP,West Lancashire,UKD47,Chorley and West Lancashire,UKD4,Lancashire,UKD,North West (England),156
+E07000128,30UQ,Wyre,UKD44,Lancaster and Wyre,UKD4,Lancashire,UKD,North West (England),157
+E07000129,31UB,Blaby,UKF22,Leicestershire CC and Rutland,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),158
+E07000130,31UC,Charnwood,UKF22,Leicestershire CC and Rutland,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),159
+E07000131,31UD,Harborough,UKF22,Leicestershire CC and Rutland,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),160
+E07000132,31UE,Hinckley and Bosworth,UKF22,Leicestershire CC and Rutland,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),161
+E07000133,31UG,Melton,UKF22,Leicestershire CC and Rutland,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),162
+E07000134,31UH,North West Leicestershire,UKF22,Leicestershire CC and Rutland,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),163
+E07000135,31UJ,Oadby and Wigston,UKF22,Leicestershire CC and Rutland,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),164
+E07000136,32UB,Boston,UKF30,Lincolnshire,UKF3,Lincolnshire,UKF,East Midlands (England),165
+E07000137,32UC,East Lindsey,UKF30,Lincolnshire,UKF3,Lincolnshire,UKF,East Midlands (England),166
+E07000138,32UD,Lincoln,UKF30,Lincolnshire,UKF3,Lincolnshire,UKF,East Midlands (England),167
+E07000139,32UE,North Kesteven,UKF30,Lincolnshire,UKF3,Lincolnshire,UKF,East Midlands (England),168
+E07000140,32UF,South Holland,UKF30,Lincolnshire,UKF3,Lincolnshire,UKF,East Midlands (England),169
+E07000141,32UG,South Kesteven,UKF30,Lincolnshire,UKF3,Lincolnshire,UKF,East Midlands (England),170
+E07000142,32UH,West Lindsey,UKF30,Lincolnshire,UKF3,Lincolnshire,UKF,East Midlands (England),171
+E07000143,33UB,Breckland,UKH17,Breckland and South Norfolk,UKH1,East Anglia,UKH,East of England,172
+E07000144,33UC,Broadland,UKH15,Norwich and East Norfolk,UKH1,East Anglia,UKH,East of England,173
+E07000145,33UD,Great Yarmouth,UKH15,Norwich and East Norfolk,UKH1,East Anglia,UKH,East of England,174
+E07000146,33UE,King's Lynn and West Norfolk,UKH16,North and West Norfolk,UKH1,East Anglia,UKH,East of England,175
+E07000147,33UF,North Norfolk,UKH16,North and West Norfolk,UKH1,East Anglia,UKH,East of England,176
+E07000148,33UG,Norwich,UKH15,Norwich and East Norfolk,UKH1,East Anglia,UKH,East of England,177
+E07000149,33UH,South Norfolk,UKH17,Breckland and South Norfolk,UKH1,East Anglia,UKH,East of England,178
+E07000150,34UB,Corby,UKF25,North Northamptonshire,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),179
+E07000151,34UC,Daventry,UKF24,West Northamptonshire,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),180
+E07000152,34UD,East Northamptonshire,UKF25,North Northamptonshire,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),181
+E07000153,34UE,Kettering,UKF25,North Northamptonshire,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),182
+E07000154,34UF,Northampton,UKF24,West Northamptonshire,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),183
+E07000155,34UG,South Northamptonshire,UKF24,West Northamptonshire,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),184
+E07000156,34UH,Wellingborough,UKF25,North Northamptonshire,UKF2,"Leicestershire, Rutland and Northamptonshire",UKF,East Midlands (England),185
+E07000163,36UB,Craven,UKE22,North Yorkshire CC,UKE2,North Yorkshire,UKE,Yorkshire and The Humber,186
+E07000164,36UC,Hambleton,UKE22,North Yorkshire CC,UKE2,North Yorkshire,UKE,Yorkshire and The Humber,187
+E07000165,36UD,Harrogate,UKE22,North Yorkshire CC,UKE2,North Yorkshire,UKE,Yorkshire and The Humber,188
+E07000166,36UE,Richmondshire,UKE22,North Yorkshire CC,UKE2,North Yorkshire,UKE,Yorkshire and The Humber,189
+E07000167,36UF,Ryedale,UKE22,North Yorkshire CC,UKE2,North Yorkshire,UKE,Yorkshire and The Humber,190
+E07000168,36UG,Scarborough,UKE22,North Yorkshire CC,UKE2,North Yorkshire,UKE,Yorkshire and The Humber,191
+E07000169,36UH,Selby,UKE22,North Yorkshire CC,UKE2,North Yorkshire,UKE,Yorkshire and The Humber,192
+E07000170,37UB,Ashfield,UKF15,North Nottinghamshire,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),193
+E07000171,37UC,Bassetlaw,UKF15,North Nottinghamshire,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),194
+E07000172,37UD,Broxtowe,UKF16,South Nottinghamshire,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),195
+E07000173,37UE,Gedling,UKF16,South Nottinghamshire,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),196
+E07000174,37UF,Mansfield,UKF15,North Nottinghamshire,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),197
+E07000175,37UG,Newark and Sherwood,UKF15,North Nottinghamshire,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),198
+E07000176,37UJ,Rushcliffe,UKF16,South Nottinghamshire,UKF1,Derbyshire and Nottinghamshire,UKF,East Midlands (England),199
+E07000177,38UB,Cherwell,UKJ14,Oxfordshire,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),200
+E07000178,38UC,Oxford,UKJ14,Oxfordshire,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),201
+E07000179,38UD,South Oxfordshire,UKJ14,Oxfordshire,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),202
+E07000180,38UE,Vale of White Horse,UKJ14,Oxfordshire,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),203
+E07000181,38UF,West Oxfordshire,UKJ14,Oxfordshire,UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",UKJ,South East (England),204
+E07000187,40UB,Mendip,UKK23,Somerset,UKK2,Dorset and Somerset,UKK,South West (England),205
+E07000188,40UC,Sedgemoor,UKK23,Somerset,UKK2,Dorset and Somerset,UKK,South West (England),206
+E07000189,40UD,South Somerset,UKK23,Somerset,UKK2,Dorset and Somerset,UKK,South West (England),207
+E07000190,40UE,Taunton Deane,UKK23,Somerset,UKK2,Dorset and Somerset,UKK,South West (England),208
+E07000191,40UF,West Somerset,UKK23,Somerset,UKK2,Dorset and Somerset,UKK,South West (England),209
+E07000192,41UB,Cannock Chase,UKG24,Staffordshire CC,UKG2,Shropshire and Staffordshire,UKG,West Midlands (England),210
+E07000193,41UC,East Staffordshire,UKG24,Staffordshire CC,UKG2,Shropshire and Staffordshire,UKG,West Midlands (England),211
+E07000194,41UD,Lichfield,UKG24,Staffordshire CC,UKG2,Shropshire and Staffordshire,UKG,West Midlands (England),212
+E07000195,41UE,Newcastle-under-Lyme,UKG24,Staffordshire CC,UKG2,Shropshire and Staffordshire,UKG,West Midlands (England),213
+E07000196,41UF,South Staffordshire,UKG24,Staffordshire CC,UKG2,Shropshire and Staffordshire,UKG,West Midlands (England),214
+E07000197,41UG,Stafford,UKG24,Staffordshire CC,UKG2,Shropshire and Staffordshire,UKG,West Midlands (England),215
+E07000198,41UH,Staffordshire Moorlands,UKG24,Staffordshire CC,UKG2,Shropshire and Staffordshire,UKG,West Midlands (England),216
+E07000199,41UK,Tamworth,UKG24,Staffordshire CC,UKG2,Shropshire and Staffordshire,UKG,West Midlands (England),217
+E07000200,42UB,Babergh,UKH14,Suffolk,UKH1,East Anglia,UKH,East of England,218
+E07000201,42UC,Forest Heath,UKH14,Suffolk,UKH1,East Anglia,UKH,East of England,219
+E07000202,42UD,Ipswich,UKH14,Suffolk,UKH1,East Anglia,UKH,East of England,220
+E07000203,42UE,Mid Suffolk,UKH14,Suffolk,UKH1,East Anglia,UKH,East of England,221
+E07000204,42UF,St Edmundsbury,UKH14,Suffolk,UKH1,East Anglia,UKH,East of England,222
+E07000205,42UG,Suffolk Coastal,UKH14,Suffolk,UKH1,East Anglia,UKH,East of England,223
+E07000206,42UH,Waveney,UKH14,Suffolk,UKH1,East Anglia,UKH,East of England,224
+E07000207,43UB,Elmbridge,UKJ25,West Surrey,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),225
+E07000208,43UC,Epsom and Ewell,UKJ26,East Surrey,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),226
+E07000209,43UD,Guildford,UKJ25,West Surrey,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),227
+E07000210,43UE,Mole Valley,UKJ26,East Surrey,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),228
+E07000211,43UF,Reigate and Banstead,UKJ26,East Surrey,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),229
+E07000212,43UG,Runnymede,UKJ25,West Surrey,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),230
+E07000213,43UH,Spelthorne,UKJ25,West Surrey,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),231
+E07000214,43UJ,Surrey Heath,UKJ25,West Surrey,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),232
+E07000215,43UK,Tandridge,UKJ26,East Surrey,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),233
+E07000216,43UL,Waverley,UKJ25,West Surrey,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),234
+E07000217,43UM,Woking,UKJ25,West Surrey,UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),235
+E07000218,44UB,North Warwickshire,UKG13,Warwickshire,UKG1,"Herefordshire, Worcestershire and Warwickshire",UKG,West Midlands (England),236
+E07000219,44UC,Nuneaton and Bedworth,UKG13,Warwickshire,UKG1,"Herefordshire, Worcestershire and Warwickshire",UKG,West Midlands (England),237
+E07000220,44UD,Rugby,UKG13,Warwickshire,UKG1,"Herefordshire, Worcestershire and Warwickshire",UKG,West Midlands (England),238
+E07000221,44UE,Stratford-on-Avon,UKG13,Warwickshire,UKG1,"Herefordshire, Worcestershire and Warwickshire",UKG,West Midlands (England),239
+E07000222,44UF,Warwick,UKG13,Warwickshire,UKG1,"Herefordshire, Worcestershire and Warwickshire",UKG,West Midlands (England),240
+E07000223,45UB,Adur,UKJ27,West Sussex (South West),UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),241
+E07000224,45UC,Arun,UKJ27,West Sussex (South West),UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),242
+E07000225,45UD,Chichester,UKJ27,West Sussex (South West),UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),243
+E07000226,45UE,Crawley,UKJ28,West Sussex (North East),UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),244
+E07000227,45UF,Horsham,UKJ28,West Sussex (North East),UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),245
+E07000228,45UG,Mid Sussex,UKJ28,West Sussex (North East),UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),246
+E07000229,45UH,Worthing,UKJ27,West Sussex (South West),UKJ2,"Surrey, East and West Sussex",UKJ,South East (England),247
+E07000234,47UB,Bromsgrove,UKG12,Worcestershire,UKG1,"Herefordshire, Worcestershire and Warwickshire",UKG,West Midlands (England),248
+E07000235,47UC,Malvern Hills,UKG12,Worcestershire,UKG1,"Herefordshire, Worcestershire and Warwickshire",UKG,West Midlands (England),249
+E07000236,47UD,Redditch,UKG12,Worcestershire,UKG1,"Herefordshire, Worcestershire and Warwickshire",UKG,West Midlands (England),250
+E07000237,47UE,Worcester,UKG12,Worcestershire,UKG1,"Herefordshire, Worcestershire and Warwickshire",UKG,West Midlands (England),251
+E07000238,47UF,Wychavon,UKG12,Worcestershire,UKG1,"Herefordshire, Worcestershire and Warwickshire",UKG,West Midlands (England),252
+E07000239,47UG,Wyre Forest,UKG12,Worcestershire,UKG1,"Herefordshire, Worcestershire and Warwickshire",UKG,West Midlands (England),253
+E07000240,26UG,St Albans,UKH23,Hertfordshire,UKH2,Bedfordshire and Hertfordshire,UKH,East of England,254
+E07000241,26UL,Welwyn Hatfield,UKH23,Hertfordshire,UKH2,Bedfordshire and Hertfordshire,UKH,East of England,255
+E07000242,26UD,East Hertfordshire,UKH23,Hertfordshire,UKH2,Bedfordshire and Hertfordshire,UKH,East of England,256
+E07000243,26UH,Stevenage,UKH23,Hertfordshire,UKH2,Bedfordshire and Hertfordshire,UKH,East of England,257
+E08000001,00BL,Bolton,UKD36,Greater Manchester North West,UKD3,Greater Manchester,UKD,North West (England),258
+E08000002,00BM,Bury,UKD37,Greater Manchester North East,UKD3,Greater Manchester,UKD,North West (England),259
+E08000003,00BN,Manchester,UKD33,Manchester,UKD3,Greater Manchester,UKD,North West (England),260
+E08000004,00BP,Oldham,UKD37,Greater Manchester North East,UKD3,Greater Manchester,UKD,North West (England),261
+E08000005,00BQ,Rochdale,UKD37,Greater Manchester North East,UKD3,Greater Manchester,UKD,North West (England),262
+E08000006,00BR,Salford,UKD34,Greater Manchester South West,UKD3,Greater Manchester,UKD,North West (England),263
+E08000007,00BS,Stockport,UKD35,Greater Manchester South East,UKD3,Greater Manchester,UKD,North West (England),264
+E08000008,00BT,Tameside,UKD35,Greater Manchester South East,UKD3,Greater Manchester,UKD,North West (England),265
+E08000009,00BU,Trafford,UKD34,Greater Manchester South West,UKD3,Greater Manchester,UKD,North West (England),266
+E08000010,00BW,Wigan,UKD36,Greater Manchester North West,UKD3,Greater Manchester,UKD,North West (England),267
+E08000011,00BX,Knowsley,UKD71,East Merseyside,UKD7,Merseyside,UKD,North West (England),268
+E08000012,00BY,Liverpool,UKD72,Liverpool,UKD7,Merseyside,UKD,North West (England),269
+E08000013,00BZ,St. Helens,UKD71,East Merseyside,UKD7,Merseyside,UKD,North West (England),270
+E08000014,00CA,Sefton,UKD73,Sefton,UKD7,Merseyside,UKD,North West (England),271
+E08000015,00CB,Wirral,UKD74,Wirral,UKD7,Merseyside,UKD,North West (England),272
+E08000016,00CC,Barnsley,UKE31,"Barnsley, Doncaster and Rotherham",UKE3,South Yorkshire,UKE,Yorkshire and The Humber,273
+E08000017,00CE,Doncaster,UKE31,"Barnsley, Doncaster and Rotherham",UKE3,South Yorkshire,UKE,Yorkshire and The Humber,274
+E08000018,00CF,Rotherham,UKE31,"Barnsley, Doncaster and Rotherham",UKE3,South Yorkshire,UKE,Yorkshire and The Humber,275
+E08000019,00CG,Sheffield,UKE32,Sheffield,UKE3,South Yorkshire,UKE,Yorkshire and The Humber,276
+E08000021,00CJ,Newcastle upon Tyne,UKC22,Tyneside,UKC2,Northumberland and Tyne and Wear,UKC,North East (England),277
+E08000022,00CK,North Tyneside,UKC22,Tyneside,UKC2,Northumberland and Tyne and Wear,UKC,North East (England),278
+E08000023,00CL,South Tyneside,UKC22,Tyneside,UKC2,Northumberland and Tyne and Wear,UKC,North East (England),279
+E08000024,00CM,Sunderland,UKC23,Sunderland,UKC2,Northumberland and Tyne and Wear,UKC,North East (England),280
+E08000025,00CN,Birmingham,UKG31,Birmingham,UKG3,West Midlands,UKG,West Midlands (England),281
+E08000026,00CQ,Coventry,UKG33,Coventry,UKG3,West Midlands,UKG,West Midlands (England),282
+E08000027,00CR,Dudley,UKG36,Dudley,UKG3,West Midlands,UKG,West Midlands (England),283
+E08000028,00CS,Sandwell,UKG37,Sandwell,UKG3,West Midlands,UKG,West Midlands (England),284
+E08000029,00CT,Solihull,UKG32,Solihull,UKG3,West Midlands,UKG,West Midlands (England),285
+E08000030,00CU,Walsall,UKG38,Walsall,UKG3,West Midlands,UKG,West Midlands (England),286
+E08000031,00CW,Wolverhampton,UKG39,Wolverhampton,UKG3,West Midlands,UKG,West Midlands (England),287
+E08000032,00CX,Bradford,UKE41,Bradford,UKE4,West Yorkshire,UKE,Yorkshire and The Humber,288
+E08000033,00CY,Calderdale,UKE44,Calderdale and Kirklees,UKE4,West Yorkshire,UKE,Yorkshire and The Humber,289
+E08000034,00CZ,Kirklees,UKE44,Calderdale and Kirklees,UKE4,West Yorkshire,UKE,Yorkshire and The Humber,290
+E08000035,00DA,Leeds,UKE42,Leeds,UKE4,West Yorkshire,UKE,Yorkshire and The Humber,291
+E08000036,00DB,Wakefield,UKE45,Wakefield,UKE4,West Yorkshire,UKE,Yorkshire and The Humber,292
+E08000037,00CH,Gateshead,UKC22,Tyneside,UKC2,Northumberland and Tyne and Wear,UKC,North East (England),293
+E09000001,00AA,City of London,UKI31,Camden and City of London,UKI3,Inner London - West,UKI,London,294
+E09000002,00AB,Barking and Dagenham,UKI52,Barking & Dagenham and Havering,UKI5,Outer London - East and North East,UKI,London,295
+E09000003,00AC,Barnet,UKI71,Barnet,UKI7,Outer London - West and North West,UKI,London,296
+E09000004,00AD,Bexley,UKI51,Bexley and Greenwich,UKI5,Outer London - East and North East,UKI,London,297
+E09000005,00AE,Brent,UKI72,Brent,UKI7,Outer London - West and North West,UKI,London,298
+E09000006,00AF,Bromley,UKI61,Bromley,UKI6,Outer London - South,UKI,London,299
+E09000007,00AG,Camden,UKI31,Camden and City of London,UKI3,Inner London - West,UKI,London,300
+E09000008,00AH,Croydon,UKI62,Croydon,UKI6,Outer London - South,UKI,London,301
+E09000009,00AJ,Ealing,UKI73,Ealing,UKI7,Outer London - West and North West,UKI,London,302
+E09000010,00AK,Enfield,UKI54,Enfield,UKI5,Outer London - East and North East,UKI,London,303
+E09000011,00AL,Greenwich,UKI51,Bexley and Greenwich,UKI5,Outer London - East and North East,UKI,London,304
+E09000012,00AM,Hackney,UKI41,Hackney and Newham,UKI4,Inner London - East,UKI,London,305
+E09000013,00AN,Hammersmith and Fulham,UKI33,Kensington & Chelsea and Hammersmith & Fulham,UKI3,Inner London - West,UKI,London,306
+E09000014,00AP,Haringey,UKI43,Haringey and Islington,UKI4,Inner London - East,UKI,London,307
+E09000015,00AQ,Harrow,UKI74,Harrow and Hillingdon,UKI7,Outer London - West and North West,UKI,London,308
+E09000016,00AR,Havering,UKI52,Barking & Dagenham and Havering,UKI5,Outer London - East and North East,UKI,London,309
+E09000017,00AS,Hillingdon,UKI74,Harrow and Hillingdon,UKI7,Outer London - West and North West,UKI,London,310
+E09000018,00AT,Hounslow,UKI75,Hounslow and Richmond upon Thames,UKI7,Outer London - West and North West,UKI,London,311
+E09000019,00AU,Islington,UKI43,Haringey and Islington,UKI4,Inner London - East,UKI,London,312
+E09000020,00AW,Kensington and Chelsea,UKI33,Kensington & Chelsea and Hammersmith & Fulham,UKI3,Inner London - West,UKI,London,313
+E09000021,00AX,Kingston upon Thames,UKI63,"Merton, Kingston upon Thames and Sutton",UKI6,Outer London - South,UKI,London,314
+E09000022,00AY,Lambeth,UKI45,Lambeth,UKI4,Inner London - East,UKI,London,315
+E09000023,00AZ,Lewisham,UKI44,Lewisham and Southwark,UKI4,Inner London - East,UKI,London,316
+E09000024,00BA,Merton,UKI63,"Merton, Kingston upon Thames and Sutton",UKI6,Outer London - South,UKI,London,317
+E09000025,00BB,Newham,UKI41,Hackney and Newham,UKI4,Inner London - East,UKI,London,318
+E09000026,00BC,Redbridge,UKI53,Redbridge and Waltham Forest,UKI5,Outer London - East and North East,UKI,London,319
+E09000027,00BD,Richmond upon Thames,UKI75,Hounslow and Richmond upon Thames,UKI7,Outer London - West and North West,UKI,London,320
+E09000028,00BE,Southwark,UKI44,Lewisham and Southwark,UKI4,Inner London - East,UKI,London,321
+E09000029,00BF,Sutton,UKI63,"Merton, Kingston upon Thames and Sutton",UKI6,Outer London - South,UKI,London,322
+E09000030,00BG,Tower Hamlets,UKI42,Tower Hamlets,UKI4,Inner London - East,UKI,London,323
+E09000031,00BH,Waltham Forest,UKI53,Redbridge and Waltham Forest,UKI5,Outer London - East and North East,UKI,London,324
+E09000032,00BJ,Wandsworth,UKI34,Wandsworth,UKI3,Inner London - West,UKI,London,325
+E09000033,00BK,Westminster,UKI32,Westminster,UKI3,Inner London - West,UKI,London,326
