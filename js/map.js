@@ -33,6 +33,7 @@ var res;
 // array to hold the interpolated
 var interpolated;
 
+// Allows topo_json to zoom
 var zoom = d3.behavior.zoom()
     .scaleExtent([1, 8])
     .on("zoom", zoomed);
@@ -40,6 +41,21 @@ var zoom = d3.behavior.zoom()
 function zoomed() {
   g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 }
+ // Colours associated with each
+hboColours = { "S12000008": '#1261A0', "S12000021": '#1261A0', "S12000028": '#1261A0', // 1
+            "S12000026": '#FF0000', // 2
+            "S12000006": '#654321', // 3
+            "S12000013": '#708238', // 4
+            "S12000015": '#00FFFF', // 5
+            "S12000030": '#A45A52', "S12000014": '#A45A52', 'S12000005': '#A45A52', // 6
+            "S12000033": '#FF8D1E', "S12000034": '#FF8D1E', "S12000020": '#FF8D1E', //7
+            "S12000045": '#00FF00', "S12000046": '#00FF00', "S12000038": '#00FF00', "S12000039": '#00FF00', "S12000018": '#00FF00', "S12000011": '#00FF00', // 8
+            "S12000017": '#9F00FF', "S12000035": '#9F00FF', // 9
+            "S12000044": '#ECF210', "S12000029": '#ECF210', // 10
+            "S12000010": '#4B0082', "S12000019": '#4B0082', "S12000036": '#4B0082', "S12000040": '#4B0082', // 11
+            "S12000023": '#F05E23', // 12
+            "S12000027": '#9DC183', // 13
+            "S12000024": '#EFCC44', "S12000042": '#EFCC44', "S12000041": '#EFCC44'} // 14
 
 //
 function readJSON() {
@@ -212,11 +228,14 @@ function draw(boundaries) {
 
     colourMap();
 
-    // add a boundary between areas
-    g.append("path")
-        .datum(topojson.mesh(boundaries, boundaries.objects[units], function(a, b){ return a !== b }))
-        .attr('d', path)
-        .attr('class', 'boundary');
+    if (res != 'hbo'){
+        // add a boundary between areas
+        g.append("path")
+            .datum(topojson.mesh(boundaries, boundaries.objects[units], function(a, b){ return a !== b }))
+            .attr('d', path)
+            .attr('class', 'boundary');
+    }
+
 }
 
 // For given property return a sorted list of keys based on their values
@@ -297,21 +316,6 @@ function interpolateColors(color1, color2, steps) {
 
     return interpolatedColorArray;
 }
-
-hboColours = { "S12000008": '#1261A0', "S12000021": '#1261A0', "S12000028": '#1261A0', // 1
-            "S12000026": '#FF0000', // 2
-            "S12000006": '#654321', // 3
-            "S12000013": '#708238', // 4
-            "S12000015": '#00FFFF', // 5
-            "S12000030": '#A45A52', "S12000014": '#A45A52', 'S12000005': '#A45A52', // 6
-            "S12000033": '#FF8D1E', "S12000034": '#FF8D1E', "S12000020": '#FF8D1E', //7
-            "S12000045": '#00FF00', "S12000046": '#00FF00', "S12000038": '#00FF00', "S12000039": '#00FF00', "S12000018": '#00FF00', "S12000011": '#00FF00', // 8
-            "S12000017": '#9F00FF', "S12000035": '#9F00FF', // 9
-            "S12000044": '#ECF210', "S12000029": '#ECF210', // 10
-            "S12000010": '#4B0082', "S12000019": '#4B0082', "S12000036": '#4B0082', "S12000040": '#4B0082', // 11
-            "S12000023": '#F05E23', // 12
-            "S12000027": '#9DC183', // 13
-            "S12000024": '#EFCC44', "S12000042": '#EFCC44', "S12000041": '#EFCC44'} // 14
 
 // Gets the current criteria selected
 function update_criteria(){

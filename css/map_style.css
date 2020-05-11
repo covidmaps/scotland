@@ -98,13 +98,12 @@ th, td {
 .boundary {
     fill: none;
     stroke: #5c5857;
-    stroke-width:1.5;
+    stroke-width:1;
 }
 
 .selected {
     fill: #99cccc;
-    opacity: 40%;
-    stroke: black;
+    /*stroke: black;
     stroke-width: 2;
-    stroke-linejoin: round;
+    stroke-linejoin: round;*/
 }
