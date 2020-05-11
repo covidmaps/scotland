@@ -3,6 +3,9 @@ TODO:
  - change key in HBO mode
  - remove LAD borders in HBO mode
  - Add multiple districts to be highlighted in hover mode
+ - Improve how countries are sorted by health district
+ perhaps this can be done by having two dicts (1. board No. to colour
+2. district to board no.)
 */
 
 // get the width of the area we're displaying in
@@ -34,7 +37,6 @@ function readJSON() {
     xmlHttp.open( "GET", "https://markjswan.github.io/covid-maps/json/sco/"+ /*res*/ "new_test3" +".json", false ); // false for synchronous request
     xmlHttp.send( null );
     mapStats = JSON.parse(xmlHttp.responseText);
-    console.log(mapStats);
 }
 
 function compute_size() {
@@ -127,10 +129,32 @@ function select(d) {
     // and add it to this area
     d3.select(id)
         .attr("class", "selected area")
+    // If HBO selected then highlight all other districts in that area
+    if (res == 'hbo'){
+        highlightBoard(d.id);
+    }
     // add the area properties to the data_table section
     d3.select("#data_table")
         .html(create_table(d.properties, d.id));
         //TODO: SELECT ALL OTHER DISTRICTS IN THE SAME HBO
+}
+
+function highlightBoard(id){
+
+    // Get colour of current country
+    var boardColour = hboColours[id];
+
+    // Get all other countries in that district
+    var matched = Object.keys(hboColours).filter(function(key) {
+        return hboColours[key] === boardColour;
+    });
+
+    // Set all other districts in the health board as selected
+    g.selectAll(".area").each(function(d) {
+        if (matched.includes(d3.select(this).attr('id'))){
+            d3.select(this).attr("class", "selected")
+        }
+    });
 }
 
 // draw our map on the SVG element
@@ -172,9 +196,6 @@ function draw(boundaries) {
 // For given property return a sorted list of keys based on their values
 function sort() {
     dict = mapStats[criteria];
-    console.log(mapStats);
-    console.log(criteria);
-    console.log(dict);
     var sortable = [];
     for (var area in mapStats[criteria]) {
       sortable.push([area, mapStats[criteria][area]]);
@@ -195,7 +216,6 @@ function sort() {
 // Goes through each district and assigns correct colour
 function colourMap()
 {
-    console.log(res);
     if (res == "lad")
     {
         g.selectAll(".area").each(function(d) {
@@ -213,8 +233,6 @@ function colourMap()
 // Selects the gradient associated with the ID
 function colourGradient(id)
 {
-    console.log(id);
-    console.log(sorted.indexOf(id));
     rgb = interpolated[sorted.indexOf(id)];
     return rgbToHex(rgb[0], rgb[1], rgb[2]);
 }
