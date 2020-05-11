@@ -71,9 +71,9 @@ hboDistricts = { "S12000008": '1', "S12000021": '1', "S12000028": '1', // 1
                         "S12000027": '13', // 13
                         "S12000024": '14', "S12000042": '14', "S12000041": '14'} // 14
 //
-function readJSON() {
+function readJSON(file) {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://markjswan.github.io/covid-maps/json/sco/"+ /*res*/ "new_test3" +".json", false ); // false for synchronous request
+    xmlHttp.open( "GET", "https://markjswan.github.io/covid-maps/json/sco/"+ /*res*/ file +".json", false ); // false for synchronous request
     xmlHttp.send( null );
     mapStats = JSON.parse(xmlHttp.responseText);
 }
@@ -147,8 +147,6 @@ function show_data(properties, id) {
 
     var vopt = get_view_option();
 
-    console.log(vopt);
-
     if (vopt == 'tbl')
     {
         return create_table(properties, id);
@@ -156,7 +154,7 @@ function show_data(properties, id) {
     if (vopt == 'grh')
     {
         var health_board = hboDistricts[id];
-        console.log(health_board);
+        //readGraph
         //return populate_graphs(health_board);
     }
 }
@@ -214,13 +212,22 @@ function highlightBoard(id){
 
 // Hides/Shows the key depending on selected resolution
 function toggle_key(){
-  var x = document.getElementById("key");
-  if (res === 'hbo') {
-    x.style.display = "none";
-  }
-  else {
-    x.style.display = "block";
-  }
+
+    // Get elements
+    var x = document.getElementById("key");
+    var text = document.getElementById("p1");
+    var data_chooser = document.getElementById("view_option");
+
+    if (res === 'hbo') {
+        x.style.display = "none";
+        text.style.display = "inline-block";
+        data_chooser.style.display = "none";
+    }
+    else {
+        x.style.display = "block";
+        text.style.display = "none";
+        data_chooser.style.display = "inline-block";
+    }
 }
 
 // draw our map on the SVG element
@@ -386,7 +393,7 @@ function load_data(filename, u) {
     deselect();
 
     //Import the map data
-    readJSON();
+    readJSON("new_test3");
 
     //Import the array of interpolated colors
     interpolated = interpolateColors("rgb(255, 0, 0)", "rgb(255, 225, 225)", 32).reverse();
