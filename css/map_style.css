@@ -44,7 +44,7 @@ th, td {
   border-bottom:1px solid #e5e5e5;
 }
 
-tr:hover {background-color: beige;}
+tr:hover {background-color: #8dffbb;}
 
 .title {
     padding-bottom: 10px;
@@ -62,7 +62,7 @@ tr:hover {background-color: beige;}
 
 #choiceform {
     padding-top: 20px;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #8dffbb;
 }
 
 #left_column {
