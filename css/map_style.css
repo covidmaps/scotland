@@ -10,7 +10,9 @@ body {
 
 h1 {
   color:#222;
-  margin:0 0 20px;
+  margin-top: 1em;
+  margin-bottom: 0.1em;
+  margin-left: -0.2em;
 
 }
 
@@ -63,11 +65,11 @@ tr:hover {background-color: #ffb5ae;}
 
 #choiceform {
     padding-top: 20px;
-    border-top: 1px solid #ff867b;
+    border-top: 2px solid #ff867b;
 }
 
 #left_column {
-    height: 1000px;
+    height: 1050px;
     width: 45%;
     float:left;
     background-color: #f7faff;
