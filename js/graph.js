@@ -102,8 +102,8 @@ function graph_init(res, id){
 
 }
 
-prettifyFilter = {"icu": "ICU Beds Occupied", "hospital_all": "All Hospital Deaths",
- "hospital_covid": "All Hospital COVID-19 Deaths", "cases": "All COVID-19 Cases"}
+prettifyFilter = {"icu": "ICU Patients", "hospital_all": "Total Hospital Patients",
+ "hospital_covid": "Total Hospital COVID-19 Patients", "cases": "Total Cumulative COVID-19 Cases"}
 
 hboDistricts = { "S12000008": '1', "S12000021": '1', "S12000028": '1', // 1
                         "S12000026": '2', // 2
