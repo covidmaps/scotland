@@ -103,6 +103,7 @@ th, td {
 
 .selected {
     fill: #99cccc;
+    opacity: 40%;
     stroke: black;
     stroke-width: 2;
     stroke-linejoin: round;

@@ -6,6 +6,7 @@ TODO:
  [] Improve how countries are sorted by health district
  perhaps this can be done by having two dicts (1. board No. to colour
 2. district to board no.)
+ []
 */
 
 // get the width of the area we're displaying in
@@ -28,8 +29,17 @@ var criteria;
 
 // resolution of the maps
 var res;
+
 // array to hold the interpolated
 var interpolated;
+
+var zoom = d3.behavior.zoom()
+    .scaleExtent([1, 8])
+    .on("zoom", zoomed);
+
+function zoomed() {
+  g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+}
 
 //
 function readJSON() {
@@ -71,15 +81,20 @@ function init(width, height) {
     // create the svg element for drawing onto
     svg = d3.select("#map").append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
         /* UNEXPECTED '.' WHEN LOADING PAGE
         .call(d3.zoom().on("zoom", function () {
            svg.attr("transform", d3.event.transform)
-        }))
-        */
+       })) */
+       ;
 
     // graphics go here
     g = svg.append("g");
+
+
+    svg
+        .call(zoom)
+        .call(zoom.event);
 
     // add a white rectangle as background to enable us to deselect a map selection
     g.append("rect")
@@ -157,11 +172,9 @@ function highlightBoard(id){
     });
 }
 
-// Hides the key
+// Hides/Shows the key depending on selected resolution
 function toggle_key(){
   var x = document.getElementById("key");
-  console.log(res);
-  console.log(res == 'hbo')
   if (res === 'hbo') {
     x.style.display = "none";
   }
@@ -333,7 +346,7 @@ function load_data(filename, u) {
 
     // Toggle the visibility of the key
     toggle_key();
-    
+
     // clear any selection
     deselect();
 
