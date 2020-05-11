@@ -112,3 +112,7 @@ th, td {
     stroke-width: 2;
     stroke-linejoin: round;*/
 }
+
+.mapBorder{
+    border: 2px solid #A4B0F5;
+}
