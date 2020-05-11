@@ -111,6 +111,7 @@ function create_table(properties, id)
         }
     }
     table_string += "</table>";
+    console.log("returning data");
     return table_string;
 }
 
@@ -120,6 +121,9 @@ function show_data(properties, id) {
 
     if (vopt == 'tbl' && res != 'hbo')
     {
+        // remove any existing graphs
+        d3.select("#graph").select("svg").remove();
+        console.log(id);
         return create_table(properties, id);
     }
     if (vopt == 'grh' || res === 'hbo')
@@ -188,6 +192,7 @@ function toggle_key(){
     var p2 = document.getElementById("p2");
     var data_chooser = document.getElementById("view_option");
     var criteria_chooser = document.getElementById("criteria");
+    var filter = document.getElementById("filter");
 
     if (res === 'hbo') {
         x.style.display = "none";
@@ -195,6 +200,7 @@ function toggle_key(){
         p2.style.display = "inline-block";
         data_chooser.style.display = "none";
         criteria_chooser.style.display = "none";
+        filter.style.display = "inline-block";
     }
     else {
         x.style.display = "block";
@@ -202,6 +208,7 @@ function toggle_key(){
         p2.style.display = "none";
         data_chooser.style.display = "inline-block";
         criteria_chooser.style.display = "inline-block";
+        filter.style.display = "none";
     }
 }
 

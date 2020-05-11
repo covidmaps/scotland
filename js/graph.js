@@ -3,8 +3,8 @@ function display_graphHBO(hb, filter){
 
     // set the dimensions and margins of the graph
     var margin = {top: 10, right: 30, bottom: 60, left: 60},
-        width = 400 - margin.left - margin.right,
-        height = 300 - margin.top - margin.bottom;
+        width = 500 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     var svg = d3.select("#graph")
@@ -64,7 +64,7 @@ function display_graphHBO(hb, filter){
         .attr("y", -50)
         .attr("dy", ".75em")
         .attr("transform", "rotate(-90)")
-        .text("All Hospital Deaths");
+        .text(prettifyFilter[filter]);
 
         // Add the line
         svg.append("path")
@@ -80,6 +80,11 @@ function display_graphHBO(hb, filter){
     })
 }
 
+function get_filter(){
+    var filter_select = document.getElementById('filter');
+    return filter_select.options[filter_select.selectedIndex].value;
+}
+
 function graph_init(res, id){
 
     if (id != null){
@@ -89,17 +94,18 @@ function graph_init(res, id){
         else{
             d3.select("#graph").select("svg").remove();
 
-            console.log("hello")
+            var filter = get_filter();
 
             var health_board = hboDistricts[id];
-
-            var filter = "hospital_all";
 
             display_graphHBO(health_board, filter);
         }
     }
 
 }
+
+prettifyFilter = {"icu": "ICU Beds Occupied", "hospital_all": "All Hospital Deaths",
+ "hospital_covid": "All Hospital COVID-19 Deaths", "cases": "All COVID-19 Cases"}
 
 hboDistricts = { "S12000008": '1', "S12000021": '1', "S12000028": '1', // 1
                         "S12000026": '2', // 2

@@ -49,12 +49,18 @@
                         <option value="all_deaths_total">All Deaths</option>
                     </select>
                 </p>
-                <p>Select a district to view below <div id = "p2" class = "p1">&nbspgraph </div>
+                <p>Select a district to view below
+                    <div id = "p2" class = "p1">&nbspgraphs  for</div>
+                    <select name="filter" id="filter">
+                        <option value="hospital_all">All Hospital Deaths</option>
+                        <option value="icu">ICU beds occupied</option>
+                        <option value="hospital_covid">All Hospital COVID-19 Deaths</option>
+                        <option value="cases">Total Cases</option>
+                    </select>
                     <select name="view_option" id="view_option">
                         <option value="tbl">table</option>
                         <option value="grh">graph</option>
                     </select>
-                     properties
                 </p>
             </form>
             <section id="graph">
