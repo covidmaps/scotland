@@ -21,7 +21,7 @@
 
             <form id="choiceform">
                 <p>
-                    I would like boundary data for Scotland.
+                    The following data represents the current coronavirus situation in Scotland, UK. All data comes directly from the Scottish Government or Google. To use this website, follow the steps below and scroll your mouse over the graph on the right hand side to reveal more information.
                     <!-- EACH OPTION BELOW IS FOR EXPANSION
                     <select name="top_level"  id="top_level">
                         <option value="sco">Scotland</option>
@@ -32,14 +32,15 @@
                     </select>
                 </p>
                 <p>
-                    At a national level, divided into
+                    <br>1. Specify a Scottish region
                     <select name="resolution" id="resolution">
                         <option value="lad">Local Authority Districts</option>
                         <option value="hbo">Health Boards</option>
                     </select>
                 </p>
+                <br>
                 <p>
-                    <div id = "p1" class = "p1">&nbspWith a graded criteria of </div>
+                    <div id = "p1" class = "p1"> 2. Select a covid-19 data metric </div>
                     <select name="criteria" id="criteria">
                         <option value="covid_deaths_total">Total Covid Deaths</option>
                         <!-- NOT YET ADDED
@@ -49,7 +50,8 @@
                         <option value="all_deaths_total">All Deaths</option>
                     </select>
                 </p>
-                <p>Select a district to view below
+                <br>
+                <p><br>3. Choose type of graphic
                     <div id = "p2" class = "p1">&nbspgraphs  for</div>
                     <select name="filter" id="filter">
                         <option value="hospital_all">Total Hospital Patients</option>
@@ -62,12 +64,17 @@
                         <option value="grh">graph</option>
                     </select>
                 </p>
+                <br><br>
+                <p><br>Authors: Mark Swan and Calum McKeekin <br>
+                </p>
             </form>
             <h3 id="graphTitle"></h3>
             <section id="graph">
             </section>
             <section id="data_table">
             </section>
+
+
 
         </div>
         <div id="right_column">
