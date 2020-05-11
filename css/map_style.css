@@ -40,9 +40,11 @@ table {
 
 th, td {
   text-align:left;
-  padding:5px 10px;
+  padding:10px 20px;
   border-bottom:1px solid #e5e5e5;
 }
+
+tr:hover {background-color: beige;}
 
 .title {
     padding-bottom: 10px;
@@ -64,10 +66,11 @@ th, td {
 }
 
 #left_column {
+    height: 1000px;
     width: 45%;
     float:left;
-    background-color: #f1f1f1;
-    box-shadow: 10px 0 5px -2px #888;
+    background-color: #f7faff;
+    box-shadow: 3px 0 5px -2px #888;
 }
 
 #right_column {
