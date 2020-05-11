@@ -1,5 +1,5 @@
 
-function display_graphHBO(health_board, filter){
+function display_graphHBO(hb, filter){
 
     // set the dimensions and margins of the graph
     var margin = {top: 10, right: 30, bottom: 60, left: 60},
@@ -15,7 +15,7 @@ function display_graphHBO(health_board, filter){
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
     //Read the data
-    d3.csv("https://raw.githubusercontent.com/markjswan/covid-maps/master/1_icu.csv",
+    d3.csv("https://raw.githubusercontent.com/markjswan/covid-maps/master/data/hbo/" + hb + "_" + filter + ".csv",
 
       // When reading the csv, I must format variables:
       function(d){
@@ -61,7 +61,7 @@ function display_graphHBO(health_board, filter){
         svg.append("text")
         .attr("class", "y label")
         .attr("text-anchor", "end")
-        .attr("y", -35)
+        .attr("y", -50)
         .attr("dy", ".75em")
         .attr("transform", "rotate(-90)")
         .text("All Hospital Deaths");
@@ -92,6 +92,8 @@ function graph_init(res, id){
             console.log("hello")
 
             var health_board = hboDistricts[id];
+
+            var filter = "hospital_all";
 
             display_graphHBO(health_board, filter);
         }
