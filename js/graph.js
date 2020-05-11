@@ -1,13 +1,100 @@
 
+function display_graphHBO(health_board, filter){
 
+    // set the dimensions and margins of the graph
+    var margin = {top: 10, right: 30, bottom: 60, left: 60},
+        width = 400 - margin.left - margin.right,
+        height = 300 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    var svg = d3.select("#graph")
+      .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+    //Read the data
+    d3.csv("https://raw.githubusercontent.com/markjswan/covid-maps/master/1_icu.csv",
+
+      // When reading the csv, I must format variables:
+      function(d){
+        return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
+      },
+
+      // Now I can use this dataset:
+      function(data) {
+
+        // Add X axis --> it is a date format
+        var x = d3.scaleTime()
+          .domain(d3.extent(data, function(d) { return d.date; }))
+          .range([ 0, width]);
+
+          // Add the X Axis
+          svg.append("g")
+          .attr("class", "axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(d3.axisBottom(x).ticks(10))
+          .selectAll("text")
+          .style("text-anchor", "end")
+          .attr("dx", "-.8em")
+          .attr("dy", ".15em")
+          .attr("transform", "rotate(-65)");
+
+        // Add X axis label /
+        svg.append("text")
+        .attr("class", "x label")
+        .attr("text-anchor", "end")
+        .attr("x", width)
+        .attr("y", height - 6)
+        .text("Days");
+
+
+        // Add Y axis
+        var y = d3.scaleLinear()
+          .domain([0, d3.max(data, function(d) { return +d.value; })])
+          .range([ height, 0 ]);
+        svg.append("g")
+          .call(d3.axisLeft(y));
+
+        // Add Y Axis label
+        svg.append("text")
+        .attr("class", "y label")
+        .attr("text-anchor", "end")
+        .attr("y", -35)
+        .attr("dy", ".75em")
+        .attr("transform", "rotate(-90)")
+        .text("All Hospital Deaths");
+
+        // Add the line
+        svg.append("path")
+          .datum(data)
+          .attr("fill", "none")
+          .attr("stroke", "steelblue")
+          .attr("stroke-width", 1.5)
+          .attr("d", d3.line()
+            .x(function(d) { return x(d.date) })
+            .y(function(d) { return y(d.value) })
+            )
+
+    })
+}
 
 function graph_init(res, id){
 
-    if (res == 'lad'){
+    if (id != null){
+        if (res == 'lad'){
 
-    }
-    else{
-        var health_board = hboDistricts[id];
+        }
+        else{
+            d3.select("#graph").select("svg").remove();
+
+            console.log("hello")
+
+            var health_board = hboDistricts[id];
+
+            display_graphHBO(health_board, filter);
+        }
     }
 
 }
