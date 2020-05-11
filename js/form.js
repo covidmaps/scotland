@@ -101,5 +101,9 @@ d3.select("#view_option").on('change', function(){
     show_data();
 });
 
+d3.select("#filter").on('change', function(){
+    change_area();
+});
+
 update_lad_select();
 change_area();
