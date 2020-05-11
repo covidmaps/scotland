@@ -1,18 +1,15 @@
 
-// import and read the required csv file
-function readGraph(file) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://markjswan.github.io/covid-maps/json/sco/"+ /*res*/ file +".json", false ); // false for synchronous request
-    xmlHttp.send( null );
-    mapStats = JSON.parse(xmlHttp.responseText);
-}
 
-function graph_init(id){
 
-    var health_board = hboDistricts[id];
+function graph_init(res, id){
 
-    console.log("ID: " + id);
-    console.log("Health Board " + health_board);
+    if (res == 'lad'){
+
+    }
+    else{
+        var health_board = hboDistricts[id];
+    }
+
 }
 
 hboDistricts = { "S12000008": '1', "S12000021": '1', "S12000028": '1', // 1

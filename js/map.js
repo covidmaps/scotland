@@ -124,7 +124,7 @@ function show_data(properties, id) {
     }
     if (vopt == 'grh' || res === 'hbo')
     {
-        graph_init(id);
+        graph_init(res, id);
     }
 }
 
@@ -184,18 +184,24 @@ function toggle_key(){
 
     // Get elements
     var x = document.getElementById("key");
-    var text = document.getElementById("p1");
+    var p1 = document.getElementById("p1");
+    var p2 = document.getElementById("p2");
     var data_chooser = document.getElementById("view_option");
+    var criteria_chooser = document.getElementById("criteria");
 
     if (res === 'hbo') {
         x.style.display = "none";
-        text.style.display = "inline-block";
+        p1.style.display = "none";
+        p2.style.display = "inline-block";
         data_chooser.style.display = "none";
+        criteria_chooser.style.display = "none";
     }
     else {
         x.style.display = "block";
-        text.style.display = "none";
+        p1.style.display = "inline-block";
+        p2.style.display = "none";
         data_chooser.style.display = "inline-block";
+        criteria_chooser.style.display = "inline-block";
     }
 }
 
