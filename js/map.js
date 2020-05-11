@@ -1,11 +1,9 @@
 /*
 TODO:
- [] change key in HBO mode
- [X] remove LAD borders in HBO mode
- [X] Add multiple districts to be highlighted in hover mode
- [] Improve how countries are sorted by health district
- perhaps this can be done by having two dicts (1. board No. to colour
-2. district to board no.)
+ [] Fix table running off 'left-column' (scroll box)
+ [] Add key in HBO mode
+ [] Add hint for zoom
+ [] reformat table to have columns of COVID,  Non-INST, OTHER etc
 */
 
 // get the width of the area we're displaying in

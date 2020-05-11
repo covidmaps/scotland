@@ -64,14 +64,14 @@ th, td {
 }
 
 #left_column {
-    width: 35%;
+    width: 45%;
     float:left;
     background-color: #f1f1f1;
     box-shadow: 10px 0 5px -2px #888;
 }
 
 #right_column {
-    width: 65%;
+    width: 55%;
     float: right;
     padding-left:10px;
 }
