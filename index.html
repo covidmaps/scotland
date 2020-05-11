@@ -49,10 +49,18 @@
                         <option value="all_deaths_total">All Deaths</option>
                     </select>
                 </p>
-                <p>Select a district to view properties below</p>
+                <p>Select a district to view below <div id = "p1" class = "p1">&nbspgraph </div>
+                    <select name="view_option" id="view_option">
+                        <option value="tbl">table</option>
+                        <option value="grh">graph</option>
+                    </select>
+                     properties
+                </p>
             </form>
 
             <section id="data_table">
+            </section>
+            <section id="graph">
             </section>
         </div>
         <div id="right_column">
@@ -75,6 +83,7 @@
         <script src="js/map.js"></script>
         <script src="js/lads.js"></script>
         <script src="js/form.js"></script>
+        <script src="js/graph.js"></script>
 
         <script type="text/javascript">
           var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

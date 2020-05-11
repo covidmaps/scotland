@@ -94,5 +94,9 @@ d3.select("#criteria").on('change', function(){
     change_area();
 });
 
+d3.select("#view_option").on('change', function(){
+    show_data();
+});
+
 update_lad_select();
 change_area();

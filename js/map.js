@@ -1,12 +1,11 @@
 /*
 TODO:
  [] change key in HBO mode
- [] remove LAD borders in HBO mode
+ [X] remove LAD borders in HBO mode
  [X] Add multiple districts to be highlighted in hover mode
  [] Improve how countries are sorted by health district
  perhaps this can be done by having two dicts (1. board No. to colour
 2. district to board no.)
- []
 */
 
 // get the width of the area we're displaying in
@@ -41,26 +40,11 @@ var zoom = d3.behavior.zoom()
 function zoomed() {
   g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 }
- // Colours associated with each
-hboColours = { "S12000008": '#1261A0', "S12000021": '#1261A0', "S12000028": '#1261A0', // 1
-            "S12000026": '#FF0000', // 2
-            "S12000006": '#654321', // 3
-            "S12000013": '#708238', // 4
-            "S12000015": '#00FFFF', // 5
-            "S12000030": '#A45A52', "S12000014": '#A45A52', 'S12000005': '#A45A52', // 6
-            "S12000033": '#FF8D1E', "S12000034": '#FF8D1E', "S12000020": '#FF8D1E', //7
-            "S12000045": '#00FF00', "S12000046": '#00FF00', "S12000038": '#00FF00', "S12000039": '#00FF00', "S12000018": '#00FF00', "S12000011": '#00FF00', // 8
-            "S12000017": '#9F00FF', "S12000035": '#9F00FF', // 9
-            "S12000044": '#ECF210', "S12000029": '#ECF210', // 10
-            "S12000010": '#4B0082', "S12000019": '#4B0082', "S12000036": '#4B0082', "S12000040": '#4B0082', // 11
-            "S12000023": '#F05E23', // 12
-            "S12000027": '#9DC183', // 13
-            "S12000024": '#EFCC44', "S12000042": '#EFCC44', "S12000041": '#EFCC44'} // 14
 
-//
-function readJSON() {
+// import and read the required JSON file
+function readJSON(file) {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://markjswan.github.io/covid-maps/json/sco/"+ /*res*/ "new_test3" +".json", false ); // false for synchronous request
+    xmlHttp.open( "GET", "https://markjswan.github.io/covid-maps/json/sco/"+ /*res*/ file +".json", false ); // false for synchronous request
     xmlHttp.send( null );
     mapStats = JSON.parse(xmlHttp.responseText);
 }
@@ -97,20 +81,13 @@ function init(width, height) {
     // create the svg element for drawing onto
     svg = d3.select("#map").append("svg")
         .attr("width", width)
-        .attr("height", height)
-        /* UNEXPECTED '.' WHEN LOADING PAGE
-        .call(d3.zoom().on("zoom", function () {
-           svg.attr("transform", d3.event.transform)
-       })) */
-       ;
+        .attr("height", height);
 
     // graphics go here
     g = svg.append("g");
 
-
-    svg
-        .call(zoom)
-        .call(zoom.event);
+    // add zoom to svg
+    svg.call(zoom).call(zoom.event);
 
     // add a white rectangle as background to enable us to deselect a map selection
     g.append("rect")
@@ -123,7 +100,8 @@ function init(width, height) {
 }
 
 // create a HTML table to display any properties about the selected item
-function create_table(properties, id) {
+function create_table(properties, id)
+{
     table_string = "<table>";
     if (id != undefined){
         var keys = Object.keys(mapStats);
@@ -136,7 +114,21 @@ function create_table(properties, id) {
     return table_string;
 }
 
-// Return a better looking version of property
+function show_data(properties, id) {
+
+    var vopt = get_view_option();
+
+    if (vopt == 'tbl' && res != 'hbo')
+    {
+        return create_table(properties, id);
+    }
+    if (vopt == 'grh' || res === 'hbo')
+    {
+        graph_init(id);
+    }
+}
+
+// Return a better looking version of property header
 var prettyProps = {'lad':"District", "all_deaths_hospital": "Hospital Deaths", 'all_deaths_carehome': "Carehome Deaths",
                 'all_deaths_non-institution': "Non-Institution Deaths", 'all_deaths_other': "Other Deaths",
             'all_deaths_total': "Total Deaths", 'covid_deaths_hospital': "COVID Hospital Deaths",
@@ -166,8 +158,7 @@ function select(d) {
     }
     // add the area properties to the data_table section
     d3.select("#data_table")
-        .html(create_table(d.properties, d.id));
-        //TODO: SELECT ALL OTHER DISTRICTS IN THE SAME HBO
+        .html(show_data(d.properties, d.id));
 }
 
 // Highlights all districts in selected health board
@@ -190,13 +181,22 @@ function highlightBoard(id){
 
 // Hides/Shows the key depending on selected resolution
 function toggle_key(){
-  var x = document.getElementById("key");
-  if (res === 'hbo') {
-    x.style.display = "none";
-  }
-  else {
-    x.style.display = "block";
-  }
+
+    // Get elements
+    var x = document.getElementById("key");
+    var text = document.getElementById("p1");
+    var data_chooser = document.getElementById("view_option");
+
+    if (res === 'hbo') {
+        x.style.display = "none";
+        text.style.display = "inline-block";
+        data_chooser.style.display = "none";
+    }
+    else {
+        x.style.display = "block";
+        text.style.display = "none";
+        data_chooser.style.display = "inline-block";
+    }
 }
 
 // draw our map on the SVG element
@@ -221,7 +221,7 @@ function draw(boundaries) {
         .enter().append("path")
         .attr("class", "area")
         .attr("id", function(d) {return d.id})
-        .attr("properties_table", function(d) { return create_table(d.properties)})
+        .attr("properties_table", function(d) { return show_data(d.properties)})
         .attr("d", path)
         .on("mouseover", function(d){ return select(d)});
 
@@ -336,9 +336,16 @@ function redraw() {
     draw(boundaries);
 }
 
+// get the selected resolution
 function get_resolution(){
     var top_level_select = document.getElementById('resolution');
     res = top_level_select.options[top_level_select.selectedIndex].value;
+}
+
+// get the selected view option
+function get_view_option(){
+    var top_level_select = document.getElementById('view_option');
+    return top_level_select.options[top_level_select.selectedIndex].value;
 }
 
 // loads data from the given file and redraws the map
@@ -355,7 +362,7 @@ function load_data(filename, u) {
     deselect();
 
     //Import the map data
-    readJSON();
+    readJSON("new_test3");
 
     //Import the array of interpolated colors
     interpolated = interpolateColors("rgb(255, 0, 0)", "rgb(255, 225, 225)", 32).reverse();
@@ -375,3 +382,19 @@ function load_data(filename, u) {
 
 // when the window is resized, redraw the map
 window.addEventListener('resize', redraw);
+
+// colours associated with each district
+hboColours = { "S12000008": '#1261A0', "S12000021": '#1261A0', "S12000028": '#1261A0', // 1
+           "S12000026": '#FF0000', // 2
+           "S12000006": '#654321', // 3
+           "S12000013": '#708238', // 4
+           "S12000015": '#00FFFF', // 5
+           "S12000030": '#A45A52', "S12000014": '#A45A52', 'S12000005': '#A45A52', // 6
+           "S12000033": '#FF8D1E', "S12000034": '#FF8D1E', "S12000020": '#FF8D1E', //7
+           "S12000045": '#00FF00', "S12000046": '#00FF00', "S12000038": '#00FF00', "S12000039": '#00FF00', "S12000018": '#00FF00', "S12000011": '#00FF00', // 8
+           "S12000017": '#9F00FF', "S12000035": '#9F00FF', // 9
+           "S12000044": '#ECF210', "S12000029": '#ECF210', // 10
+           "S12000010": '#4B0082', "S12000019": '#4B0082', "S12000036": '#4B0082', "S12000040": '#4B0082', // 11
+           "S12000023": '#F05E23', // 12
+           "S12000027": '#9DC183', // 13
+           "S12000024": '#EFCC44', "S12000042": '#EFCC44', "S12000041": '#EFCC44'} // 14
