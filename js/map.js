@@ -4,6 +4,8 @@ TODO:
  [] Add key in HBO mode
  [] Add hint for zoom
  [] Add mouseover box to display district name
+ [X] Add multiple lines on a graph
+ [X] Add key to graphs
  [] change from on-hover selct to click select
  [] reformat table to have columns of COVID,  Non-INST, OTHER etc
 */

@@ -67,8 +67,8 @@ function display_graphHBO(hb, filter){
             .x(function(d) { return x(d.date) })
             .y(function(d) { return y(d.value) })
             )
-
     })
+
 }
 
 function update_graph_title(filter)
@@ -174,7 +174,27 @@ function display_graphGGL(id){
                 .y(function(d) { return y(+d.value) })
               )
               .attr("stroke", function(d){ return myColor(selectedGroup) })
+
+          svg.select("#lgndText").remove();
+          svg.select("#lgndCircle").remove();
+          svg.append("circle").attr("id","lgndCircle").attr("cx",width+10).attr("cy",40).attr("r", 6).style("fill", myColor(selectedGroup));
+          svg.append("text").attr("id", "lgndText").attr("x", width+30).attr("y", 40).text(selectedGroup).style("font-size", "15px").attr("alignment-baseline","middle");
         }
+
+        // Add the BASE path.
+        svg.append("g")
+            .append("path")
+              .datum(data)
+              .attr("d", d3.line()
+                .x(function(d) { return x(+d.time) })
+                .y(function(d) { return y(+d.transit_stations_percent_change_from_baseline)})
+                )
+                .attr("stroke", "#1c4966")
+                .style("stroke-width", 4)
+                .style("fill", "none");
+
+        svg.append("circle").attr("cx",width+10).attr("cy",70).attr("r", 6).style("fill", "#1c4966");
+        svg.append("text").attr("x", width+30).attr("y", 70).text("Scot Avg").style("font-size", "15px").attr("alignment-baseline","middle");
 
         update("retail_and_recreation_percent_change_from_baseline");
 
