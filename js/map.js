@@ -205,14 +205,17 @@ function toggle_key(){
     var p2 = document.getElementById("p2");
     var criteria_chooser = document.getElementById("criteria");
     var filter = document.getElementById("filter");
+    var ladDoc = document.getElementById("ladDoc");
 
     if (res === 'hbo') {
         x.style.display = "none";
         p2.style.display = "inline-block";
         criteria_chooser.style.display = "none";
         filter.style.display = "inline-block";
+        ladDoc.style.display="none";
     }
     else {
+        ladDoc.style.display="block";
         x.style.display = "block";
         p2.style.display = "none";
         criteria_chooser.style.display = "inline-block";
