@@ -79,7 +79,7 @@ tr:hover {background-color: #ffb5ae;}
 #right_column {
     width: 55%;
     float: right;
-    padding-left:45%;
+    margin-left:45%;
     position:fixed;
 }
 
