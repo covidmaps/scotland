@@ -41,13 +41,22 @@ function singe_line_graph(hb, filter){
           .attr("dy", ".15em")
           .attr("transform", "rotate(-65)");
 
-        // Add X axis label /
+        // Add X axis label
         svg.append("text")
         .attr("class", "x label")
         .attr("text-anchor", "end")
         .attr("x", width)
         .attr("y", height - 6)
         .text("Days");
+
+        // add the X gridlines
+        svg.append("g")
+          .attr("class", "grid")
+          .attr("transform", "translate(0," + height + ")")
+          .call(make_x_gridlines(d3.scaleTime().range([0, width]))
+              .tickSize(-height)
+              .tickFormat("")
+          )
 
 
         // Add Y axis
@@ -56,6 +65,14 @@ function singe_line_graph(hb, filter){
           .range([ height, 0 ]);
         svg.append("g")
           .call(d3.axisLeft(y));
+
+        // add the Y gridlines
+        svg.append("g")
+        .attr("class", "grid")
+        .call(make_y_gridlines(d3.scaleLinear().range([height, 0]))
+          .tickSize(-width)
+          .tickFormat("")
+        )
 
         // Add the line
         svg.append("path")
@@ -130,20 +147,38 @@ function multi_line_graph(id){
           .attr("transform", "translate(0," + height + ")")
           .call(d3.axisBottom(x));
 
-        // Add Y axis
-        var y = d3.scaleLinear()
-          .domain( [-100,100])
-          .range([ height, 0 ]);
-        svg.append("g")
-          .call(d3.axisLeft(y));
-
-        // Add X axis label /
+        // Add X axis label
         svg.append("text")
         .attr("class", "x label")
         .attr("text-anchor", "end")
         .attr("x", width)
-        .attr("y", height+30)
-        .text("Days Since Start of 2020");
+        .attr("y", height+35)
+        .text("Days Since 01/01/2020");
+
+        // add the X gridlines
+        svg.append("g")
+          .attr("class", "grid")
+          .attr("transform", "translate(0," + height + ")")
+          .call(make_x_gridlines(d3.scaleTime().range([0, width]))
+              .tickSize(-height)
+              .tickFormat("")
+          )
+
+        // Add Y axis
+        var y = d3.scaleLinear()
+            .domain( [-100,100])
+            .range([ height, 0 ]);
+
+        svg.append("g")
+        .call(d3.axisLeft(y));
+
+        // add the Y gridlines
+        svg.append("g")
+        .attr("class", "grid")
+        .call(make_y_gridlines(d3.scaleLinear().range([height, 0]))
+            .tickSize(-width)
+            .tickFormat("")
+        )
 
         // Initialize line with group a
         var line = svg
@@ -207,6 +242,18 @@ function multi_line_graph(id){
         })
 
     })
+}
+
+// gridlines in x axis function
+function make_x_gridlines(x) {
+    return d3.axisBottom(x)
+        .ticks(10)
+}
+
+// gridlines in y axis function
+function make_y_gridlines(y) {
+    return d3.axisLeft(y)
+        .ticks(10)
 }
 
 function graph_init(res, id){

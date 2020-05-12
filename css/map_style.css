@@ -104,7 +104,8 @@ tr:hover {background-color: #ffb5ae;}
 
 .hoverText{
     position: absolute;
-    margin-top:90%;
+    margin-top:10%;
+    margin-left: 3%;
     background-color:#f7faff;
     box-shadow: 3px 0 5px 2px #888;
 }
@@ -136,4 +137,11 @@ tr:hover {background-color: #ffb5ae;}
 
 .selectButton{
     display: none;
+}
+
+
+.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
 }

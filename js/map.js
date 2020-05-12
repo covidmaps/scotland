@@ -3,11 +3,12 @@ TODO:
  [] Fix table running off 'left-column' (scroll box)
  [] Add key in HBO mode
  [] Add hint for zoom
- [] Add mouseover box to display district name
+ [X] Add mouseover box to display district name
  [X] Add multiple lines on a graph
  [X] Add key to graphs
- [] change from on-hover selct to click select
+ [X] change from on-hover selct to click select
  [] reformat table to have columns of COVID,  Non-INST, OTHER etc
+ [] Remove selection dropdown from HBO and display all 4 graphs
 */
 
 // get the width of the area we're displaying in
@@ -69,6 +70,8 @@ function deselect() {
         .attr("class", "area");
     d3.select("#data_table")
         .html("");
+    document.getElementById('hoverText').innerHTML = '';
+
 }
 
 
@@ -134,10 +137,7 @@ function show_data(properties, id) {
     }
     else
     {
-        if (vopt == 'grh' || res === 'hbo')
-        {
-            graph_init(res, id);
-        }
+        graph_init(res, id);
     }
 }
 
@@ -176,9 +176,7 @@ function select(d) {
 
 // TODO: Displays box containing current district being hovered over
 function hover(d) {
-
-    var hoverBox = document.getElementById('hoverText');
-    hoverBox.innerHTML = idToName[d.id];
+    document.getElementById('hoverText').innerHTML = idToName[d.id];
 }
 
 // Highlights all districts in selected health board
