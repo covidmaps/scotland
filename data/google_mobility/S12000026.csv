@@ -1,4 +1,4 @@
-,time,valueA,valueB,valueC,valueD,valueE,valueF
+,time,retail_and_recreation_percent_change_from_baseline,grocery_and_pharmacy_percent_change_from_baseline,parks_percent_change_from_baseline,transit_stations_percent_change_from_baseline,workplaces_percent_change_from_baseline,residential_percent_change_from_baseline
 18,64,9.0,2.0,27.0,16.0,1.0,0.0
 19,65,6.0,2.0,17.0,30.0,1.0,0.0
 20,66,8.0,0.0,28.0,25.0,1.0,0.0
