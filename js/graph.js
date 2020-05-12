@@ -118,7 +118,7 @@ function multi_line_graph(id){
               "translate(" + margin.left + "," + margin.top + ")");
 
     //Read the data
-    d3.csv("https://raw.githubusercontent.com/markjswan/covid-maps/master/data/google_mobility/"+id+".csv", function(data) {
+    d3.csv("https://raw.githubusercontent.com/markjswan/covid-maps/master/data"+id, function(data) {
 
         dict1 = {"Retail And Recreation Traffic Change From Baseline (%)":"retail_and_recreation_percent_change_from_baseline",
          "Grocery And Pharmacy Use Change From Baseline (%)":"grocery_and_pharmacy_percent_change_from_baseline",
@@ -189,6 +189,19 @@ function multi_line_graph(id){
             .tickFormat("")
         )
 
+        // Add the BASE path.
+        var lineBase = svg
+            .append("g")
+            .append("path")
+              .datum(data)
+              .attr("d", d3.line()
+                .x(function(d) { return x(+d.time) })
+                .y(function(d) { return y(+d.uk_retail_and_recreation_percent_change_from_baseline)})
+                )
+                .attr("stroke", "#666666")
+                .style("stroke-width", 2)
+                .style("fill", "none");
+
         // Initialize line with group a
         var line = svg
           .append('g')
@@ -199,14 +212,28 @@ function multi_line_graph(id){
               .y(function(d) { return y(+d.value) })
             )
             .attr("stroke", function(d){ return myColor("valueA") })
-            .style("stroke-width", 4)
+            .style("stroke-width", 2)
             .style("fill", "none");
+
+
 
         // A function that updates the chart
         function update(selectedGroup) {
 
           // Create new data with the selection?
           var dataFilter = data.map(function(d){return {time: d.time, value:d[selectedGroup]} })
+          var dataFilterBase = data.map(function(d){return {time: d.time, value:d["uk_"+selectedGroup]} })
+
+          // Update base line
+          lineBase
+              .datum(dataFilterBase)
+              .transition()
+              .duration(1000)
+              .attr("d", d3.line()
+                .x(function(d) { return x(+d.time) })
+                .y(function(d) { return y(+d.value) })
+              )
+              .attr("stroke", function(d){ return "#666666" })
 
           // Give these new data to update line
           line
@@ -225,20 +252,8 @@ function multi_line_graph(id){
           svg.append("text").attr("id", "lgndText").attr("x", width+30).attr("y", 40).text(selectedGroup).style("font-size", "15px").attr("alignment-baseline","middle");
         }
 
-        // Add the BASE path.
-        svg.append("g")
-            .append("path")
-              .datum(data)
-              .attr("d", d3.line()
-                .x(function(d) { return x(+d.time) })
-                .y(function(d) { return y(+d.transit_stations_percent_change_from_baseline)})
-                )
-                .attr("stroke", "#1c4966")
-                .style("stroke-width", 4)
-                .style("fill", "none");
-
-        svg.append("circle").attr("cx",width+10).attr("cy",70).attr("r", 6).style("fill", "#1c4966");
-        svg.append("text").attr("x", width+30).attr("y", 70).text("Scot Avg").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("circle").attr("cx",width+10).attr("cy",70).attr("r", 6).style("fill", "666666");
+        svg.append("text").attr("x", width+30).attr("y", 70).text("UK Avg").style("font-size", "15px").attr("alignment-baseline","middle");
 
         update("retail_and_recreation_percent_change_from_baseline");
 
@@ -273,7 +288,7 @@ function graph_init(res, id){
         d3.select("#graph").select("svg").remove();
 
         if (res == 'lad'){
-            multi_line_graph(id);
+            multi_line_graph("/google_comparison_uk2.csv");
             singe_line_graph("/lad/total_covid_deaths/"+ S12000005+ ".csv", "#covidDTGraph");
         }
         else{
