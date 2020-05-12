@@ -9,10 +9,10 @@ body {
 }
 
 h1 {
-  color:#222;
+  color:#ffffff;
   margin-top: 50px;
   margin-bottom: 0.1em;
-  margin-left: 0.4em;
+  margin-left: 0.2em;
 
 }
 
@@ -33,13 +33,13 @@ h1 {
 }
 
 h2 {
-    color: 	#888;
-    margin-left: 0.5em;
+    color: 	#ff867b;
+    margin-left: 0.55em;
     font-size: 28px;
 }
 
 h3 {
-    margin-left: 1em;
+    margin-left: 0.8em;
     transition-duration: 0.5s;
 }
 
@@ -65,6 +65,10 @@ tr:hover {background-color: #ffb5ae;}
 .title {
     padding-bottom: 10px;
     border-bottom: 1px solid #e5e5e5;
+    background-color: #ff867b;
+    padding: 10px;
+    margin-left: -5px;
+    color: white;
 
 }
 
@@ -89,7 +93,7 @@ tr:hover {background-color: #ffb5ae;}
 
 #choiceform {
     padding-top: 20px;
-    border-top: 2px solid #ff867b;
+    border-top: 0px solid #ff867b;
 }
 
 #left_column {
@@ -97,7 +101,7 @@ tr:hover {background-color: #ffb5ae;}
     width: 30%;
     float:left;
     background-color: #f7faff;
-    box-shadow: 4px 0 5px -2px #888;
+    box-shadow: 5px 0 5px -2px #888;
     margin-left: -5px;
     margin-top: -19px;
 }
