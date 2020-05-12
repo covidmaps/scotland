@@ -1,5 +1,5 @@
 
-function singe_line_graph(hb, filter){
+function singe_line_graph(file, graphID){
 
     // set the dimensions and margins of the graph
     var margin = {top: 30, right: 30, bottom: 60, left: 60},
@@ -7,7 +7,7 @@ function singe_line_graph(hb, filter){
         height = 400 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
-    var svg = d3.select("#graph")
+    var svg = d3.select(graphID)
       .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -15,7 +15,7 @@ function singe_line_graph(hb, filter){
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
     //Read the data
-    d3.csv("https://raw.githubusercontent.com/markjswan/covid-maps/master/data/hbo/" + hb + "_" + filter + ".csv",
+    d3.csv("https://raw.githubusercontent.com/markjswan/covid-maps/master/data"+file,
 
       // When reading the csv, I must format variables:
       function(d){
@@ -120,15 +120,24 @@ function multi_line_graph(id){
     //Read the data
     d3.csv("https://raw.githubusercontent.com/markjswan/covid-maps/master/data/google_mobility/"+id+".csv", function(data) {
 
+        dict1 = {"Retail And Recreation Traffic Change From Baseline (%)":"retail_and_recreation_percent_change_from_baseline",
+         "Grocery And Pharmacy Use Change From Baseline (%)":"grocery_and_pharmacy_percent_change_from_baseline",
+         "Parks Traffic Change From Baseline (%)":"parks_percent_change_from_baseline",
+         "Transit Stations Traffic Change From Baseline (%)":"transit_stations_percent_change_from_baseline",
+        "Workplace Traffic Change From Baseline (%)":"workplaces_percent_change_from_baseline",
+         "Residential Traffic Change From Baseline (%)":"residential_percent_change_from_baseline"};
         // List of groups (here I have one group per column)
         var allGroup = ["retail_and_recreation_percent_change_from_baseline", "grocery_and_pharmacy_percent_change_from_baseline",
          "parks_percent_change_from_baseline", "transit_stations_percent_change_from_baseline", "workplaces_percent_change_from_baseline",
           "residential_percent_change_from_baseline"]
+          var noGroup = ["Retail And Recreation Traffic Change From Baseline (%)", "Grocery And Pharmacy Use Change From Baseline (%)",
+           "Transit Stations Traffic Change From Baseline (%)", "Transit Stations Traffic Change From Baseline (%)",
+           "Workplace Traffic Change From Baseline (%)", "Residential Traffic Change From Baseline (%)"];
 
         // add the options to the button
         d3.select("#selectButton")
           .selectAll('myOptions')
-         	.data(allGroup)
+         	.data(noGroup)
           .enter()
         	.append('option')
           .text(function (d) { return d; }) // text showed in the menu
@@ -238,7 +247,7 @@ function multi_line_graph(id){
             // recover the option that has been chosen
             var selectedOption = d3.select(this).property("value")
             // run the updateChart function with this selected option
-            update(selectedOption)
+            update(dict1[selectedOption])
         })
 
     })
@@ -264,8 +273,8 @@ function graph_init(res, id){
         d3.select("#graph").select("svg").remove();
 
         if (res == 'lad'){
-
             multi_line_graph(id);
+            singe_line_graph("/lad/total_covid_deaths/"+ S12000005+ ".csv", "#covidDTGraph");
         }
         else{
 
@@ -275,7 +284,7 @@ function graph_init(res, id){
 
             update_graph_title(filter);
 
-            singe_line_graph(health_board, filter);
+            singe_line_graph("/hbo/" + health_board + "_" + filter + ".csv", "#graph");
         }
     }
 
