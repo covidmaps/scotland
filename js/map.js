@@ -110,11 +110,13 @@ function create_table(properties, id)
         }
     }
     table_string += "</table>";
-    console.log("returning data");
     return table_string;
 }
 
 function show_data(properties, id) {
+
+    // Hide google data dropdown select
+    d3.select("#selectButton").style("display", "none");
 
     var vopt = get_view_option();
 
@@ -122,7 +124,6 @@ function show_data(properties, id) {
     {
         // remove any existing graphs
         d3.select("#graph").select("svg").remove();
-        console.log(id);
         return create_table(properties, id);
     }
     if (vopt == 'grh' || res === 'hbo')

@@ -125,3 +125,7 @@ tr:hover {background-color: #ffb5ae;}
     stroke-width: 2;
     stroke-linejoin: round;*/
 }
+
+.selectButton{
+    display: none;
+}

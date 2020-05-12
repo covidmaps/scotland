@@ -67,6 +67,7 @@ function change_area() {
     // remove all previous content from webpage
     d3.selectAll("*").select("svg").remove();
 
+
     // clear graph graphTitle
     document.getElementById('graphTitle').innerHTML = "";
 
