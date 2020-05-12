@@ -27,24 +27,24 @@
                 <h3> CLICK, ZOOM & EXPLORE THE MAP </h3> <p>
                   Begin by clicking the map on the right. Selecting a particular region will generate a data report with graphs for that given area. Scroll down to see the data report at the bottom of the page.
                 </p>
-                <h3> SELECT A SCOTTISH REGION </h3> <p>
+                <h3> SELECTING DATA </h3> <p>
                   The Scottish Government tracks data at two different region scales. The first is local authority district, this roughly is the same area as a consituency in a local political election. The second is regional health board. There are many local authorities in one health board region, representing the multiple hospitals that reside under a given region.
                 </p>
                 <h4> Local Authority vs Health Board</h4>
                 <p> See the table below explaining the different local authorities and health boards </p>
 
                 <p>
-                    <br>Please select a region:&ensp;
+                    <br>&ensp;&ensp;&ensp;Please select a region:&ensp;
                     <select name="resolution" id="resolution">
                         <option value="lad">Local Authority Districts</option>
                         <option value="hbo">Health Boards</option>
                     </select> <br>
                 </p>
                 <br>
-                <h4> Select a Data Metric </h4> <p> Select a Covid-19 metric below and watch the map change color. The more red the local area, the worse the situation is for that certain area given the particular metric.
+                <h4> Selecting a Data Metric </h4> <p> Select a Covid-19 metric below and watch the map change color. The more red the local area, the worse the situation is for that certain area given the particular metric.
                 <p>
                     <div id="criteriaBox">
-                        Please select a data metric:&ensp;
+                        <br> Please select a data metric:&ensp;
                         <select name="criteria" id="criteria">
                             <option value="ratio_total_death_covid">Ratio of COVID Deaths</option>
                             <!-- NOT YET ADDED
@@ -57,10 +57,8 @@
                 </p>
                 <br>
                 <br>
-                <p>Authors: Mark Swan and Calum McKeekin <br>
-                </p>
             </form>
-            <h2>You have selected</h2><h2 id="graphTitle"></h2>
+            <h2>Data Report</h2><p>You have chosen data for ... </p><strong id="graphTitle"></strong>
             <div id="ladDoc" class = "doc">
                 <h3>Google Mobility Statistics</h3>
                 <select id="selectButton" class="selectButton">

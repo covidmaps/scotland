@@ -44,8 +44,8 @@ h3 {
 }
 
 h4 {
-  font-size: 16px;
-  margin-left:0.9em;
+  font-size: 14px;
+  margin-left:1.2em;
   color: #666666;
 }
 
@@ -221,9 +221,14 @@ tr:hover {background-color: #ffb5ae;}
 
 #graphTitle {
   color: #7bb2ff;
+  text-decoration: underline;
 }
 
 small {
   margin-left: 1.5em;
   font-size: 12px
+}
+
+strong {
+  font-size: 28px;
 }
