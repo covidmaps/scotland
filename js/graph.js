@@ -2,7 +2,7 @@
 function singe_line_graph(file, graphID){
 
     // set the dimensions and margins of the graph
-    var margin = {top: 30, right: 30, bottom: 60, left: 60},
+    var margin = {top: 10, right: 150, bottom: 50, left: 30},
         width = 500 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
@@ -104,8 +104,8 @@ function multi_line_graph(id){
     d3.select("#selectButton").style("display", "block");
 
     // set the dimensions and margins of the graph
-    var margin = {top: 10, right: 150, bottom: 50, left: 30},
-        width = 460 - margin.left - margin.right,
+    var margin = {top: 10, right: 150, bottom: 60, left: 30},
+        width = 500 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
@@ -120,17 +120,23 @@ function multi_line_graph(id){
     //Read the data
     d3.csv("https://raw.githubusercontent.com/markjswan/covid-maps/master/data"+id, function(data) {
 
-        dict1 = {"Retail And Recreation Traffic Change From Baseline (%)":"retail_and_recreation_percent_change_from_baseline",
-         "Grocery And Pharmacy Use Change From Baseline (%)":"grocery_and_pharmacy_percent_change_from_baseline",
+        dict1 = {"Retail & Recreation Traffic Change From Baseline (%)":"retail_and_recreation_percent_change_from_baseline",
+         "Grocery & Pharmacy Use Change From Baseline (%)":"grocery_and_pharmacy_percent_change_from_baseline",
          "Parks Traffic Change From Baseline (%)":"parks_percent_change_from_baseline",
          "Transit Stations Traffic Change From Baseline (%)":"transit_stations_percent_change_from_baseline",
         "Workplace Traffic Change From Baseline (%)":"workplaces_percent_change_from_baseline",
          "Residential Traffic Change From Baseline (%)":"residential_percent_change_from_baseline"};
+         dict2 = {"retail_and_recreation_percent_change_from_baseline":"Retail & Recreation Traffic Change From Baseline (%)",
+          "grocery_and_pharmacy_percent_change_from_baseline":"Grocery & Pharmacy Use Change From Baseline (%)",
+          "parks_percent_change_from_baseline":"Parks Traffic Change From Baseline (%)",
+          "transit_stations_percent_change_from_baseline":"Transit Stations Traffic Change From Baseline (%)",
+          "workplaces_percent_change_from_baseline":"Workplace Traffic Change From Baseline (%)",
+          "residential_percent_change_from_baseline":"Residential Traffic Change From Baseline (%)"};
         // List of groups (here I have one group per column)
         var allGroup = ["retail_and_recreation_percent_change_from_baseline", "grocery_and_pharmacy_percent_change_from_baseline",
          "parks_percent_change_from_baseline", "transit_stations_percent_change_from_baseline", "workplaces_percent_change_from_baseline",
           "residential_percent_change_from_baseline"]
-        var noGroup = ["Retail And Recreation Traffic Change From Baseline (%)", "Grocery And Pharmacy Use Change From Baseline (%)",
+        var noGroup = ["Retail & Recreation Traffic Change From Baseline (%)", "Grocery & Pharmacy Use Change From Baseline (%)",
            "Parks Traffic Change From Baseline (%)", "Transit Stations Traffic Change From Baseline (%)",
            "Workplace Traffic Change From Baseline (%)", "Residential Traffic Change From Baseline (%)"];
 
@@ -248,12 +254,12 @@ function multi_line_graph(id){
 
           svg.select("#lgndText").remove();
           svg.select("#lgndCircle").remove();
-          svg.append("circle").attr("id","lgndCircle").attr("cx",width+10).attr("cy",40).attr("r", 6).style("fill", myColor(selectedGroup));
-          svg.append("text").attr("id", "lgndText").attr("x", width+30).attr("y", 40).text(selectedGroup).style("font-size", "15px").attr("alignment-baseline","middle");
+          svg.append("circle").attr("id","lgndCircle").attr("cx",width/2-40).attr("cy",height+50).attr("r", 6).style("fill", myColor(selectedGroup));
+          svg.append("text").attr("id", "lgndText").attr("x", width/2-30).attr("y", height+55).text(dict2[selectedGroup]).style("font-size", "15px").attr("alignment-baseline","middle");
         }
 
-        svg.append("circle").attr("cx",width+10).attr("cy",70).attr("r", 6).style("fill", "#666666");
-        svg.append("text").attr("x", width+30).attr("y", 70).text("UK Avg").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("circle").attr("cx",25).attr("cy",height+50).attr("r", 6).style("fill", "#666666");
+        svg.append("text").attr("x", 35).attr("y", height+55).text("UK Avg").style("font-size", "15px").attr("alignment-baseline","middle");
 
         update("retail_and_recreation_percent_change_from_baseline");
 
