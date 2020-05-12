@@ -360,7 +360,7 @@ function bar_graph(file, graphID){
 
     // Add Y axis
     var y = d3.scaleLinear()
-      .domain([0, 40])
+      .domain([0, d3.max(data, function(d) { return +d.Value; })])
       .range([ height, 0]);
     svg.append("g")
       .call(d3.axisLeft(y));
@@ -372,7 +372,7 @@ function bar_graph(file, graphID){
       .append("rect")
         .attr("x", function(d) { return x(d.Country); })
         .attr("width", x.bandwidth())
-        .attr("fill", "#69b3a2")
+        .attr("fill", "#ff867b")
         // no bar at the beginning thus:
         .attr("height", function(d) { return height - y(0); }) // always equal to 0
         .attr("y", function(d) { return y(0); })
