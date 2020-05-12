@@ -34,13 +34,18 @@
                 <p> See the table below explaining the different local authorities and health boards </p>
 
                 <p>
-                    <br>&ensp;&ensp;&ensp;Please select a region:&ensp;
+                    <br>&ensp;&ensp;&ensp;Please select a map region:&ensp;
                     <select name="resolution" id="resolution">
                         <option value="lad">Local Authority Districts</option>
                         <option value="hbo">Health Boards</option>
                     </select> <br>
                 </p>
                 <br>
+            </form>
+
+
+
+              <div id="ladDoc" class = "doc">
                 <h4> Selecting a Data Metric </h4> <p> Select a Covid-19 metric below and watch the map change color. The more red the local area, the worse the situation is for that certain area given the particular metric.
                 <p>
                     <div id="criteriaBox">
@@ -54,30 +59,36 @@
                             <option value="ratio_hospital_death_covid">Ratio of Hospital COVID Deaths</option>
                         </select>
                     </div>
-                </p>
-                <br>
-                <br>
-            </form>
-            <h2>Data Report - <strong id="graphTitle"></strong></h2>
-
-
-            <div id="ladDoc" class = "doc">
-                <h3>INTRODUCTION TO DATA</h3>
+                </p> <br> <br>
+                <h2>Data Report - <strong id="graphTitle"></strong></h2>
+                <h3>Introduction to Data</h3>
                 <p> All information is automatically updated from the Scottish Government websites.</p>
-                <h3>Google Mobility Statistics</h3>
+
+                <br>
+                <h3>Total Number of COVID-19 Deaths per Day </h3>
+                <p> Graph of the total number of deaths each day in the selected area region.<br> Source: (Scottish Government) </p>
+                <section id="covidDTGraph"></section>
+
+                <br>
+                <h3>Total Number of COVID-19 Deaths by Location</h3>
+                <p> Graph of the total number deaths where coronavirus is recorded as the underlying cause by location, either care home, non-institution or hospital. A downward trend implies that the number of deaths is decreasing per day in a given region. If there is no data showing, then the number of deaths in each location is too low to be represented on a graph. <br> Source: (Scottish Government) </p>
+
+                <section id="barGraph"></section>
+                <h3>How Is The Community Moving?</h3>
+                <p> This graph uses anonymised insights from Google Maps to give an indication of movement trends over time across different categories of places such as retail and recreation, groceries and pharmacies, parks, transit stations, workplaces, and residential areas. Each data point is compared against the UK average. <br> Source: (Google Mobility Report) </p> <br>
                 <select id="selectButton" class="selectButton">
                 </select>
                 <section id="graphGMS"></section>
-                <h3>Total COVID-19 Deaths</h3>
-                <section id="covidDTGraph"></section>
-                <h3>Bar Graph</h3>
-                <section id="barGraph"></section>
+
                 <h3></h3>
                 <section id="graph3"></section>
-                <h3>All Stats Table</h3>
+
+                <br>
+                <h3>All Statistics Table</h3>
                 <section id="data_table"></section>
             </div>
             <div id="hboDoc" class = "doc">
+                <h2>Data Report - <strong id="graphTitle"></strong></h2>
                 <h3>Total Hospital Patients</h3>
                 <section id="hospital_allGraph"></section>
                 <h3>ICU Patients</h3>
@@ -97,10 +108,10 @@
             </div>
             <div id="key">
                 <section id="key_table">
-                    <table>
+                    <!--<table>
                         <tr><td><div id = "grad"></div></td></tr>
                         <tr><td>Worst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Best</td></tr>
-                    </table>
+                    </table>-->
                 </section>
             </div>
         </div>
