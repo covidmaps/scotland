@@ -3,6 +3,8 @@ TODO:
  [] Fix table running off 'left-column' (scroll box)
  [] Add key in HBO mode
  [] Add hint for zoom
+ [] Add mouseover box to display district name
+ [] change from on-hover selct to click select
  [] reformat table to have columns of COVID,  Non-INST, OTHER etc
 */
 
