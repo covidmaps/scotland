@@ -98,7 +98,7 @@ function get_filter(){
     return filter_select.options[filter_select.selectedIndex].value;
 }
 
-function multi_line_graph(id){
+function multi_line_graph(file, graphID){
 
     // show google dropdown select
     d3.select("#selectButton").style("display", "block");
@@ -109,7 +109,7 @@ function multi_line_graph(id){
         height = 400 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
-    var svg = d3.select("#graph")
+    var svg = d3.select(graphID)
       .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -118,7 +118,7 @@ function multi_line_graph(id){
               "translate(" + margin.left + "," + margin.top + ")");
 
     //Read the data
-    d3.csv("https://raw.githubusercontent.com/markjswan/covid-maps/master/data"+id, function(data) {
+    d3.csv("https://raw.githubusercontent.com/markjswan/covid-maps/master/data"+file, function(data) {
 
         dict1 = {"Retail & Recreation Traffic Change From Baseline (%)":"retail_and_recreation_percent_change_from_baseline",
          "Grocery & Pharmacy Use Change From Baseline (%)":"grocery_and_pharmacy_percent_change_from_baseline",
@@ -291,10 +291,12 @@ function graph_init(res, id){
     if (id != null){
 
         d3.select("#selectButton").selectAll("*").remove();
+        d3.select("#graphGMS").select("svg").remove();
+        d3.select("#covidDTGraph").select("svg").remove();
         d3.select("#graph").select("svg").remove();
 
         if (res == 'lad'){
-            multi_line_graph("/g_mobility/S12000008.csv");
+            multi_line_graph("/g_mobility/S12000008.csv", "#graphGMS");
             singe_line_graph("/lad/total_covid_deaths/"+ "S12000005"+ ".csv", "#covidDTGraph");
         }
         else{
