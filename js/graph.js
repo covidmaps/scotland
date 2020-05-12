@@ -87,7 +87,7 @@ function display_graphGGL(id){
     d3.select("#selectButton").style("display", "block");
 
     // set the dimensions and margins of the graph
-    var margin = {top: 10, right: 100, bottom: 30, left: 30},
+    var margin = {top: 10, right: 100, bottom: 50, left: 30},
         width = 460 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
@@ -132,10 +132,18 @@ function display_graphGGL(id){
 
         // Add Y axis
         var y = d3.scaleLinear()
-          .domain( [-90,50])
+          .domain( [-100,100])
           .range([ height, 0 ]);
         svg.append("g")
           .call(d3.axisLeft(y));
+
+        // Add X axis label /
+        svg.append("text")
+        .attr("class", "x label")
+        .attr("text-anchor", "end")
+        .attr("x", width)
+        .attr("y", height+30)
+        .text("Days Since Start of 2020");
 
         // Initialize line with group a
         var line = svg
