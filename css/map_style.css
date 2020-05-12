@@ -31,6 +31,11 @@ h1 {
   font-size:28px;
 }
 
+h2 {
+    color: 	#404040;
+    margin-left: 0.5em;
+}
+
 h3 {
     margin-left: 0.5em;
 }

@@ -20,6 +20,7 @@ function removeGraphs(){
     d3.select("#icuGraph").select("svg").remove();
     d3.select("#hospital_covidGraph").select("svg").remove();
     d3.select("#casesGraph").select("svg").remove();
+    d3.select("#barGraph").select("svg").remove();
 }
 
 function graph_init(res, id){
