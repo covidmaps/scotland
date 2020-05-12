@@ -3,12 +3,8 @@ TODO:
  [] Fix table running off 'left-column' (scroll box)
  [] Add key in HBO mode
  [] Add hint for zoom
- [X] Add mouseover box to display district name
- [X] Add multiple lines on a graph
- [X] Add key to graphs
- [X] change from on-hover selct to click select
  [] reformat table to have columns of COVID,  Non-INST, OTHER etc
- [] Remove selection dropdown from HBO and display all 4 graphs
+ [] Get Dict of ID to HBO for doc name
 */
 
 // get the width of the area we're displaying in
@@ -124,21 +120,29 @@ function show_data(properties, id) {
 
     // Hide google data dropdown select
     d3.select("#selectButton").style("display", "none");
+    if (id != null){
+        if (res == 'lad')
+        {
+                // Give Doc Name
+                document.getElementById('graphTitle').innerHTML = idToName[id];
 
-    if (res == 'lad')
-    {
-        // remove any existing graphs
-        d3.select("#graph").select("svg").remove();
+                // remove any existing graphs
+                d3.select("#graph").select("svg").remove();
 
-        graph_init(res, id);
+                graph_init(res, id);
 
-        return create_table(properties, id);
+                return create_table(properties, id);
+        }
+        else
+        {
+            // Give Doc Name
+            // TODO: Get dict of ID to HBO name
+            document.getElementById('graphTitle').innerHTML = "";
 
+            graph_init(res, id);
+        }
     }
-    else
-    {
-        graph_init(res, id);
-    }
+
 }
 
 // Return a better looking version of property header
@@ -169,6 +173,7 @@ function select(d) {
     if (res == 'hbo'){
         highlightBoard(d.id);
     }
+
     // add the area properties to the data_table section
     d3.select("#data_table")
         .html(show_data(d.properties, d.id));
@@ -292,6 +297,7 @@ function colourMap()
     }
     if (res == "hbo")
     {
+
         g.selectAll(".area").each(function(d) {
             d3.select(this).attr('fill', hboColours[d3.select(this).attr('id')]);
         });
