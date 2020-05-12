@@ -131,7 +131,7 @@ function multi_line_graph(id){
          "parks_percent_change_from_baseline", "transit_stations_percent_change_from_baseline", "workplaces_percent_change_from_baseline",
           "residential_percent_change_from_baseline"]
           var noGroup = ["Retail And Recreation Traffic Change From Baseline (%)", "Grocery And Pharmacy Use Change From Baseline (%)",
-           "Transit Stations Traffic Change From Baseline (%)", "Transit Stations Traffic Change From Baseline (%)",
+           "Parks Traffic Change From Baseline (%)", "Transit Stations Traffic Change From Baseline (%)",
            "Workplace Traffic Change From Baseline (%)", "Residential Traffic Change From Baseline (%)"];
 
         // add the options to the button
