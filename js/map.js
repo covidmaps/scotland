@@ -125,7 +125,7 @@ function show_data(properties, id) {
     // Hide google data dropdown select
     d3.select("#selectButton").style("display", "none");
 
-    if (res != 'hbo')
+    if (res == 'lad')
     {
         // remove any existing graphs
         d3.select("#graph").select("svg").remove();
@@ -206,7 +206,7 @@ function toggle_key(){
     var criteria_chooser = document.getElementById("criteria");
     var filter = document.getElementById("filter");
     var ladDoc = document.getElementById("ladDoc");
-
+    var hboDoc = document.getElementById("hboDoc");
     if (res === 'hbo') {
         x.style.display = "none";
         p2.style.display = "inline-block";
@@ -215,11 +215,11 @@ function toggle_key(){
         ladDoc.style.display="none";
     }
     else {
-        ladDoc.style.display="block";
         x.style.display = "block";
         p2.style.display = "none";
         criteria_chooser.style.display = "inline-block";
         filter.style.display = "none";
+        hboDoc.style.display="none";
     }
 }
 

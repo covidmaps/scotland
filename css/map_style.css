@@ -12,12 +12,13 @@ h1 {
   color:#222;
   margin-top: 1em;
   margin-bottom: 0.1em;
-  margin-left: -0.2em;
+  margin-left: 0.2em;
 
 }
 
 p, table {
   margin:0 0 10px;
+  margin-left: 1em;
   display: inline-block;
 }
 
@@ -28,6 +29,10 @@ h1 {
 
 h1 {
   font-size:28px;
+}
+
+h3 {
+    margin-left: 0.5em;
 }
 
 a {
@@ -69,7 +74,7 @@ tr:hover {background-color: #ffb5ae;}
 }
 
 #left_column {
-    height:150em;
+    height:170em;
     width: 45%;
     float:left;
     background-color: #f7faff;
@@ -139,6 +144,9 @@ tr:hover {background-color: #ffb5ae;}
     display: none;
 }
 
+.doc{
+    display: none;
+}
 
 .grid line {
   stroke: lightgrey;

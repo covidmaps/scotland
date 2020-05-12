@@ -1,8 +1,64 @@
 
-function singe_line_graph(file, graphID){
+function get_filter(){
+    var filter_select = document.getElementById('filter');
+    return filter_select.options[filter_select.selectedIndex].value;
+}
+
+// gridlines in x axis function
+function make_x_gridlines(x) {
+    return d3.axisBottom(x)
+        .ticks(10)
+}
+
+// gridlines in y axis function
+function make_y_gridlines(y) {
+    return d3.axisLeft(y)
+        .ticks(10)
+}
+
+function removeGraphs(){
+    d3.select("#selectButton").selectAll("*").remove();
+    d3.select("#graphGMS").select("svg").remove();
+    d3.select("#covidDTGraph").select("svg").remove();
+    d3.select("#graph").select("svg").remove();
+    d3.select("#hospital_allGraph").select("svg").remove();
+    d3.select("#icuGraph").select("svg").remove();
+    d3.select("#hospital_covidGraph").select("svg").remove();
+    d3.select("#casesGraph").select("svg").remove();
+}
+
+function graph_init(res, id){
+
+    if (id != null){
+
+        removeGraphs();
+
+        if (res == 'lad'){
+            document.getElementById("ladDoc").style.display = "block";
+            multi_line_graph("/g_mobility/"+id+".csv", "#graphGMS");
+            singe_line_graph("/lad/total_covid_deaths/"+ "S12000005"+ ".csv", "#covidDTGraph", "Total Covid Deaths");
+        }
+        else{
+
+            document.getElementById("hboDoc").style.display = "block";
+
+            var filter = get_filter();
+
+            var health_board = hboDistricts[id];
+
+            singe_line_graph("/hbo/" + health_board + "_hospital_all.csv", "#hospital_allGraph", "Total Hospital Patients");
+            singe_line_graph("/hbo/" + health_board + "_icu.csv", "#icuGraph", "ICU Patients");
+            singe_line_graph("/hbo/" + health_board + "_hospital_covid.csv", "#hospital_covidGraph", "Total Hospital COVID-19 patients");
+            singe_line_graph("/hbo/" + health_board + "_cases.csv", "#casesGraph", "Total Cumulative COVID-19 Patients");
+        }
+    }
+
+}
+
+function singe_line_graph(file, graphID, graphName){
 
     // set the dimensions and margins of the graph
-    var margin = {top: 10, right: 150, bottom: 50, left: 30},
+    var margin = {top: 10, right: 150, bottom: 70, left: 30},
         width = 500 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
@@ -19,7 +75,7 @@ function singe_line_graph(file, graphID){
 
       // When reading the csv, I must format variables:
       function(d){
-        return { date : d3.timeParse("%d-%b-%y")(d.date), value : d.value }
+        return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
       },
 
       // Now I can use this dataset:
@@ -45,8 +101,8 @@ function singe_line_graph(file, graphID){
         svg.append("text")
         .attr("class", "x label")
         .attr("text-anchor", "end")
-        .attr("x", width)
-        .attr("y", height - 6)
+        .attr("x", width + 40)
+        .attr("y", height+6)
         .text("Days");
 
         // add the X gridlines
@@ -58,10 +114,9 @@ function singe_line_graph(file, graphID){
               .tickFormat("")
           )
 
-
         // Add Y axis
         var y = d3.scaleLinear()
-          .domain([0, d3.max(data, function(d) { return +d.value; })])
+          .domain([0, d3.max(data, function(d) { return +d.value; })+5])
           .range([ height, 0 ]);
         svg.append("g")
           .call(d3.axisLeft(y));
@@ -84,18 +139,11 @@ function singe_line_graph(file, graphID){
             .x(function(d) { return x(d.date) })
             .y(function(d) { return y(d.value) })
             )
+        // Add the legend
+        svg.append("circle").attr("cx",35).attr("cy",height+55).attr("r", 6).style("fill", "#ff867b");
+        svg.append("text").attr("x", 45).attr("y", height+60).text(graphName).style("font-size", "15px").attr("alignment-baseline","middle");
     })
 
-}
-
-function update_graph_title(filter)
-{
-    document.getElementById('graphTitle').innerHTML = prettifyFilter[filter];
-}
-
-function get_filter(){
-    var filter_select = document.getElementById('filter');
-    return filter_select.options[filter_select.selectedIndex].value;
 }
 
 function multi_line_graph(file, graphID){
@@ -104,7 +152,7 @@ function multi_line_graph(file, graphID){
     d3.select("#selectButton").style("display", "block");
 
     // set the dimensions and margins of the graph
-    var margin = {top: 10, right: 150, bottom: 60, left: 30},
+    var margin = {top: 10, right: 150, bottom: 70, left: 30},
         width = 500 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
@@ -166,8 +214,8 @@ function multi_line_graph(file, graphID){
         svg.append("text")
         .attr("class", "x label")
         .attr("text-anchor", "end")
-        .attr("x", width)
-        .attr("y", height+35)
+        .attr("x", width + 150)
+        .attr("y", height+6)
         .text("Days Since 01/01/2020");
 
         // add the X gridlines
@@ -253,9 +301,20 @@ function multi_line_graph(file, graphID){
               .attr("stroke", function(d){ return myColor(selectedGroup) })
 
           svg.select("#lgndText").remove();
-          svg.select("#lgndCircle").remove();
-          svg.append("circle").attr("id","lgndCircle").attr("cx",width/2-40).attr("cy",height+50).attr("r", 6).style("fill", myColor(selectedGroup));
-          svg.append("text").attr("id", "lgndText").attr("x", width/2-30).attr("y", height+55).text(dict2[selectedGroup]).style("font-size", "15px").attr("alignment-baseline","middle");
+          svg.append("circle").transition()
+              .duration(1000)
+              .attr("id","lgndCircle")
+              .attr("cx",width/2-50)
+              .attr("cy",height+50)
+              .attr("r", 6)
+              .style("fill", myColor(selectedGroup));
+          svg.append("text")
+            .attr("id", "lgndText")
+            .attr("x", width/2-40)
+            .attr("y", height+55)
+            .text(dict2[selectedGroup])
+            .style("font-size", "15px")
+            .attr("alignment-baseline","middle");
         }
 
         svg.append("circle").attr("cx",25).attr("cy",height+50).attr("r", 6).style("fill", "#666666");
@@ -272,45 +331,6 @@ function multi_line_graph(file, graphID){
         })
 
     })
-}
-
-// gridlines in x axis function
-function make_x_gridlines(x) {
-    return d3.axisBottom(x)
-        .ticks(10)
-}
-
-// gridlines in y axis function
-function make_y_gridlines(y) {
-    return d3.axisLeft(y)
-        .ticks(10)
-}
-
-function graph_init(res, id){
-
-    if (id != null){
-
-        d3.select("#selectButton").selectAll("*").remove();
-        d3.select("#graphGMS").select("svg").remove();
-        d3.select("#covidDTGraph").select("svg").remove();
-        d3.select("#graph").select("svg").remove();
-
-        if (res == 'lad'){
-            multi_line_graph("/g_mobility/S12000008.csv", "#graphGMS");
-            singe_line_graph("/lad/total_covid_deaths/"+ "S12000005"+ ".csv", "#covidDTGraph");
-        }
-        else{
-
-            var filter = get_filter();
-
-            var health_board = hboDistricts[id];
-
-            update_graph_title(filter);
-
-            singe_line_graph("/hbo/" + health_board + "_" + filter + ".csv", "#graph");
-        }
-    }
-
 }
 
 prettifyFilter = {"icu": "ICU Patients", "hospital_all": "Total Hospital Patients",

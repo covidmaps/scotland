@@ -61,30 +61,17 @@
                     </div>
                 </p>
                 <br>
-                <!-- Removed choice for graph or table
-                <div id = "p1" class = "p1">
-                     <p>
-                         <b>
-                             3. Choose type of graphic:
-                         </b>&ensp;
-                     </p>
-                </div>
-                <select name="view_option" id="view_option">
-                    <option value="tbl">table</option>
-                    <option value="grh">graph</option>
-                </select>
-            -->
                 <br>
                 <br>
                 <p>Authors: Mark Swan and Calum McKeekin <br>
                 </p>
             </form>
             <h3 id="graphTitle"></h3>
-            <select id="selectButton" class="selectButton">
-            </select>
             <section id="graph"></section>
-            <div id="ladDoc">
+            <div id="ladDoc" class = "doc">
                 <h3>Google Mobility Statistics</h3>
+                <select id="selectButton" class="selectButton">
+                </select>
                 <section id="graphGMS"></section>
                 <h3>Total COVID-19 Deaths</h3>
                 <section id="covidDTGraph"></section>
@@ -94,6 +81,16 @@
                 <section id="graph3"></section>
                 <h3>All Stats Table</h3>
                 <section id="data_table"></section>
+            </div>
+            <div id="hboDoc" class = "doc">
+                <h3>Total Hospital Patients</h3>
+                <section id="hospital_allGraph"></section>
+                <h3>ICU Patients</h3>
+                <section id="icuGraph"></section>
+                <h3>Total Hospital COVID-19 patients</h3>
+                <section id="hospital_covidGraph"></section>
+                <h3>Total Cumulative COVID-19 Patients</h3>
+                <section id="casesGraph"></section>
             </div>
         </div>
         <div id="right_column">
