@@ -252,7 +252,7 @@ function multi_line_graph(id){
           svg.append("text").attr("id", "lgndText").attr("x", width+30).attr("y", 40).text(selectedGroup).style("font-size", "15px").attr("alignment-baseline","middle");
         }
 
-        svg.append("circle").attr("cx",width+10).attr("cy",70).attr("r", 6).style("fill", "666666");
+        svg.append("circle").attr("cx",width+10).attr("cy",70).attr("r", 6).style("fill", "#666666");
         svg.append("text").attr("x", width+30).attr("y", 70).text("UK Avg").style("font-size", "15px").attr("alignment-baseline","middle");
 
         update("retail_and_recreation_percent_change_from_baseline");
