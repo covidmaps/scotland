@@ -22,28 +22,34 @@
                 <h1>COVID-19 Interactive Map</h1>
                 </section>
             <form id="choiceform">
-                <p>
-                    The following data represents the current coronavirus situation in Scotland, UK. All data comes directly from the Scottish Government and is kept as up to date as possible. To use this website, follow the steps below and scroll your mouse over the graph on the right hand side to reveal more information.
-                    <!-- EACH OPTION BELOW IS FOR EXPANSION
-                    <select name="top_level"  id="top_level">
-                        <option value="sco">Scotland</option>
-                        <option value="eng">England</option>
-                        <option value="wal">Wales</option>
-                        <option value="ni">Northern Ireland</option>
-                    -->
-                    </select>
+                <small>Authors: Mark Swan and Calum McKeekin</small>
+                <h2> How to use CovidMap</h2>
+                <h3> CLICK, ZOOM & EXPLORE THE MAP </h3> <p>
+                  Begin by clicking the map on the right. Selecting a particular region will generate a data report with graphs for that given area. Scroll down to see the data report at the bottom of the page.
                 </p>
+                <h3> SELECTING DATA </h3> <p>
+                  The Scottish Government tracks data at two different region scales. The first is local authority district, this roughly is the same area as a consituency in a local political election. The second is regional health board. There are many local authorities in one health board region, representing the multiple hospitals that reside under a given region.
+                </p>
+                <h4> Local Authority vs Health Board</h4>
+                <p> See the table below explaining the different local authorities and health boards </p>
+
                 <p>
-                    <br><b>1. Specify a Scottish region:</b> &ensp;
+                    <br>&ensp;&ensp;&ensp;Please select a map region:&ensp;
                     <select name="resolution" id="resolution">
                         <option value="lad">Local Authority Districts</option>
                         <option value="hbo">Health Boards</option>
                     </select> <br>
                 </p>
                 <br>
+            </form>
+
+
+
+              <div id="ladDoc" class = "doc">
+                <h4> Selecting a Data Metric </h4> <p> Select a Covid-19 metric below and watch the map change color. The more red the local area, the worse the situation is for that certain area given the particular metric.
                 <p>
                     <div id="criteriaBox">
-                        <b>2. Select a covid-19 data metric:</b>&ensp;
+                        <br> Please select a data metric:&ensp;
                         <select name="criteria" id="criteria">
                             <option value="ratio_total_death_covid">Ratio of COVID Deaths</option>
                             <!-- NOT YET ADDED
@@ -53,28 +59,36 @@
                             <option value="ratio_hospital_death_covid">Ratio of Hospital COVID Deaths</option>
                         </select>
                     </div>
-                </p>
+                </p> <br> <br>
+                <h2>Data Report - <strong id="graphTitle"></strong></h2>
+                <h3>Introduction to Data</h3>
+                <p> All information is automatically updated from the Scottish Government websites.</p>
+
                 <br>
+                <h3>Total Number of COVID-19 Deaths per Day </h3>
+                <p> Graph of the total number of deaths each day in the selected area region.<br> Source: (Scottish Government) </p>
+                <section id="covidDTGraph"></section>
+
                 <br>
-                <p>Authors: Mark Swan and Calum McKeekin <br>
-                </p>
-            </form>
-            <h2 id="graphTitle"></h2>
-            <div id="ladDoc" class = "doc">
-                <h3>Google Mobility Statistics</h3>
+                <h3>Total Number of COVID-19 Deaths by Location</h3>
+                <p> Graph of the total number deaths where coronavirus is recorded as the underlying cause by location, either care home, non-institution or hospital. A downward trend implies that the number of deaths is decreasing per day in a given region. If there is no data showing, then the number of deaths in each location is too low to be represented on a graph. <br> Source: (Scottish Government) </p>
+
+                <section id="barGraph"></section>
+                <h3>How Is The Community Moving?</h3>
+                <p> This graph uses anonymised insights from Google Maps to give an indication of movement trends over time across different categories of places such as retail and recreation, groceries and pharmacies, parks, transit stations, workplaces, and residential areas. Each data point is compared against the UK average. <br> Source: (Google Mobility Report) </p> <br>
                 <select id="selectButton" class="selectButton">
                 </select>
                 <section id="graphGMS"></section>
-                <h3>Total COVID-19 Deaths</h3>
-                <section id="covidDTGraph"></section>
-                <h3>Bar Graph</h3>
-                <section id="barGraph"></section>
+
                 <h3></h3>
                 <section id="graph3"></section>
-                <h3>All Stats Table</h3>
+
+                <br>
+                <h3>All Statistics Table</h3>
                 <section id="data_table"></section>
             </div>
             <div id="hboDoc" class = "doc">
+                <h2>Data Report - <strong id="graphTitle"></strong></h2>
                 <h3>Total Hospital Patients</h3>
                 <section id="hospital_allGraph"></section>
                 <h3>ICU Patients</h3>
@@ -94,10 +108,10 @@
             </div>
             <div id="key">
                 <section id="key_table">
-                    <table>
+                    <!--<table>
                         <tr><td><div id = "grad"></div></td></tr>
                         <tr><td>Worst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Best</td></tr>
-                    </table>
+                    </table>-->
                 </section>
             </div>
         </div>
