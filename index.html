@@ -22,24 +22,29 @@
                 <h1>COVID-19 Interactive Map</h1>
                 </section>
             <form id="choiceform">
+                <small>Authors: Mark Swan and Calum McKeekin</small>
                 <h2> How to use CovidMap</h2>
                 <h3> CLICK, ZOOM & EXPLORE THE MAP </h3> <p>
-                  Begin by clicking the map on the right. Selecting a particular region will generate a data report with graphs for that given area. The data report is published at the bottom of the page. Scroll down to see the data report.
+                  Begin by clicking the map on the right. Selecting a particular region will generate a data report with graphs for that given area. Scroll down to see the data report at the bottom of the page.
                 </p>
                 <h3> SELECT A SCOTTISH REGION </h3> <p>
-                  The Scottish Government tracks data at two different region scales. The first is local authority district, this roughly is the same area as a consituency in a local political election. The second is regional health board. There are many local authorities in one health board region, representing the multiple hospitals that reside under a given region. The following table shows the difference between a health board and local authority area.
+                  The Scottish Government tracks data at two different region scales. The first is local authority district, this roughly is the same area as a consituency in a local political election. The second is regional health board. There are many local authorities in one health board region, representing the multiple hospitals that reside under a given region.
                 </p>
+                <h4> Local Authority vs Health Board</h4>
+                <p> See the table below explaining the different local authorities and health boards </p>
+
                 <p>
-                    <br><b>1. Specify a Scottish region:</b> &ensp;
+                    <br>Please select a region:&ensp;
                     <select name="resolution" id="resolution">
                         <option value="lad">Local Authority Districts</option>
                         <option value="hbo">Health Boards</option>
                     </select> <br>
                 </p>
                 <br>
+                <h4> Select a Data Metric </h4> <p> Select a Covid-19 metric below and watch the map change color. The more red the local area, the worse the situation is for that certain area given the particular metric.
                 <p>
                     <div id="criteriaBox">
-                        <b>2. Select a covid-19 data metric:</b>&ensp;
+                        Please select a data metric:&ensp;
                         <select name="criteria" id="criteria">
                             <option value="ratio_total_death_covid">Ratio of COVID Deaths</option>
                             <!-- NOT YET ADDED

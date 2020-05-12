@@ -16,7 +16,7 @@ h1 {
 
 }
 
-p, table {
+p {
   margin:0 0 10px;
   margin-left: 1em;
   margin-right: 1em;
@@ -43,6 +43,12 @@ h3 {
     transition-duration: 0.5s;
 }
 
+h4 {
+  font-size: 16px;
+  margin-left:0.9em;
+  color: #666666;
+}
+
 a {
   color:#39c;
   font-weight:400;
@@ -50,14 +56,22 @@ a {
 }
 
 table {
-  width:100%;
-  border-collapse:collapse;
+  border: 1px solid #666666;
+  margin-left: 20px;
+  margin:0 0 10px;
+  width: 80%;
 }
 
 th, td {
   text-align:left;
   padding:10px 20px;
   border-bottom:1px solid #e5e5e5;
+
+}
+
+th {
+  background-color: #666666;
+  color: white;
 }
 
 tr:hover {background-color: #ffb5ae;}
@@ -89,6 +103,7 @@ tr:hover {background-color: #ffb5ae;}
 
 #data_table {
     height: 200px;
+    width: 90%;
 }
 
 #choiceform {
@@ -205,5 +220,10 @@ tr:hover {background-color: #ffb5ae;}
 }
 
 #graphTitle {
-  color: #ff867b;
+  color: #7bb2ff;
+}
+
+small {
+  margin-left: 1.5em;
+  font-size: 12px
 }
