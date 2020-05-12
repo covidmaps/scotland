@@ -19,7 +19,7 @@ function singe_line_graph(file, graphID){
 
       // When reading the csv, I must format variables:
       function(d){
-        return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
+        return { date : d3.timeParse("%d-%b-%y")(d.date), value : d.value }
       },
 
       // Now I can use this dataset:
@@ -130,7 +130,7 @@ function multi_line_graph(id){
         var allGroup = ["retail_and_recreation_percent_change_from_baseline", "grocery_and_pharmacy_percent_change_from_baseline",
          "parks_percent_change_from_baseline", "transit_stations_percent_change_from_baseline", "workplaces_percent_change_from_baseline",
           "residential_percent_change_from_baseline"]
-          var noGroup = ["Retail And Recreation Traffic Change From Baseline (%)", "Grocery And Pharmacy Use Change From Baseline (%)",
+        var noGroup = ["Retail And Recreation Traffic Change From Baseline (%)", "Grocery And Pharmacy Use Change From Baseline (%)",
            "Parks Traffic Change From Baseline (%)", "Transit Stations Traffic Change From Baseline (%)",
            "Workplace Traffic Change From Baseline (%)", "Residential Traffic Change From Baseline (%)"];
 
@@ -150,8 +150,8 @@ function multi_line_graph(id){
 
         // Add X axis --> it is a date format
         var x = d3.scaleLinear()
-          .domain([40,123])
-          .range([ 0, width ]);
+          .domain([d3.min(data, function(d) { return +d.time; }), d3.max(data, function(d) { return +d.time; })])
+          .range([ 0, width]);
         svg.append("g")
           .attr("transform", "translate(0," + height + ")")
           .call(d3.axisBottom(x));
@@ -176,7 +176,7 @@ function multi_line_graph(id){
         // Add Y axis
         var y = d3.scaleLinear()
             .domain( [-100,100])
-            .range([ height, 0 ]);
+            .range([height, 0 ]);
 
         svg.append("g")
         .call(d3.axisLeft(y));
@@ -288,8 +288,8 @@ function graph_init(res, id){
         d3.select("#graph").select("svg").remove();
 
         if (res == 'lad'){
-            multi_line_graph("/google_comparison_uk2.csv");
-            singe_line_graph("/lad/total_covid_deaths/"+ S12000005+ ".csv", "#covidDTGraph");
+            multi_line_graph("/g_mobility/S12000008.csv");
+            singe_line_graph("/lad/total_covid_deaths/"+ "S12000005"+ ".csv", "#covidDTGraph");
         }
         else{
 
