@@ -17,12 +17,10 @@
     </head>
 
     <body>
-
         <div id="left_column">
             <section class="title">
                 <h1>COVID-19 Interactive Map</h1>
                 </section>
-
             <form id="choiceform">
                 <p>
                     The following data represents the current coronavirus situation in Scotland, UK. All data comes directly from the Scottish Government and is kept as up to date as possible. To use this website, follow the steps below and scroll your mouse over the graph on the right hand side to reveal more information.
@@ -63,13 +61,21 @@
                     </div>
                 </p>
                 <br>
-                <div id = "p1" class = "p1"> <p><b>3. Choose type of graphic:</b>&ensp; </div>
-                    <select name="view_option" id="view_option">
-                        <option value="tbl">table</option>
-                        <option value="grh">graph</option>
-                    </select>
-                </p>
-                <br><br>
+                <!-- Removed choice for graph or table
+                <div id = "p1" class = "p1">
+                     <p>
+                         <b>
+                             3. Choose type of graphic:
+                         </b>&ensp;
+                     </p>
+                </div>
+                <select name="view_option" id="view_option">
+                    <option value="tbl">table</option>
+                    <option value="grh">graph</option>
+                </select>
+            -->
+                <br>
+                <br>
                 <p>Authors: Mark Swan and Calum McKeekin <br>
                 </p>
             </form>
@@ -82,8 +88,12 @@
             </section>
         </div>
         <div id="right_column">
-            <section id="map" class="mapBorder">
-            </section>
+            <div class="overlay">
+                <div id="hoverText" class='hoverText'>
+                </div>
+                <section id="map" class="mapBorder">
+                </section>
+            </div>
             <div id="key">
                 <section id="key_table">
                     <table>

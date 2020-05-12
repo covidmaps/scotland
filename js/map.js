@@ -122,17 +122,22 @@ function show_data(properties, id) {
     // Hide google data dropdown select
     d3.select("#selectButton").style("display", "none");
 
-    var vopt = get_view_option();
-
-    if (vopt == 'tbl' && res != 'hbo')
+    if (res != 'hbo')
     {
         // remove any existing graphs
         d3.select("#graph").select("svg").remove();
-        return create_table(properties, id);
-    }
-    if (vopt == 'grh' || res === 'hbo')
-    {
+
         graph_init(res, id);
+
+        return create_table(properties, id);
+
+    }
+    else
+    {
+        if (vopt == 'grh' || res === 'hbo')
+        {
+            graph_init(res, id);
+        }
     }
 }
 
@@ -169,6 +174,13 @@ function select(d) {
         .html(show_data(d.properties, d.id));
 }
 
+// TODO: Displays box containing current district being hovered over
+function hover(d) {
+
+    var hoverBox = document.getElementById('hoverText');
+    hoverBox.innerHTML = idToName[d.id];
+}
+
 // Highlights all districts in selected health board
 function highlightBoard(id){
     // Get colour of current country
@@ -192,25 +204,19 @@ function toggle_key(){
 
     // Get elements
     var x = document.getElementById("key");
-    var p1 = document.getElementById("p1");
     var p2 = document.getElementById("p2");
-    var data_chooser = document.getElementById("view_option");
     var criteria_chooser = document.getElementById("criteria");
     var filter = document.getElementById("filter");
 
     if (res === 'hbo') {
         x.style.display = "none";
-        p1.style.display = "none";
         p2.style.display = "inline-block";
-        data_chooser.style.display = "none";
         criteria_chooser.style.display = "none";
         filter.style.display = "inline-block";
     }
     else {
         x.style.display = "block";
-        p1.style.display = "inline-block";
         p2.style.display = "none";
-        data_chooser.style.display = "inline-block";
         criteria_chooser.style.display = "inline-block";
         filter.style.display = "none";
     }
@@ -240,7 +246,8 @@ function draw(boundaries) {
         .attr("id", function(d) {return d.id})
         .attr("properties_table", function(d) { return show_data(d.properties)})
         .attr("d", path)
-        .on("mouseover", function(d){ return select(d)});
+        .on("click", function(d){ return select(d)})
+        .on("mouseover", function(d){ return hover(d)});
 
 
     colourMap();
@@ -359,12 +366,6 @@ function get_resolution(){
     res = top_level_select.options[top_level_select.selectedIndex].value;
 }
 
-// get the selected view option
-function get_view_option(){
-    var top_level_select = document.getElementById('view_option');
-    return top_level_select.options[top_level_select.selectedIndex].value;
-}
-
 // loads data from the given file and redraws the map
 function load_data(filename, u) {
 
@@ -400,8 +401,42 @@ function load_data(filename, u) {
 // when the window is resized, redraw the map
 window.addEventListener('resize', redraw);
 
+// Dictionary of ID for each distric with the district name
+var idToName = {'S12000033': 'Aberdeen City',
+ 'S12000034': 'Aberdeenshire',
+ 'S12000041': 'Angus',
+ 'S12000035': 'Argyll and Bute',
+ 'S12000036': 'City of Edinburgh',
+ 'S12000005': 'Clackmannanshire',
+ 'S12000006': 'Dumfries and Galloway',
+ 'S12000042': 'Dundee City',
+ 'S12000008': 'East Ayrshire',
+ 'S12000045': 'East Dunbartonshire',
+ 'S12000010': 'East Lothian',
+ 'S12000011': 'East Renfrewshire',
+ 'S12000014': 'Falkirk',
+ 'S12000015': 'Fife',
+ 'S12000046': 'Glasgow City',
+ 'S12000017': 'Highland',
+ 'S12000018': 'Inverclyde',
+ 'S12000019': 'Midlothian',
+ 'S12000020': 'Moray',
+ 'S12000013': 'Na h-Eileanan Siar',
+ 'S12000021': 'North Ayrshire',
+ 'S12000044': 'North Lanarkshire',
+ 'S12000023': 'Orkney Islands',
+ 'S12000024': 'Perth and Kinross',
+ 'S12000038': 'Renfrewshire',
+ 'S12000026': 'Scottish Borders',
+ 'S12000027': 'Shetland Islands',
+ 'S12000028': 'South Ayrshire',
+ 'S12000029': 'South Lanarkshire',
+ 'S12000030': 'Stirling',
+ 'S12000039': 'West Dunbartonshire',
+ 'S12000040': 'West Lothian'}
+
 // colours associated with each district
-hboColours = { "S12000008": '#5a6c71', "S12000021": '#5a6c71', "S12000028": '#5a6c71', // 1
+var hboColours = { "S12000008": '#5a6c71', "S12000021": '#5a6c71', "S12000028": '#5a6c71', // 1
            "S12000026": '#868d86', // 2
            "S12000006": '#f1b4b2', // 3
            "S12000013": '#808000', // 4

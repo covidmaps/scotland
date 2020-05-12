@@ -1,5 +1,5 @@
 
-function display_graphHBO(hb, filter){
+function singe_line_graph(hb, filter){
 
     // set the dimensions and margins of the graph
     var margin = {top: 30, right: 30, bottom: 60, left: 60},
@@ -81,7 +81,7 @@ function get_filter(){
     return filter_select.options[filter_select.selectedIndex].value;
 }
 
-function display_graphGGL(id){
+function multi_line_graph(id){
 
     // show google dropdown select
     d3.select("#selectButton").style("display", "block");
@@ -218,7 +218,7 @@ function graph_init(res, id){
 
         if (res == 'lad'){
 
-            display_graphGGL(id);
+            multi_line_graph(id);
         }
         else{
 
@@ -228,7 +228,7 @@ function graph_init(res, id){
 
             update_graph_title(filter);
 
-            display_graphHBO(health_board, filter);
+            singe_line_graph(health_board, filter);
         }
     }
 
