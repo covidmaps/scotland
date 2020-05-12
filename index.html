@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- TODO:
 1. Re-order structure of page for easy display toggling
+2. Move key in local area district to below map
 -->
 <html>
     <head>
@@ -83,15 +84,16 @@
         <div id="right_column">
             <section id="map" class="mapBorder">
             </section>
+            <div id="key">
+                <section id="key_table">
+                    <table>
+                        <tr><td><div id = "grad"></div></td></tr>
+                        <tr><td>Worst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Best</td></tr>
+                    </table>
+                </section>
+            </div>
         </div>
-        <div id="key">
-            <section id="key_table">
-                <table>
-                    <th></th><th></th>
-                    <tr><td><div id = "grad"></div> </td><td>Worst<br><br><br><br><br><br>Best</td></tr>
-                </table>
-            </section>
-        </div>
+
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>

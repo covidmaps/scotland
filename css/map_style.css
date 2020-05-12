@@ -101,11 +101,10 @@ tr:hover {background-color: #ffb5ae;}
 }
 
 #grad {
-  height: 200px;
+  height: 25px;
   background-color: red; /* For browsers that do not support gradients */
-  background-image: linear-gradient(rgba(255,0,0), rgba(255,225,225)); /* Standard syntax (must be last) */
-  width: 50px;
-  height: 150px;
+  background-image: linear-gradient(to right, red , white); /* Standard syntax (must be last) */
+  width: 100px;
 }
 
 .area{
