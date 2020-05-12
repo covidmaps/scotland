@@ -1,9 +1,4 @@
 
-function get_filter(){
-    var filter_select = document.getElementById('filter');
-    return filter_select.options[filter_select.selectedIndex].value;
-}
-
 // gridlines in x axis function
 function make_x_gridlines(x) {
     return d3.axisBottom(x)
@@ -42,8 +37,6 @@ function graph_init(res, id){
         else{
 
             document.getElementById("hboDoc").style.display = "block";
-
-            var filter = get_filter();
 
             var health_board = hboDistricts[id];
 

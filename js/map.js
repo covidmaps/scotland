@@ -202,23 +202,21 @@ function toggle_key(){
 
     // Get elements
     var x = document.getElementById("key");
-    var p2 = document.getElementById("p2");
     var criteria_chooser = document.getElementById("criteria");
-    var filter = document.getElementById("filter");
     var ladDoc = document.getElementById("ladDoc");
     var hboDoc = document.getElementById("hboDoc");
+    var criteria_box = document.getElementById("criteriaBox");
+
     if (res === 'hbo') {
         x.style.display = "none";
-        p2.style.display = "inline-block";
         criteria_chooser.style.display = "none";
-        filter.style.display = "inline-block";
+        criteria_box.style.display = "none";
         ladDoc.style.display="none";
     }
     else {
         x.style.display = "block";
-        p2.style.display = "none";
         criteria_chooser.style.display = "inline-block";
-        filter.style.display = "none";
+        criteria_box.style.display = "inline-block";
         hboDoc.style.display="none";
     }
 }
