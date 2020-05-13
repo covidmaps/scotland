@@ -25,7 +25,7 @@
                   Begin by clicking the map on the right. Selecting a particular region will generate a data report with graphs for that given area. Scroll down to see the data report at the bottom of the page.
                 </p>
                 <h3> SELECTING DATA </h3> <p>
-                  The Scottish Government tracks data in two ways. The first is by local authority district and the second is by health board, which encompases multiple local authority districts. For example the local authority district Glasgow City is a part of the health board NHS Greater Glasgow and Clyde.
+                  The Scottish Government tracks data in two ways. The first is by local authority district and the second is by health board, which encompasses multiple local authority districts. For example, the local authority district Glasgow City is a part of the health board NHS Greater Glasgow and Clyde.
                 </p>
                 <h4> Local Authority vs Health Board</h4>
                 <p style="font-size:15px">&ensp;&ensp;&ensp;Please select a type of data:&ensp;
@@ -37,7 +37,7 @@
                 <br>
             </form>
             <div id="criteriaBox">
-            <h4> Selecting a Data Metric </h4> <p> Select a Covid-19 metric below and watch the map change color. The more red the local area, the worse the situation is for that certain area given the particular metric.
+            <h4> Selecting a Data Metric </h4> <p> Select a Covid-19 metric below and watch the map change color.
                 <p style="font-size:15px"><br>Please select a data metric:&ensp;
                     <select name="criteria" id="criteria" class="round">
                         <option value="ratio_total_death_covid">Ratio of COVID Deaths</option>
@@ -62,7 +62,7 @@
 
                 <br>
                 <h3>Total Number of COVID-19 Deaths by Location</h3>
-                <p> Graph of the total number deaths where coronavirus is recorded as the underlying cause by location, either care home, non-institution or hospital. If there is no data showing, then the number of deaths in each location is too low to be represented on a graph. </p>
+                <p> Graph of the total number of deaths where coronavirus is recorded as the underlying cause by location, either care home, non-institution or hospital. If there is no data showing, then the number of deaths in each location is too low to be represented on a graph. </p>
                 <p class='src'> Source: (Scottish Government) </p>
 
                 <section id="barGraph"></section>
@@ -83,12 +83,16 @@
             <div id="hboDoc" class = "doc">
                 <h2 id="reportTitleHBO">Data Report - <strong id="graphTitleHBO" class = "graphTitle"></strong></h2>
                 <h3>Total Hospital Patients</h3>
+                <p style="font-size:12px"> No data is shown if the number is <5. </p>
                 <section id="hospital_allGraph"></section>
                 <h3>ICU Patients</h3>
+                <p style="font-size:12px"> No data is shown if the number is <5. </p>
                 <section id="icuGraph"></section>
                 <h3>Total Hospital COVID-19 patients</h3>
+                <p style="font-size:12px"> No data is shown if the number is <5. </p>
                 <section id="hospital_covidGraph"></section>
                 <h3>Total Cumulative COVID-19 Patients</h3>
+                <p style="font-size:12px"> No data is shown if the number is <5. </p>
                 <section id="casesGraph"></section>
             </div>
         </div>
