@@ -179,8 +179,8 @@ function select(d) {
     d3.select("#data_table")
         .html(show_data(d.properties, d.id));
 
-    window.location.hash = '#reportTitleLAD';
-    window.location.hash = '#reportTitleHBO';
+    document.getElementById("reportTitleLAD").scrollIntoView({ behavior: 'smooth'});
+    document.getElementById("reportTitleHBO").scrollIntoView({ behavior: 'smooth'});
 
 }
 
