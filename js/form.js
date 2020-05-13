@@ -69,7 +69,7 @@ function change_area() {
 
 
     // clear graph graphTitle
-    document.getElementById('graphTitle').innerHTML = "";
+    //document.getElementById('graphTitle').innerHTML = "";
 
     d3.select('#download').html("");
     //var resolution_select = document.getElementById('resolution');

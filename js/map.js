@@ -124,7 +124,7 @@ function show_data(properties, id) {
         if (res == 'lad')
         {
                 // Give Doc Name
-                document.getElementById('graphTitle').innerHTML = idToName[id];
+                document.getElementById('graphTitleLAD').innerHTML = idToName[id];
 
                 // remove any existing graphs
                 d3.select("#graph").select("svg").remove();
@@ -137,7 +137,8 @@ function show_data(properties, id) {
         {
             // Give Doc Name
             // TODO: Get dict of ID to HBO name
-            document.getElementById('graphTitle').innerHTML = "";
+            console.log(idToHBO[id]);
+            document.getElementById('graphTitleHBO').innerHTML = idToHBO[id];
 
             graph_init(res, id);
         }
@@ -177,6 +178,10 @@ function select(d) {
     // add the area properties to the data_table section
     d3.select("#data_table")
         .html(show_data(d.properties, d.id));
+
+    window.location.hash = '#reportTitleLAD';
+    window.location.hash = '#reportTitleHBO';
+
 }
 
 // TODO: Displays box containing current district being hovered over
@@ -406,6 +411,22 @@ function load_data(filename, u) {
 // when the window is resized, redraw the map
 window.addEventListener('resize', redraw);
 
+// Dictionary of what Health board each ID belongs to
+var idToHBO = { "S12000008": 'NHS Ayrshire and Arran', "S12000021": 'NHS Ayrshire and Arran', "S12000028": 'NHS Ayrshire and Arran', // 1
+           "S12000026": 'NHS Borders', // 2
+           "S12000006": 'NHS Dumfries and Galloway', // 3
+           "S12000013": 'NHS Western Isles ', // 4
+           "S12000015": 'NHS Fife', // 5
+           "S12000030": 'NHS Forth Valley', "S12000014": 'NHS Forth Valley', 'S12000005': 'NHS Forth Valley', // 6
+           "S12000033": 'NHS Grampian', "S12000034": 'NHS Grampian', "S12000020": 'NHS Grampian', //7
+           "S12000045": 'NHS Greater Glasgow and Clyde', "S12000046": 'NHS Greater Glasgow and Clyde', "S12000038": 'NHS Greater Glasgow and Clyde',
+            "S12000039": 'NHS Greater Glasgow and Clyde', "S12000018": 'NHS Greater Glasgow and Clyde', "S12000011": 'NHS Greater Glasgow and Clyde', // 8
+           "S12000017": 'NHS Highland', "S12000035": 'NHS Highland', // 9
+           "S12000044": 'NHS Lanarkshire', "S12000029": 'NHS Lanarkshire', // 10
+           "S12000010": 'NHS Lothian', "S12000019": 'NHS Lothian', "S12000036": 'NHS Lothian', "S12000040": 'NHS Lothian', // 11
+           "S12000023": 'NHS Orkney', // 12
+           "S12000027": 'NHS Shetland', // 13
+           "S12000024": 'NHS Tayside', "S12000042": 'NHS Tayside', "S12000041": 'NHS Tayside'} // 14
 // Dictionary of ID for each distric with the district name
 var idToName = {'S12000033': 'Aberdeen City',
  'S12000034': 'Aberdeenshire',

@@ -219,7 +219,7 @@ tr:hover {background-color: #ffb5ae;}
   z-index: 1;
 }
 
-#graphTitle {
+.graphTitle {
   color: #7bb2ff;
   text-decoration: underline;
 }
