@@ -59,6 +59,7 @@ function change_area() {
     d3.selectAll("*").select("svg").remove();
 
     document.getElementById("chooseHint").style.display="block";
+    document.getElementById("ladDoc").style.display="none";
     document.getElementById('hoverText').style.display = 'none';
 
     d3.select('#download').html("");
