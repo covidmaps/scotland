@@ -32,8 +32,7 @@
                 <h4> Local Authority vs Health Board</h4>
                 <p> See the table below explaining the different local authorities and health boards </p>
 
-                <p>
-                    <br>&ensp;&ensp;&ensp;Please select a map region:&ensp;
+                <p style="font-size:15px"><br>&ensp;&ensp;&ensp;Please select a map region:&ensp;
                     <select name="resolution" id="resolution" class="round">
                         <option value="lad">Local Authority Districts</option>
                         <option value="hbo">Health Boards</option>
@@ -43,19 +42,18 @@
             </form>
             <div id="criteriaBox">
             <h4> Selecting a Data Metric </h4> <p> Select a Covid-19 metric below and watch the map change color. The more red the local area, the worse the situation is for that certain area given the particular metric.
-            <p>
-                <br> Please select a data metric:&ensp;
-                <select name="criteria" id="criteria" class="round">
-                    <option value="ratio_total_death_covid">Ratio of COVID Deaths</option>
-                    <!-- NOT YET ADDED
-                    <option value="tst">Tests</option>
-                    -->
-                    <option value="ratio_carehome_death_covid">COVID Care Home Deaths</option>
-                    <option value="ratio_hospital_death_covid">Ratio of Hospital COVID Deaths</option>
-                </select>
-                <div id = "grad"></div>
-                <p style="margin-left:30%">Worst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Best</p>
-            </p>
+                <p style="font-size:15px"><br>Please select a data metric:&ensp;
+                    <select name="criteria" id="criteria" class="round">
+                        <option value="ratio_total_death_covid">Ratio of COVID Deaths</option>
+                        <!-- NOT YET ADDED
+                        <option value="tst">Tests</option>
+                        -->
+                        <option value="ratio_carehome_death_covid">COVID Care Home Deaths</option>
+                        <option value="ratio_hospital_death_covid">Ratio of Hospital COVID Deaths</option>
+                    </select>
+                    <div id = "grad"></div>
+                    <p style="margin-left:30%">Worst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Best</p>
+                    </p>
             </div>
               <div id="ladDoc" class = "doc">
                 <br><br>
