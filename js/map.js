@@ -424,8 +424,8 @@ function load_data(filename, u) {
 window.addEventListener('resize', redraw);
 
 // Return a better looking version of property header
-var prettyProps = {'lad':"District", "all_deaths_hospital": "Hospital Deaths", 'all_deaths_carehome': "Carehome Deaths",
-                'all_deaths_non-institution': "Non-Institution Deaths", 'all_deaths_other': "Other Deaths",
+var prettyProps = {'lad':"District", "all_deaths_hospital": "Total Hospital Deaths", 'all_deaths_carehome': "Total Carehome Deaths",
+                'all_deaths_non-institution': "Total Non-Institution Deaths", 'all_deaths_other': "Total Other Deaths",
             'all_deaths_total': "Total Deaths", 'covid_deaths_hospital': "COVID Hospital Deaths",
         'covid_deaths_carehome': "COVID Carehome Deaths", 'covid_deaths_non-institution': "COVID Non-Institution Deaths",
     'covid_deaths_other': "COVID Other Deaths", 'covid_deaths_total': "COVID Total Deaths",
