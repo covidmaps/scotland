@@ -34,7 +34,7 @@
 
                 <p>
                     <br>&ensp;&ensp;&ensp;Please select a map region:&ensp;
-                    <select name="resolution" id="resolution">
+                    <select name="resolution" id="resolution" class="round">
                         <option value="lad">Local Authority Districts</option>
                         <option value="hbo">Health Boards</option>
                     </select> <br>
@@ -45,7 +45,7 @@
             <h4> Selecting a Data Metric </h4> <p> Select a Covid-19 metric below and watch the map change color. The more red the local area, the worse the situation is for that certain area given the particular metric.
             <p>
                 <br> Please select a data metric:&ensp;
-                <select name="criteria" id="criteria">
+                <select name="criteria" id="criteria" class="round">
                     <option value="ratio_total_death_covid">Ratio of COVID Deaths</option>
                     <!-- NOT YET ADDED
                     <option value="tst">Tests</option>
@@ -78,7 +78,7 @@
                 <h3>How Is The Community Moving?</h3>
                 <p> This graph uses anonymised insights from Google Maps to give an indication of movement trends over time across different categories of places such as retail and recreation, groceries and pharmacies, parks, transit stations, workplaces, and residential areas. Each data point is compared against the UK average. </p>
                 <p class='src'> Source: (Google Mobility Report) </p>
-                <select id="selectButton" style="margin-left:3%">
+                <select id="selectButton" style="margin-left:3%" class="round">
                 </select>
                 <section id="graphGMS"></section>
 
