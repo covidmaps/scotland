@@ -151,7 +151,9 @@ tr:hover {background-color: #ffb5ae;}
 
 .hoverText{
     position: absolute;
-    margin-top:10%;
+    display:none;
+    margin-top:5%;
+    padding: 10px;
     margin-left: 3%;
     background-color:#7bb2ff;
     color:white;

@@ -8,20 +8,11 @@ function update_lad_select() {
     var area = top_level_select.options[top_level_select.selectedIndex].value;
     */
     options_string = '<option value="national">National</option><option disabled>──────────</option>';
-    /*
-    if(area === 'eng') {
-        for (var key in e_lads) {
-            if (e_lads.hasOwnProperty(key)) {
-                options_string += '<option value=' + key + '>' + e_lads[key] + '</option>';
-            }
+    for (var key in s_lads) {
+        if (s_lads.hasOwnProperty(key)) {
+            options_string += '<option value=' + key + '>' + s_lads[key] + '</option>';
         }
-    } else if(area === 'sco') {
-        */
-        for (var key in s_lads) {
-            if (s_lads.hasOwnProperty(key)) {
-                options_string += '<option value=' + key + '>' + s_lads[key] + '</option>';
-            }
-        }
+    }
         /*
     } else if(area === 'wal') {
         for (var key in w_lads) {
@@ -66,6 +57,8 @@ function update_resolution_select() {
 function change_area() {
     // remove all previous content from webpage
     d3.selectAll("*").select("svg").remove();
+
+    document.getElementById('hoverText').style.display = 'none';
 
     d3.select('#download').html("");
     //var resolution_select = document.getElementById('resolution');

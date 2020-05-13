@@ -1,9 +1,9 @@
 /*
 TODO:
- [] Fix table running off 'left-column' (scroll box)
+ [X] Fix table running off 'left-column' (scroll box)
  [X] Add key in HBO mode
  [X] Add hover HBO
- [] Find way to display no line means <5
+ [X] Find way to display no line means <5
  [X] Move position of "selecitng data metric"
  [X] change dropdown for google mobility datahoverText
  [X] change hover meanu to blue background with white text
@@ -204,9 +204,11 @@ function select(d) {
 // TODO: Displays box containing current district being hovered over
 function hover(d) {
     if (res == 'lad'){
+        document.getElementById('hoverText').style.display = 'block';
         document.getElementById('hoverText').innerHTML = idToName[d.id];
     }
     else{
+        document.getElementById('hoverText').style.display = 'block';
         document.getElementById('hoverText').innerHTML = idToHBO[d.id];
     }
 }
