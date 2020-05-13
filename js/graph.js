@@ -412,6 +412,14 @@ function bar_graph(file, graphID){
 
     })
 
+    // Legend
+    svg.append("circle").attr("cx",width-70).attr("cy",0).attr("r", 6).style("fill", "#0484bc");
+    svg.append("text").attr("x", width-60).attr("y", 5).text("Care Home").style("font-size", "15px").attr("alignment-baseline","middle");
+    svg.append("circle").attr("cx",width-70).attr("cy",15).attr("r", 6).style("fill", "#f48108");
+    svg.append("text").attr("x", width-60).attr("y", 20).text("Home/Non-Institution").style("font-size", "15px").attr("alignment-baseline","middle");
+    svg.append("circle").attr("cx",width-70).attr("cy",30).attr("r", 6).style("fill", "#0aa432");
+    svg.append("text").attr("x", width-60).attr("y", 35).text("Hospital").style("font-size", "15px").attr("alignment-baseline","middle");
+
 }
 
 prettifyFilter = {"icu": "ICU Patients", "hospital_all": "Total Hospital Patients",
