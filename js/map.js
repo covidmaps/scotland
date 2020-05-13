@@ -192,7 +192,12 @@ function select(d) {
     }
 }
 
-// TODO: Displays box containing current district being hovered over
+// Removes the hover text box when no country is hovered over
+function hoverLeave(d){
+    document.getElementById('hoverText').style.display = "";
+}
+
+// Populates the hover text box when a country is hovered over
 function hover(d) {
     if (res == 'lad'){
         document.getElementById('hoverText').style.display = 'block';
@@ -268,7 +273,8 @@ function draw(boundaries) {
         .attr("properties_table", function(d) { return show_data(d.properties)})
         .attr("d", path)
         .on("click", function(d){ return select(d)})
-        .on("mouseover", function(d){ return hover(d)});
+        .on("mouseover", function(d){ return hover(d)})
+        .on("mouseout", function(d){ return hoverLeave(d)});
 
 
     colourMap();
