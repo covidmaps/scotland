@@ -3,7 +3,9 @@ TODO:
  [] Fix table running off 'left-column' (scroll box)
  [] Add key in HBO mode
  [] Add hover HBO
- [] Move position of "selecitng data metric"
+ [X] Move position of "selecitng data metric"
+ [] change dropdown for google mobility data
+ [X] change style of all dropdowns (?)
  [] Add hint for zoom
  [] reformat table to have columns of COVID,  Non-INST, OTHER etc
  [X] Get Dict of ID to HBO for doc name
