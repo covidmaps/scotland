@@ -3,6 +3,7 @@ TODO:
  [] Fix table running off 'left-column' (scroll box)
  [] Add key in HBO mode
  [] Add hover HBO
+ [] Find way to display no line means <5
  [X] Move position of "selecitng data metric"
  [] change dropdown for google mobility data
  [X] change style of all dropdowns (?)
@@ -90,7 +91,7 @@ function init(width, height) {
     // create the svg element for drawing onto
     svg = d3.select("#map").append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", '1000em');
 
     // graphics go here
     g = svg.append("g");
@@ -227,20 +228,17 @@ function highlightBoard(id){
 function toggle_key(){
 
     // Get elements
-    var x = document.getElementById("key");
     var criteria_chooser = document.getElementById("criteria");
     var ladDoc = document.getElementById("ladDoc");
     var hboDoc = document.getElementById("hboDoc");
     var criteria_box = document.getElementById("criteriaBox");
 
     if (res === 'hbo') {
-        x.style.display = "none";
         criteria_chooser.style.display = "none";
         criteria_box.style.display = "none";
         ladDoc.style.display="none";
     }
     else {
-        x.style.display = "block";
         criteria_chooser.style.display = "inline-block";
         criteria_box.style.display = "inline-block";
         hboDoc.style.display="none";

@@ -146,6 +146,7 @@ tr:hover {background-color: #ffb5ae;}
 
 .overlay{
     position:relative;
+    height:900px;
 }
 
 .hoverText{
