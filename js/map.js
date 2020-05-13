@@ -2,9 +2,11 @@
 TODO:
  [] Fix table running off 'left-column' (scroll box)
  [] Add key in HBO mode
+ [] Add hover HBO
+ [] Move position of "selecitng data metric"
  [] Add hint for zoom
  [] reformat table to have columns of COVID,  Non-INST, OTHER etc
- [] Get Dict of ID to HBO for doc name
+ [X] Get Dict of ID to HBO for doc name
 */
 
 // get the width of the area we're displaying in
@@ -137,7 +139,7 @@ function show_data(properties, id) {
 
                 if (!ladScrolled){
                     ladScrolled = true;
-                    document.getElementById("reportTitleLAD").scrollIntoView({ behavior: 'smooth'});
+                    document.getElementById("criteriaBox").scrollIntoView({ behavior: 'smooth'});
                 }
                 return create_table(properties, id);
         }
