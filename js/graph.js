@@ -109,7 +109,6 @@ function singe_line_graph(file, graphID, graphName){
               .tickSize(-height)
               .tickFormat("")
           )
-
         // Add Y axis
         var y = d3.scaleLinear()
           .domain([0, d3.max(data, function(d) { return +d.value; })+5])
@@ -136,8 +135,27 @@ function singe_line_graph(file, graphID, graphName){
             .y(function(d) { return y(d.value) })
             )
         // Add the legend
-        svg.append("circle").attr("cx",150).attr("cy",height+75).attr("r", 6).style("fill", "#ff867b");
-        svg.append("text").attr("x", 160).attr("y", height+80).text(graphName).style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("circle").attr("cx",150).attr("cy",height+80).attr("r", 6).style("fill", "#ff867b");
+        svg.append("text").attr("x", 160).attr("y", height+85).text(graphName).style("font-size", "15px").attr("alignment-baseline","middle");
+
+        // If retrieved data doesn't exist say:
+        console.log(d3.max(data, function(d) { return +d.value; }));
+        if (d3.max(data, function(d) { return +d.value; }) == null){
+            /*
+            svg.append("rect")
+            .attr("x",width/2 - 30)
+            .attr("y",height/2 - 20)
+            .attr("width", 150)
+            .attr("height", 30)
+            .style("fill", "#666666");
+            */
+            svg.append("text")
+                .attr("x", width/2 - 95)
+                .attr("y", height/2 - 7)
+                .text("Insignificant Data (<5)")
+                .style("font-size", "20px")
+                .attr("alignment-baseline","middle");
+        }
     })
 
 }

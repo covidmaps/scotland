@@ -1,14 +1,14 @@
 /*
 TODO:
  [] Fix table running off 'left-column' (scroll box)
- [] Add key in HBO mode
- [] Add hover HBO
+ [X] Add key in HBO mode
+ [X] Add hover HBO
  [] Find way to display no line means <5
  [X] Move position of "selecitng data metric"
  [X] change dropdown for google mobility datahoverText
- [] change hover meanu to blue background with white text
+ [X] change hover meanu to blue background with white text
  [X] change style of all dropdowns (?)
- [] Add hint for zoom
+ [X] Add hint for zoom
  [] reformat table to have columns of COVID,  Non-INST, OTHER etc
  [X] Get Dict of ID to HBO for doc name
 */
