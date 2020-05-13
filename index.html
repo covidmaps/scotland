@@ -25,12 +25,10 @@
                   Begin by clicking the map on the right. Selecting a particular region will generate a data report with graphs for that given area. Scroll down to see the data report at the bottom of the page.
                 </p>
                 <h3> SELECTING DATA </h3> <p>
-                  The Scottish Government tracks data at two different region scales. The first is local authority district, this roughly is the same area as a consituency in a local political election. The second is regional health board. There are many local authorities in one health board region, representing the multiple hospitals that reside under a given region.
+                  The Scottish Government tracks data in two ways. The first is by local authority district and the second is by health board, which encompases multiple local authority districts. For example the local authority district Glasgow City is a part of the health board NHS Greater Glasgow and Clyde.
                 </p>
                 <h4> Local Authority vs Health Board</h4>
-                <p> See the table below explaining the different local authorities and health boards </p>
-
-                <p style="font-size:15px"><br>&ensp;&ensp;&ensp;Please select a map region:&ensp;
+                <p style="font-size:15px">&ensp;&ensp;&ensp;Please select a type of data:&ensp;
                     <select name="resolution" id="resolution" class="round">
                         <option value="lad">Local Authority Districts</option>
                         <option value="hbo">Health Boards</option>
@@ -43,15 +41,12 @@
                 <p style="font-size:15px"><br>Please select a data metric:&ensp;
                     <select name="criteria" id="criteria" class="round">
                         <option value="ratio_total_death_covid">Ratio of COVID Deaths</option>
-                        <!-- NOT YET ADDED
-                        <option value="tst">Tests</option>
-                        -->
                         <option value="ratio_carehome_death_covid">COVID Care Home Deaths</option>
                         <option value="ratio_hospital_death_covid">Ratio of Hospital COVID Deaths</option>
                     </select>
                     <div id = "grad"></div>
-                    <p style="margin-left:30%">Worst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Best</p>
-                    </p>
+                    <p style="margin-left:35%">Worst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Best</p>
+                </p>
             </div>
               <div id="ladDoc" class = "doc">
                 <br><br>
@@ -67,7 +62,7 @@
 
                 <br>
                 <h3>Total Number of COVID-19 Deaths by Location</h3>
-                <p> Graph of the total number deaths where coronavirus is recorded as the underlying cause by location, either care home, non-institution or hospital. A downward trend implies that the number of deaths is decreasing per day in a given region. If there is no data showing, then the number of deaths in each location is too low to be represented on a graph. </p>
+                <p> Graph of the total number deaths where coronavirus is recorded as the underlying cause by location, either care home, non-institution or hospital. If there is no data showing, then the number of deaths in each location is too low to be represented on a graph. </p>
                 <p class='src'> Source: (Scottish Government) </p>
 
                 <section id="barGraph"></section>

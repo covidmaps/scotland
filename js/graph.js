@@ -393,8 +393,7 @@ function bar_graph(file, graphID){
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x))
       .selectAll("text")
-        .attr("transform", "translate(-10,0)rotate(-45)")
-        .style("text-anchor", "end");
+        .style("text-anchor", "center");
 
     // Add Y axis
     var y = d3.scaleLinear()
