@@ -160,15 +160,6 @@ function show_data(properties, id) {
 
 }
 
-// Return a better looking version of property header
-var prettyProps = {'lad':"District", "all_deaths_hospital": "Hospital Deaths", 'all_deaths_carehome': "Carehome Deaths",
-                'all_deaths_non-institution': "Non-Institution Deaths", 'all_deaths_other': "Other Deaths",
-            'all_deaths_total': "Total Deaths", 'covid_deaths_hospital': "COVID Hospital Deaths",
-        'covid_deaths_carehome': "COVID Carehome Deaths", 'covid_deaths_non-institution': "COVID Non-Institution Deaths",
-    'covid_deaths_other': "COVID Other Deaths", 'covid_deaths_total': "COVID Total Deaths",
-    'ratio_hospital_death_covid': "Ratio of COVID hospital deaths", 'ratio_carehome_death_covid': "Ratio of COVID Carehome Deaths",
-    'ratio_total_death_covid': "Ratio of Total COVID Deaths"}
-
 function prettify(input){
     str = input.toString();
     return prettyProps[input];
@@ -435,6 +426,15 @@ function load_data(filename, u) {
 // when the window is resized, redraw the map
 window.addEventListener('resize', redraw);
 
+// Return a better looking version of property header
+var prettyProps = {'lad':"District", "all_deaths_hospital": "Hospital Deaths", 'all_deaths_carehome': "Carehome Deaths",
+                'all_deaths_non-institution': "Non-Institution Deaths", 'all_deaths_other': "Other Deaths",
+            'all_deaths_total': "Total Deaths", 'covid_deaths_hospital': "COVID Hospital Deaths",
+        'covid_deaths_carehome': "COVID Carehome Deaths", 'covid_deaths_non-institution': "COVID Non-Institution Deaths",
+    'covid_deaths_other': "COVID Other Deaths", 'covid_deaths_total': "COVID Total Deaths",
+    'ratio_hospital_death_covid': "COVID hospital deaths (%)", 'ratio_carehome_death_covid': "COVID Carehome Deaths (%)",
+    'ratio_total_death_covid': "Total COVID Deaths (%)"}
+
 // Dictionary of what Health board each ID belongs to
 var idToHBO = { "S12000008": 'NHS Ayrshire and Arran', "S12000021": 'NHS Ayrshire and Arran', "S12000028": 'NHS Ayrshire and Arran', // 1
            "S12000026": 'NHS Borders', // 2
@@ -451,6 +451,7 @@ var idToHBO = { "S12000008": 'NHS Ayrshire and Arran', "S12000021": 'NHS Ayrshir
            "S12000023": 'NHS Orkney', // 12
            "S12000027": 'NHS Shetland', // 13
            "S12000024": 'NHS Tayside', "S12000042": 'NHS Tayside', "S12000041": 'NHS Tayside'} // 14
+
 // Dictionary of ID for each distric with the district name
 var idToName = {'S12000033': 'Aberdeen City',
  'S12000034': 'Aberdeenshire',
