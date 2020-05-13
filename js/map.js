@@ -142,7 +142,7 @@ function show_data(properties, id) {
 
                 if (!ladScrolled){
                     ladScrolled = true;
-                    document.getElementById("criteriaBox").scrollIntoView({ behavior: 'smooth'});
+                    document.getElementById("ladDoc").scrollIntoView({ behavior: 'smooth'});
                 }
                 return create_table(properties, id);
         }
@@ -188,7 +188,7 @@ function select(d) {
     if(!hboScrolled){
         console.log("hbo scroll beginss")
         hboScrolled = true;
-        document.getElementById("reportTitleHBO").scrollIntoView({ behavior: 'smooth'});
+        document.getElementById("hboDoc").scrollIntoView({ behavior: 'smooth'});
     }
 }
 
