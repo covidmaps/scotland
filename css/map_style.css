@@ -156,6 +156,7 @@ tr:hover {background-color: #ffb5ae;}
     background-color:#7bb2ff;
     color:white;
     box-shadow: 3px 0 5px 2px #888;
+    border-radius: 3px;
 }
 
 #grad {
