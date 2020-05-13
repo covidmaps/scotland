@@ -67,7 +67,7 @@ function singe_line_graph(file, graphID, graphName){
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
     //Read the data
-    d3.csv("https://raw.githubusercontent.com/markjswan/covid-maps/master/data"+file,
+    d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/master/data"+file,
 
       // When reading the csv, I must format variables:
       function(d){
@@ -181,7 +181,7 @@ function multi_line_graph(file, graphID){
               "translate(" + margin.left + "," + margin.top + ")");
 
     //Read the data
-    d3.csv("https://raw.githubusercontent.com/markjswan/covid-maps/master/data"+file, function(data) {
+    d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/master/data"+file, function(data) {
 
         dict1 = {"Retail & Recreation Traffic Change From Baseline (%)":"retail_and_recreation_percent_change_from_baseline",
          "Grocery & Pharmacy Use Change From Baseline (%)":"grocery_and_pharmacy_percent_change_from_baseline",
@@ -367,7 +367,7 @@ function bar_graph(file, graphID){
     var colorScale = d3.scale.category10().domain([0, 1, 2]);
 
     // Parse the Data
-    d3.csv("https://raw.githubusercontent.com/markjswan/covid-maps/master/data"+file, function(data) {
+    d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/master/data"+file, function(data) {
 
     colorScale.domain(data.map(function (d){ return d["Country"]; }));
 

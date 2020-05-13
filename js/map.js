@@ -53,7 +53,7 @@ function zoomed() {
 // import and read the required JSON file
 function readJSON(file) {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://markjswan.github.io/covid-maps/json/sco/"+ /*res*/ file +".json", false ); // false for synchronous request
+    xmlHttp.open( "GET", "https://raw.githubusercontent.com/covidmaps/scotland/master/json/sco/"+ /*res*/ file +".json", false ); // false for synchronous request
     xmlHttp.send( null );
     mapStats = JSON.parse(xmlHttp.responseText);
 }
