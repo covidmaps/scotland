@@ -346,6 +346,21 @@ function multi_line_graph(file, graphID){
             .style("font-size", "15px")
             .attr("alignment-baseline","middle");
         }
+        svg.append("circle").transition()
+            .duration(1000)
+            .attr("id","lgndCircle")
+            .attr("cx",width/2-50)
+            .attr("cy",height+80)
+            .attr("r", 6)
+            .style("fill", myColor(allGroup[0]));
+
+        svg.append("text")
+          .attr("id", "lgndText")
+          .attr("x", width/2-40)
+          .attr("y", height+85)
+          .text(dict2[allGroup[0]])
+          .style("font-size", "15px")
+          .attr("alignment-baseline","middle");
 
         svg.append("circle").attr("cx",25).attr("cy",height+80).attr("r", 6).style("fill", "#666666");
         svg.append("text").attr("x", 35).attr("y", height+85).text("UK Avg").style("font-size", "15px").attr("alignment-baseline","middle");
