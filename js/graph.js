@@ -397,7 +397,7 @@ function bar_graph(file, graphID){
 
     // Add Y axis
     var y = d3.scaleLinear()
-      .domain([0, 250])
+      .domain([0, 290])
       .range([ height, 0]);
     svg.append("g")
       .call(d3.axisLeft(y));
