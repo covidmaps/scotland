@@ -67,10 +67,6 @@ function change_area() {
     // remove all previous content from webpage
     d3.selectAll("*").select("svg").remove();
 
-
-    // clear graph graphTitle
-    //document.getElementById('graphTitle').innerHTML = "";
-
     d3.select('#download').html("");
     //var resolution_select = document.getElementById('resolution');
     //units = resolution_select.options[resolution_select.selectedIndex].value;

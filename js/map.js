@@ -29,6 +29,9 @@ var criteria;
 // resolution of the maps
 var res;
 
+// Variables to only have the page scroll once per mode select lifetime
+var hboScrolled, ladScrolled;
+
 // array to hold the interpolated
 var interpolated;
 
@@ -130,7 +133,12 @@ function show_data(properties, id) {
                 d3.select("#graph").select("svg").remove();
 
                 graph_init(res, id);
+                console.log(hboScrolled, ladScrolled);
 
+                if (!ladScrolled){
+                    ladScrolled = true;
+                    document.getElementById("reportTitleLAD").scrollIntoView({ behavior: 'smooth'});
+                }
                 return create_table(properties, id);
         }
         else
@@ -139,6 +147,7 @@ function show_data(properties, id) {
             // TODO: Get dict of ID to HBO name
             console.log(idToHBO[id]);
             document.getElementById('graphTitleHBO').innerHTML = idToHBO[id];
+            console.log(hboScrolled, ladScrolled);
 
             graph_init(res, id);
         }
@@ -179,9 +188,12 @@ function select(d) {
     d3.select("#data_table")
         .html(show_data(d.properties, d.id));
 
-    document.getElementById("reportTitleLAD").scrollIntoView({ behavior: 'smooth'});
-    document.getElementById("reportTitleHBO").scrollIntoView({ behavior: 'smooth'});
-
+    // Only scroll to HBO title if not already done so
+    if(!hboScrolled){
+        console.log("hbo scroll beginss")
+        hboScrolled = true;
+        document.getElementById("reportTitleHBO").scrollIntoView({ behavior: 'smooth'});
+    }
 }
 
 // TODO: Displays box containing current district being hovered over
@@ -378,6 +390,9 @@ function get_resolution(){
 
 // loads data from the given file and redraws the map
 function load_data(filename, u) {
+
+    ladScrolled = false;
+    hboScrolled = false;
 
     get_resolution();
 
