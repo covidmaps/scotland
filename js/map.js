@@ -5,7 +5,7 @@ TODO:
  [] Add hover HBO
  [] Find way to display no line means <5
  [X] Move position of "selecitng data metric"
- [] change dropdown for google mobility data
+ [X] change dropdown for google mobility data
  [X] change style of all dropdowns (?)
  [] Add hint for zoom
  [] reformat table to have columns of COVID,  Non-INST, OTHER etc
@@ -66,7 +66,6 @@ function compute_size() {
 compute_size();
 // initialise the map
 init(width, height);
-
 
 // remove any data when we lose selection of a map unit
 function deselect() {
@@ -232,15 +231,18 @@ function toggle_key(){
     var ladDoc = document.getElementById("ladDoc");
     var hboDoc = document.getElementById("hboDoc");
     var criteria_box = document.getElementById("criteriaBox");
+    var hboKey = document.getElementById("HBOKey");
 
     if (res === 'hbo') {
         criteria_chooser.style.display = "none";
         criteria_box.style.display = "none";
+        hboKey.style.display = "block";
         ladDoc.style.display="none";
     }
     else {
         criteria_chooser.style.display = "inline-block";
         criteria_box.style.display = "inline-block";
+        hboKey.style.display = "none";
         hboDoc.style.display="none";
     }
 }
@@ -484,7 +486,7 @@ var hboColours = { "S12000008": '#5a6c71', "S12000021": '#5a6c71', "S12000028": 
            "S12000006": '#f1b4b2', // 3
            "S12000013": '#808000', // 4
            "S12000015": '#daeabf', // 5
-           "S12000030": '#a8e6cf', "S12000014": '#a8e6cf', 'S12000005': '#a8e6cf', // 6
+           "S12000030": '#98FB98', "S12000014": '#98FB98', 'S12000005': '#98FB98', // 6
            "S12000033": '#f67c74', "S12000034": '#f67c74', "S12000020": '#f67c74', //7
            "S12000045": '#c27e9e', "S12000046": '#c27e9e', "S12000038": '#c27e9e', "S12000039": '#c27e9e', "S12000018": '#c27e9e', "S12000011": '#c27e9e', // 8
            "S12000017": '#f6d186', "S12000035": '#f6d186', // 9

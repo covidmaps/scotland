@@ -64,7 +64,7 @@ table {
 
 th, td {
   text-align:left;
-  padding:10px 20px;
+  padding:5px 10px;
   border-bottom:1px solid #e5e5e5;
 
 }
@@ -159,9 +159,15 @@ tr:hover {background-color: #ffb5ae;}
 
 #grad {
   height: 25px;
+  margin-left:10%;
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient(to right, red , white); /* Standard syntax (must be last) */
   width: 100px;
+}
+
+.keyBoxHBO {
+    width:25px;
+    height:25px;
 }
 
 .area{
