@@ -1,16 +1,6 @@
 /*
 TODO:
- [X] Fix table running off 'left-column' (scroll box)
- [X] Add key in HBO mode
- [X] Add hover HBO
- [X] Find way to display no line means <5
- [X] Move position of "selecitng data metric"
- [X] change dropdown for google mobility datahoverText
- [X] change hover meanu to blue background with white text
- [X] change style of all dropdowns (?)
- [X] Add hint for zoom
  [] reformat table to have columns of COVID,  Non-INST, OTHER etc
- [X] Get Dict of ID to HBO for doc name
 */
 
 // get the width of the area we're displaying in
