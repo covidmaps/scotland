@@ -160,11 +160,11 @@ tr:hover {background-color: #ffb5ae;}
 }
 
 #grad {
-  height: 25px;
-  margin-left:10%;
+  height: 3px;
+  margin-left:30%;
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient(to right, red , white); /* Standard syntax (must be last) */
-  width: 100px;
+  width: 130px;
 }
 
 .keyBoxHBO {
