@@ -1,4 +1,6 @@
 
+var res;
+
 // gridlines in x axis function
 function make_x_gridlines(x) {
     return d3.axisBottom(x)
@@ -24,6 +26,8 @@ function removeGraphs(){
 }
 
 function graph_init(res, id){
+
+    res = res;
 
     if (id != null){
 
@@ -94,12 +98,22 @@ function singe_line_graph(file, graphID, graphName){
           .attr("transform", "rotate(-65)");
 
         // Add X axis label
-        svg.append("text")
-        .attr("class", "x label")
-        .attr("text-anchor", "end")
-        .attr("x", 225)
-        .attr("y", height+60)
-        .text("Days");
+        if (res == 'lad'){
+            svg.append("text")
+            .attr("class", "x label")
+            .attr("text-anchor", "end")
+            .attr("x", 250)
+            .attr("y", height+60)
+            .text("Week Beginning");
+        } else {
+            svg.append("text")
+            .attr("class", "x label")
+            .attr("text-anchor", "end")
+            .attr("x", 225)
+            .attr("y", height+60)
+            .text("Day");
+        }
+
 
         // add the X gridlines
         svg.append("g")
