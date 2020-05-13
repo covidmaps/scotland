@@ -53,15 +53,16 @@ function graph_init(res, id){
 function singe_line_graph(file, graphID, graphName){
 
     // set the dimensions and margins of the graph
-    var margin = {top: 10, right: 150, bottom: 70, left: 30},
+    var margin = {top: 10, right: 40, bottom: 100, left: 40},
         width = 500 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     var svg = d3.select(graphID)
       .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+      .attr("preserveAspectRatio", "xMinYMin meet")
+      .attr("viewBox", "0 0 550 400")
+      .classed("svg-content-responsive", true)
       .append("g")
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
@@ -96,8 +97,8 @@ function singe_line_graph(file, graphID, graphName){
         svg.append("text")
         .attr("class", "x label")
         .attr("text-anchor", "end")
-        .attr("x", width + 40)
-        .attr("y", height+6)
+        .attr("x", 225)
+        .attr("y", height+60)
         .text("Days");
 
         // add the X gridlines
@@ -135,8 +136,8 @@ function singe_line_graph(file, graphID, graphName){
             .y(function(d) { return y(d.value) })
             )
         // Add the legend
-        svg.append("circle").attr("cx",35).attr("cy",height+55).attr("r", 6).style("fill", "#ff867b");
-        svg.append("text").attr("x", 45).attr("y", height+60).text(graphName).style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("circle").attr("cx",150).attr("cy",height+75).attr("r", 6).style("fill", "#ff867b");
+        svg.append("text").attr("x", 160).attr("y", height+80).text(graphName).style("font-size", "15px").attr("alignment-baseline","middle");
     })
 
 }
@@ -147,15 +148,16 @@ function multi_line_graph(file, graphID){
     d3.select("#selectButton").style("display", "block");
 
     // set the dimensions and margins of the graph
-    var margin = {top: 10, right: 150, bottom: 70, left: 30},
+    var margin = {top: 10, right: 40, bottom: 100, left: 40},
         width = 500 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     var svg = d3.select(graphID)
       .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+       .attr("preserveAspectRatio", "xMinYMin meet")
+       .attr("viewBox", "0 0 550 400")
+       .classed("svg-content-responsive", true)
       .append("g")
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
@@ -209,8 +211,8 @@ function multi_line_graph(file, graphID){
         svg.append("text")
         .attr("class", "x label")
         .attr("text-anchor", "end")
-        .attr("x", width + 150)
-        .attr("y", height+6)
+        .attr("x", width/2+50)
+        .attr("y", height+40)
         .text("Days Since 01/01/2020");
 
         // add the X gridlines
@@ -300,20 +302,20 @@ function multi_line_graph(file, graphID){
               .duration(1000)
               .attr("id","lgndCircle")
               .attr("cx",width/2-50)
-              .attr("cy",height+50)
+              .attr("cy",height+80)
               .attr("r", 6)
               .style("fill", myColor(selectedGroup));
           svg.append("text")
             .attr("id", "lgndText")
             .attr("x", width/2-40)
-            .attr("y", height+55)
+            .attr("y", height+85)
             .text(dict2[selectedGroup])
             .style("font-size", "15px")
             .attr("alignment-baseline","middle");
         }
 
-        svg.append("circle").attr("cx",25).attr("cy",height+50).attr("r", 6).style("fill", "#666666");
-        svg.append("text").attr("x", 35).attr("y", height+55).text("UK Avg").style("font-size", "15px").attr("alignment-baseline","middle");
+        svg.append("circle").attr("cx",25).attr("cy",height+80).attr("r", 6).style("fill", "#666666");
+        svg.append("text").attr("x", 35).attr("y", height+85).text("UK Avg").style("font-size", "15px").attr("alignment-baseline","middle");
 
         update("retail_and_recreation_percent_change_from_baseline");
 
@@ -330,21 +332,26 @@ function multi_line_graph(file, graphID){
 
 function bar_graph(file, graphID){
     // set the dimensions and margins of the graph
-    var margin = {top: 10, right: 30, bottom: 90, left: 40},
+    var margin = {top: 10, right: 10, bottom: 170, left: 40},
         width = 460 - margin.left - margin.right,
         height = 450 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     var svg = d3.select(graphID)
       .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+      .attr("preserveAspectRatio", "xMinYMin meet")
+      .attr("viewBox", "0 0 550 370")
+      .classed("svg-content-responsive", true)
       .append("g")
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
 
+    var colorScale = d3.scale.category10().domain([0, 1, 2]);
+
     // Parse the Data
     d3.csv("https://raw.githubusercontent.com/markjswan/covid-maps/master/data"+file, function(data) {
+
+    colorScale.domain(data.map(function (d){ return d["Country"]; }));
 
     // X axis
     var x = d3.scaleBand()
@@ -372,7 +379,7 @@ function bar_graph(file, graphID){
       .append("rect")
         .attr("x", function(d) { return x(d.Country); })
         .attr("width", x.bandwidth())
-        .attr("fill", "#ff867b")
+        .attr("fill", function (d){ return colorScale(d["Country"]); })
         // no bar at the beginning thus:
         .attr("height", function(d) { return height - y(0); }) // always equal to 0
         .attr("y", function(d) { return y(0); })
