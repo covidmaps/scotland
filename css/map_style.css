@@ -113,7 +113,7 @@ tr:hover {background-color: #ffb5ae;}
 
 #left_column {
     height:300em;
-    width: 35%;
+    width: 40%;
     float:left;
     background-color: #f7faff;
     box-shadow: 5px 0 5px -2px #888;
@@ -122,7 +122,7 @@ tr:hover {background-color: #ffb5ae;}
 }
 
 #right_column {
-    width: 65%;
+    width: 60%;
     float: right;
     margin-left:40%;
     position:fixed;
