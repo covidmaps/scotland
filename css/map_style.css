@@ -91,6 +91,7 @@ tr:hover {background-color: #ffb5ae;}
   position: absolute;
   content: '';
   height: 4px;
+  margin-left:35%;
   right: 0;
   left: 0;
   top: 0;
