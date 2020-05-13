@@ -134,6 +134,7 @@ function singe_line_graph(file, graphID, graphName){
             .x(function(d) { return x(d.date) })
             .y(function(d) { return y(d.value) })
             )
+
         // Add the legend
         svg.append("circle").attr("cx",150).attr("cy",height+80).attr("r", 6).style("fill", "#ff867b");
         svg.append("text").attr("x", 160).attr("y", height+85).text(graphName).style("font-size", "15px").attr("alignment-baseline","middle");
@@ -278,9 +279,9 @@ function multi_line_graph(file, graphID){
             .datum(data)
             .attr("d", d3.line()
               .x(function(d) { return x(+d.time) })
-              .y(function(d) { return y(+d.value) })
+              .y(function(d) { return y(+d.retail_and_recreation_percent_change_from_baseline) })
             )
-            .attr("stroke", function(d){ return myColor("valueA") })
+            .attr("stroke", function(d){ return myColor("retail_and_recreation_percent_change_from_baseline") })
             .style("stroke-width", 2)
             .style("fill", "none");
 
@@ -334,8 +335,6 @@ function multi_line_graph(file, graphID){
 
         svg.append("circle").attr("cx",25).attr("cy",height+80).attr("r", 6).style("fill", "#666666");
         svg.append("text").attr("x", 35).attr("y", height+85).text("UK Avg").style("font-size", "15px").attr("alignment-baseline","middle");
-
-        update("retail_and_recreation_percent_change_from_baseline");
 
         // When the button is changed, run the updateChart function
         d3.select("#selectButton").on("change", function(d) {
