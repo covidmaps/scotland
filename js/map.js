@@ -111,6 +111,7 @@ function create_table(properties, id)
         }
     }
     table_string += "</table>";
+    document.getElementById("chooseHint").style.display="none";
     return table_string;
 }
 

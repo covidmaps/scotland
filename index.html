@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- TODO:
 [] Re-order structure of page for easy display toggling
+[] Remove report when criteria changed
 -->
 <html>
     <head>
@@ -38,7 +39,7 @@
             </form>
             <div id="criteriaBox">
             <h4> Selecting a Data Metric </h4> <p> Select a Covid-19 metric below and watch the map change color.
-                <p style="font-size:15px"><br>Please select a data metric:&ensp;
+                <p style="font-size:15px"><br>&ensp;&ensp;&ensp;Please select a data metric:&ensp;
                     <select name="criteria" id="criteria" class="round">
                         <option value="ratio_total_death_covid">Ratio of COVID Deaths</option>
                         <option value="ratio_carehome_death_covid">COVID Care Home Deaths</option>
@@ -48,6 +49,7 @@
                     <p style="margin-left:35%">Worst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Best</p>
                 </p>
             </div>
+            <h4 id="chooseHint">Now select an area on the map</h4>
               <div id="ladDoc" class = "doc">
                 <br><br>
                 <h2 id="reportTitleLAD">Data Report - <strong id="graphTitleLAD" class = "graphTitle"></strong></h2>
