@@ -5,7 +5,8 @@ TODO:
  [] Add hover HBO
  [] Find way to display no line means <5
  [X] Move position of "selecitng data metric"
- [X] change dropdown for google mobility data
+ [X] change dropdown for google mobility datahoverText
+ [] change hover meanu to blue background with white text
  [X] change style of all dropdowns (?)
  [] Add hint for zoom
  [] reformat table to have columns of COVID,  Non-INST, OTHER etc
@@ -202,7 +203,12 @@ function select(d) {
 
 // TODO: Displays box containing current district being hovered over
 function hover(d) {
-    document.getElementById('hoverText').innerHTML = idToName[d.id];
+    if (res == 'lad'){
+        document.getElementById('hoverText').innerHTML = idToName[d.id];
+    }
+    else{
+        document.getElementById('hoverText').innerHTML = idToHBO[d.id];
+    }
 }
 
 // Highlights all districts in selected health board
@@ -231,18 +237,15 @@ function toggle_key(){
     var ladDoc = document.getElementById("ladDoc");
     var hboDoc = document.getElementById("hboDoc");
     var criteria_box = document.getElementById("criteriaBox");
-    var hboKey = document.getElementById("HBOKey");
 
     if (res === 'hbo') {
         criteria_chooser.style.display = "none";
         criteria_box.style.display = "none";
-        hboKey.style.display = "block";
         ladDoc.style.display="none";
     }
     else {
         criteria_chooser.style.display = "inline-block";
         criteria_box.style.display = "inline-block";
-        hboKey.style.display = "none";
         hboDoc.style.display="none";
     }
 }
