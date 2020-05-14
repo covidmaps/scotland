@@ -301,15 +301,17 @@ function multi_line_graph(file, graphID){
                 .style("stroke-width", 2)
                 .style("fill", "none");
 
-        // Add line lockdown began (83 days)
-        svg.append("line")
-        .attr("x1", 83)  //<<== change your code here
-        .attr("y1", 0)
-        .attr("x2", 83)  //<<== and here
-        .attr("y2", height)
-        .style("stroke-width", 2)
-        .style("stroke", '#ff867b')
-        .style("fill", "none");
+        var lineLockdown = svg
+            .append("g")
+            .append("path")
+              .datum(data)
+              .attr("d", d3.line()
+                .x(function(d) { return x('83') })
+                .y(function(d) { return y(+d.uk_retail_and_recreation_percent_change_from_baseline) })
+                )
+                .attr("stroke", "#ff867b")
+                .style("stroke-width", 2)
+                .style("fill", "none");
 
         // Initialize line with group a
         var line = svg
@@ -354,6 +356,14 @@ function multi_line_graph(file, graphID){
                 .y(function(d) { return y(+d.value) })
               )
               .attr("stroke", function(d){ return myColor(selectedGroup) })
+
+          lineLockdown.datum(dataFilterBase)
+              .transition()
+              .duration(1000)
+              .attr("d", d3.line()
+                .x(function(d) { return x('83') })
+                .y(function(d) { return y(+d.value) })
+              )
 
           svg.select("#lgndText").remove();
           svg.append("circle").transition()
