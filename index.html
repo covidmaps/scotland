@@ -44,7 +44,7 @@
                 <section id="covidDTGraph"></section>
                 <br>
                 <h3>Total Number of COVID-19 Deaths by Location</h3>
-                <p> Graph of the total number of deaths where coronavirus is recorded as the underlying cause by location, either care home, non-institution or hospital. If there is no data showing, then the number of deaths in each location is too low to be represented on a graph. </p>
+                <p> Graph of the total number of deaths where COVID-19 is recorded as the underlying cause by location, either care home, non-institution or hospital. If there is no data showing, then the number of deaths in each location is too low to be represented on a graph. </p>
                 <a href="https://www.nrscotland.gov.uk/covid19stats" target="_blank"> <p class='src'> Source: (Scottish Government) </p></a>
 
                 <section id="barGraph"></section>
@@ -97,9 +97,9 @@
                         <h4 style="text-align: center"> Grade The Nation By A Data Metric </h4>
                         <!-- <p> Select a Covid-19 metric and watch the map change color. -->
                                 <select name="criteria" id="criteria" class="round">
-                                    <option value="ratio_total_death_covid">Ratio of COVID Deaths To All Deaths</option>
-                                    <option value="ratio_carehome_death_covid">COVID Care Home Deaths</option>
-                                    <option value="ratio_hospital_death_covid">Ratio of Hospital COVID Deaths To All Hospital Deaths</option>
+                                    <option value="ratio_total_death_covid">Ratio of COVID-19 Deaths To All Deaths</option>
+                                    <option value="ratio_carehome_death_covid">Ratio of COVID-19 Care Home Deaths To All Carehome Deaths</option>
+                                    <option value="ratio_hospital_death_covid">Ratio of Hospital COVID-19 Deaths To All Hospital Deaths</option>
                                 </select>
                                 <div id = "grad"></div>
                                 <p style="margin-left:20%">Worst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Best</p>
@@ -114,6 +114,8 @@
                 <section id="map" class="mapBorder">
                 </section>
             </div>
+                <button id="zoom_in" style="top: 30%;right: 5%;position:fixed;" class="zoomBTN">+</button>
+                <button id="zoom_out" style="top: 33%;right: 5%;position:fixed;" class="zoomBTN">-</button>
         </div>
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>

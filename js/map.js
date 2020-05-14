@@ -10,9 +10,9 @@ TODO:
  [X] remove dropshadows (?)
  [X] Fix LHS table height not changing
  [X] All caps inconsitency
- [] Scroll broken (?)
- [] Move map selectors to RHS in a grey box
- [] Add magnifying glass to hint zoom (on click removed Orkney and Shetland)
+ [X] Scroll broken (?)
+ [X] Move map selectors to RHS in a grey box
+ [X] Add magnifying glass to hint zoom (on click removed Orkney and Shetland)
  [X] Hide 'How To' once country selected
  [X] Don't have report names look like link
  [] Change blue from fill to border on highlight
@@ -22,6 +22,7 @@ TODO:
  [] replace all covid/coronavirus to COVID-19
  [] Add happy data (?)
  [] Add dropdown for map select
+ [] make 'how to use' into expandable dropdown that collapses instead of hides
 */
 
 // get the width of the area we're displaying in
@@ -57,8 +58,64 @@ var zoom = d3.behavior.zoom()
     .scaleExtent([1, 8])
     .on("zoom", zoomed);
 
+function zoomedBUTTON() {
+    g.attr("transform",
+        "translate(" + zoom.translate() + ")" +
+        "scale(" + zoom.scale() + ")"
+    );
+}
+
 function zoomed() {
   g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+}
+
+function interpolateZoom (translate, scale) {
+   var self = this;
+   return d3.transition().duration(350).tween("zoom", function () {
+       var iTranslate = d3.interpolate(zoom.translate(), translate),
+           iScale = d3.interpolate(zoom.scale(), scale);
+       return function (t) {
+           zoom
+               .scale(iScale(t))
+               .translate(iTranslate(t));
+           zoomedBUTTON();
+       };
+   });
+}
+
+function zoomClick() {
+   var clicked = d3.event.target,
+       direction = 1,
+       factor = 0.4,
+       target_zoom = 1,
+       center = [width / 2, height / 2],
+       extent = zoom.scaleExtent(),
+       translate = zoom.translate(),
+       translate0 = [],
+       l = [],
+       view = {x: translate[0], y: translate[1], k: zoom.scale()};
+
+   d3.event.preventDefault();
+   direction = (this.id === 'zoom_in') ? 1 : -1;
+   target_zoom = zoom.scale() * (1 + factor * direction);
+
+   if (target_zoom < extent[0] || target_zoom > extent[1]) { return false; }
+
+   translate0 = [(center[0] - view.x) / view.k, (center[1] - view.y) / view.k];
+   view.k = target_zoom;
+   l = [translate0[0] * view.k + view.x, translate0[1] * view.k + view.y];
+
+   view.x += center[0] - l[0];
+   view.y += center[1] - l[1];
+
+   interpolateZoom([view.x, view.y], view.k);
+}
+
+function transform() {
+    return d3.zoomIdentity
+      .translate(width / 2.75, height / 2.75)
+      .scale(1.2)
+      .translate(-width/2.75, -height/2.75);
 }
 
 // import and read the required JSON file

@@ -96,5 +96,7 @@ d3.select("#filter").on('change', function(){
     change_area();
 });
 
+d3.selectAll('button').on('click', zoomClick);
+
 update_lad_select();
 change_area();

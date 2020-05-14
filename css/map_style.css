@@ -329,3 +329,8 @@ select:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #000;
 }
+
+.zoomBTN {
+    background-color: #f7faff;
+    border-radius:3px;
+}
