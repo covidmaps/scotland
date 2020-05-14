@@ -154,7 +154,7 @@ tr:hover {background-color: #ffb5ae;}
     padding: 10px;
     border: 1px solid lightgrey;
     background-color:  #f7faff;
-    overflow: hidden;
+    height:14%;
 }
 
 .left_side{
@@ -171,11 +171,12 @@ tr:hover {background-color: #ffb5ae;}
     padding-left: 10px;
 }
 
+
 .hoverText{
     display:none;
-    position: absolute;
-    margin-top:20%;
     width:auto;
+    max-width: 20%;
+    margin-top:3%;
     padding: 1%;
     margin-left: 3%;
     background-color:#7bb2ff;
