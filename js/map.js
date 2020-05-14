@@ -3,16 +3,16 @@ TODO:
  [] reformat table to have columns of COVID,  Non-INST, OTHER etc
  [X] Add more grid lines to single line graphs
  [X] vertical lines to indicate when lockdown started
-        [] ISSUE: x-axis not showing days since 01/01/2020 actually showing 7 days earlier than that
+        [X] ISSUE: x-axis not showing days since 01/01/2020 actually showing 7 days earlier than that
  [] Cite sources
  [X] Add comparison to criteria selection for what the ratio is
- [] remove dropshadows (?)
+ [X] remove dropshadows (?)
  [X] Fix LHS table height not changing
- [] All caps inconsitency
+ [X] All caps inconsitency
  [] Scroll broken (?)
  [] Move map selectors to RHS
- [] Hide 'How To' once country selected
- [] Don't have report names look like link
+ [X] Hide 'How To' once country selected
+ [X] Don't have report names look like link
 */
 
 // get the width of the area we're displaying in
