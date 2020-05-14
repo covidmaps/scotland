@@ -1,6 +1,17 @@
 /*
 TODO:
  [] reformat table to have columns of COVID,  Non-INST, OTHER etc
+ [] Add more grid lines to single line graphs
+ [] vertical lines to indicate when lockdown started (i.e at day 70 after jan1st or whenever it started) might be something i'd consider if they were my graphs
+ [] Cite sources
+ [X] Add comparison to criteria selection for what the ratio is
+ [] remove dropshadows (?)
+ [] Fix LHS table height not changing
+ [] All caps inconsitency
+ [] Scroll broken (?)
+ [] Move map selectors to RHS
+ [] Hide 'How To' once country selected
+ [] Don't have report names look like link
 */
 
 // get the width of the area we're displaying in

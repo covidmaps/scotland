@@ -113,7 +113,7 @@ tr:hover {background-color: #ffb5ae;}
 }
 
 #left_column {
-    height:300em;
+    height:auto;
     width: 40%;
     float:left;
     background-color: #f7faff;
@@ -157,7 +157,6 @@ tr:hover {background-color: #ffb5ae;}
     margin-left: 3%;
     background-color:#7bb2ff;
     color:white;
-    box-shadow: 3px 0 5px 2px #888;
     border-radius: 3px;
 }
 
