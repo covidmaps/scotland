@@ -10,7 +10,7 @@ body {
 
 h1 {
   color:#ffffff;
-  margin-top: 50px;
+  margin-top: 40px;
   margin-bottom: 0.1em;
   margin-left: 0.2em;
 
@@ -45,7 +45,6 @@ h3 {
 
 h4 {
   font-size: 14px;
-  margin-left:1.2em;
   color: #666666;
 }
 
@@ -116,9 +115,10 @@ tr:hover {background-color: #ffb5ae;}
     height:auto;
     width: 40%;
     float:left;
+    overflow: hidden;
     background-color: #f7faff;
     border-right: 1px solid lightgrey;
-    margin-left: -5px;
+    border-bottom: 1px solid lightgrey;
     margin-top: -19px;
 }
 
@@ -149,10 +149,34 @@ tr:hover {background-color: #ffb5ae;}
     height:900px;
 }
 
-.hoverText{
+.selectMenu {
     position: absolute;
+    padding: 10px;
+    border: 1px solid lightgrey;
+    background-color:  #f7faff;
+    height:14%;
+}
+
+.left_side{
+    float:left;
+    width:auto;
+    margin-right:10px;
+}
+
+.mid_side {
+    border-left: 1px solid lightgrey;
+    display:flex;
+    flex-wrap: wrap;
+    width: 40%;
+    padding-left: 10px;
+}
+
+
+.hoverText{
     display:none;
-    margin-top:2%;
+    width:auto;
+    max-width: 20%;
+    margin-top:3%;
     padding: 1%;
     margin-left: 3%;
     background-color:#7bb2ff;
@@ -162,7 +186,8 @@ tr:hover {background-color: #ffb5ae;}
 
 #grad {
   height: 3px;
-  margin-left:35%;
+  margin-top:2%;
+  margin-left:20%;
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient(to right, red , white); /* Standard syntax (must be last) */
   width: 125px;
@@ -303,4 +328,50 @@ select.round:focus {
 select:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #000;
+}
+
+.zoomBTN {
+    background-color: #f7faff;
+    border-radius:3px;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+    background-color: #f7faff;
+    cursor: pointer;
+    border: none;
+    width:100%;
+    margin-left: -0.75em;
+    text-align: left;
+    outline: none;
+    color: 	#ff867b;
+    font-size: 28px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active {
+    background-color: #f7faff;
+}
+
+.collapsible:hover {
+    background-color: #ccc;
+}
+
+.collapsible:after {
+     content: '\FE3E'; /* Unicode character for "plus" sign (+) */
+     font-size: 28px;
+     color: #ff867b;
+     float: right;
+     margin-left: 5px;
+}
+.active:after {
+  content: "\FE3D"; /* Unicode character for "minus" sign (-) */
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  background-color: #f7faff;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
 }

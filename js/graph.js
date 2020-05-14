@@ -32,7 +32,8 @@ function graph_init(res, id){
     if (id != null){
 
         document.getElementById("chooseHint").style.display="none";
-        document.getElementById("howTo").style.display="none";
+        document.getElementById("howToCol").classList.remove("active");
+        document.getElementById("howToCol").nextElementSibling.style.maxHeight = null;
 
         removeGraphs();
 
@@ -169,7 +170,6 @@ function singe_line_graph(file, graphID, graphName){
         svg.append("text").attr("x", 160).attr("y", height+85).text(graphName).style("font-size", "15px").attr("alignment-baseline","middle");
 
         // If retrieved data doesn't exist say:
-        console.log(d3.max(data, function(d) { return +d.value; }));
         if (d3.max(data, function(d) { return +d.value; }) == null){
             /*
             svg.append("rect")
@@ -196,7 +196,7 @@ function multi_line_graph(file, graphID){
     d3.select("#selectButton").style("display", "block");
 
     // set the dimensions and margins of the graph
-    var margin = {top: 10, right: 40, bottom: 100, left: 40},
+    var margin = {top: 10, right: 40, bottom: 120, left: 40},
         width = 500 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
@@ -301,6 +301,18 @@ function multi_line_graph(file, graphID){
                 .style("stroke-width", 2)
                 .style("fill", "none");
 
+        var lineLockdown = svg
+            .append("g")
+            .append("path")
+              .datum(data)
+              .attr("d", d3.line()
+                .x(function(d) { return x('83') })
+                .y(function(d) { return y(+d.uk_retail_and_recreation_percent_change_from_baseline) })
+                )
+                .attr("stroke", "#ff867b")
+                .style("stroke-width", 2)
+                .style("fill", "none");
+
         // Initialize line with group a
         var line = svg
           .append('g')
@@ -345,6 +357,14 @@ function multi_line_graph(file, graphID){
               )
               .attr("stroke", function(d){ return myColor(selectedGroup) })
 
+          lineLockdown.datum(dataFilterBase)
+              .transition()
+              .duration(1000)
+              .attr("d", d3.line()
+                .x(function(d) { return x('83') })
+                .y(function(d) { return y(+d.value) })
+              )
+
           svg.select("#lgndText").remove();
           svg.append("circle").transition()
               .duration(1000)
@@ -379,6 +399,9 @@ function multi_line_graph(file, graphID){
 
         svg.append("circle").attr("cx",25).attr("cy",height+80).attr("r", 6).style("fill", "#666666");
         svg.append("text").attr("x", 35).attr("y", height+85).text("UK Avg").style("font-size", "15px").attr("alignment-baseline","middle");
+
+        svg.append("circle").attr("cx",25).attr("cy",height+100).attr("r", 6).style("fill", "#ff867b");
+        svg.append("text").attr("x", 35).attr("y", height+105).text("Lockdown Begins").style("font-size", "15px").attr("alignment-baseline","middle");
 
         // When the button is changed, run the updateChart function
         d3.select("#selectButton").on("change", function(d) {
@@ -450,7 +473,7 @@ function bar_graph(file, graphID){
       .duration(800)
       .attr("y", function(d) { return y(d.Value); })
       .attr("height", function(d) { return height - y(d.Value); })
-      .delay(function(d,i){console.log(i) ; return(i*100)})
+      .delay(function(d,i){return(i*100)})
 
     })
 
