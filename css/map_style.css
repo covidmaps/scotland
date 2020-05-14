@@ -118,6 +118,7 @@ tr:hover {background-color: #ffb5ae;}
     float:left;
     background-color: #f7faff;
     border-right: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
     margin-left: -5px;
     margin-top: -19px;
 }

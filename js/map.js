@@ -13,6 +13,10 @@ TODO:
  [] Move map selectors to RHS
  [X] Hide 'How To' once country selected
  [X] Don't have report names look like link
+ [] Change blue from fill to border on highlight
+ [] move scroll bar to right hand side
+ [] Remove ratio rows from table and make pie chart
+ [] Add 'contact-us' button
 */
 
 // get the width of the area we're displaying in
