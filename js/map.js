@@ -21,6 +21,7 @@ TODO:
  [] Add 'contact-us' button
  [] replace all covid/coronavirus to COVID-19
  [] Add happy data (?)
+ [] Add dropdown for map select
 */
 
 // get the width of the area we're displaying in
@@ -154,7 +155,6 @@ function show_data(properties, id) {
 
                 if (!ladScrolled){
                     ladScrolled = true;
-                    document.getElementById("ladDoc").scrollIntoView({ behavior: 'smooth'});
                 }
                 return create_table(properties, id);
         }
@@ -200,7 +200,6 @@ function select(d) {
     if(!hboScrolled){
         console.log("hbo scroll beginss")
         hboScrolled = true;
-        document.getElementById("hboDoc").scrollIntoView({ behavior: 'smooth'});
     }
 }
 

@@ -10,7 +10,7 @@ body {
 
 h1 {
   color:#ffffff;
-  margin-top: 50px;
+  margin-top: 40px;
   margin-bottom: 0.1em;
   margin-left: 0.2em;
 
@@ -45,7 +45,6 @@ h3 {
 
 h4 {
   font-size: 14px;
-  margin-left:1.2em;
   color: #666666;
 }
 
@@ -116,10 +115,10 @@ tr:hover {background-color: #ffb5ae;}
     height:auto;
     width: 40%;
     float:left;
+    overflow: hidden;
     background-color: #f7faff;
     border-right: 1px solid lightgrey;
     border-bottom: 1px solid lightgrey;
-    margin-left: -5px;
     margin-top: -19px;
 }
 
@@ -150,10 +149,33 @@ tr:hover {background-color: #ffb5ae;}
     height:900px;
 }
 
-.hoverText{
+.selectMenu {
     position: absolute;
+    padding: 10px;
+    border: 1px solid lightgrey;
+    background-color:  #f7faff;
+    overflow: hidden;
+}
+
+.left_side{
+    float:left;
+    width:auto;
+    margin-right:10px;
+}
+
+.mid_side {
+    border-left: 1px solid lightgrey;
+    display:flex;
+    flex-wrap: wrap;
+    width: 40%;
+    padding-left: 10px;
+}
+
+.hoverText{
     display:none;
-    margin-top:2%;
+    position: absolute;
+    margin-top:20%;
+    width:auto;
     padding: 1%;
     margin-left: 3%;
     background-color:#7bb2ff;
@@ -163,7 +185,8 @@ tr:hover {background-color: #ffb5ae;}
 
 #grad {
   height: 3px;
-  margin-left:35%;
+  margin-top:2%;
+  margin-left:20%;
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient(to right, red , white); /* Standard syntax (must be last) */
   width: 125px;
