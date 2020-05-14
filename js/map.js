@@ -6,7 +6,7 @@ TODO:
  [] Cite sources
  [X] Add comparison to criteria selection for what the ratio is
  [] remove dropshadows (?)
- [] Fix LHS table height not changing
+ [X] Fix LHS table height not changing
  [] All caps inconsitency
  [] Scroll broken (?)
  [] Move map selectors to RHS
@@ -123,6 +123,7 @@ function create_table(properties, id)
     }
     table_string += "</table>";
     document.getElementById("chooseHint").style.display="none";
+    document.getElementById("howTo").style.display="none";
     return table_string;
 }
 

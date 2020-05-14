@@ -32,6 +32,7 @@ function graph_init(res, id){
     if (id != null){
 
         document.getElementById("chooseHint").style.display="none";
+        document.getElementById("howTo").style.display="none";
 
         removeGraphs();
 
