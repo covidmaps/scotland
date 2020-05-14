@@ -89,19 +89,19 @@ function singe_line_graph(file, graphID, graphName){
           .domain(d3.extent(data, function(d) { return d.date; }))
           .range([ 0, width]);
 
-          // Add the X Axis
-          svg.append("g")
-          .attr("class", "axis")
-          .attr("transform", "translate(0," + height + ")")
-          .call(d3.axisBottom(x).ticks(10))
-          .selectAll("text")
-          .style("text-anchor", "end")
-          .attr("dx", "-.8em")
-          .attr("dy", ".15em")
-          .attr("transform", "rotate(-65)");
-
-        // Add X axis label
         if (res == 'lad'){
+            // Add the X Axis
+            svg.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x).ticks(5))
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", "rotate(-65)");
+
+            // Add X axis label
             svg.append("text")
             .attr("class", "x label")
             .attr("text-anchor", "end")
@@ -109,6 +109,18 @@ function singe_line_graph(file, graphID, graphName){
             .attr("y", height+60)
             .text("Week Beginning");
         } else {
+            // Add the X Axis
+            svg.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x).ticks(10))
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", "rotate(-65)");
+
+            // Add X axis label
             svg.append("text")
             .attr("class", "x label")
             .attr("text-anchor", "end")
