@@ -44,6 +44,8 @@ h3 {
 }
 
 h4 {
+  margin:0;
+  margin-bottom: 2px;
   font-size: 14px;
   color: #666666;
 }
@@ -151,43 +153,47 @@ tr:hover {background-color: #ffb5ae;}
 
 .selectMenu {
     position: absolute;
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     border: 1px solid lightgrey;
     background-color:  #f7faff;
-    height:14%;
+    height:8.5%;
 }
 
 .left_side{
     float:left;
     width:auto;
     margin-right:10px;
+    padding-right: 10px;
 }
 
 .mid_side {
-    border-left: 1px solid lightgrey;
     display:flex;
+    border-left: 1px solid lightgrey;
     flex-wrap: wrap;
-    width: 40%;
+    margin-left:10%;
     padding-left: 10px;
+    max-width: 40%;
+    max-height: 100%;
 }
 
 
 .hoverText{
     display:none;
-    width:auto;
-    max-width: 20%;
-    margin-top:3%;
+    margin-top:2%;
+    height:20%
     padding: 1%;
     margin-left: 3%;
     background-color:#7bb2ff;
     color:white;
     border-radius: 3px;
+    width:125px;
 }
 
 #grad {
   height: 3px;
-  margin-top:2%;
-  margin-left:20%;
+  margin-top:1%;
+  margin-left:30%;
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient(to right, red , white); /* Standard syntax (must be last) */
   width: 125px;
