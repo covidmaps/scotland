@@ -32,7 +32,8 @@ function graph_init(res, id){
     if (id != null){
 
         document.getElementById("chooseHint").style.display="none";
-        document.getElementById("howTo").style.display="none";
+        document.getElementById("howToCol").classList.remove("active");
+        document.getElementById("howToCol").nextElementSibling.style.maxHeight = null;
 
         removeGraphs();
 
@@ -169,7 +170,6 @@ function singe_line_graph(file, graphID, graphName){
         svg.append("text").attr("x", 160).attr("y", height+85).text(graphName).style("font-size", "15px").attr("alignment-baseline","middle");
 
         // If retrieved data doesn't exist say:
-        console.log(d3.max(data, function(d) { return +d.value; }));
         if (d3.max(data, function(d) { return +d.value; }) == null){
             /*
             svg.append("rect")
@@ -473,7 +473,7 @@ function bar_graph(file, graphID){
       .duration(800)
       .attr("y", function(d) { return y(d.Value); })
       .attr("height", function(d) { return height - y(d.Value); })
-      .delay(function(d,i){console.log(i) ; return(i*100)})
+      .delay(function(d,i){return(i*100)})
 
     })
 

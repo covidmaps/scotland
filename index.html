@@ -17,8 +17,8 @@
                 </section>
             <form id="choiceform">
                 <small>Authors: Mark Swan and Calum McMeekin</small>
-                <div id="howTo">
-                    <h2> How to use CovidMap</h2>
+                <button type="button" id="howToCol"class="collapsible show" aria-expanded="true" onclick="toggle_collapse()"><p>How To Use CovidMap</p></button>
+                <div id="howTo" class="content">
                     <h3> Click, Zoom & Explore The Map </h3> <p>
                       Begin by clicking the map on the right. Selecting a particular region will generate a data report with graphs for that given area. Scroll down to see the data report at the bottom of the page.
                     </p>
@@ -127,6 +127,7 @@
         <script src="js/lads.js"></script>
         <script src="js/form.js"></script>
         <script src="js/graph.js"></script>
+
 
         <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 

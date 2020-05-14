@@ -334,3 +334,44 @@ select:-moz-focusring {
     background-color: #f7faff;
     border-radius:3px;
 }
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+    background-color: #f7faff;
+    cursor: pointer;
+    border: none;
+    width:100%;
+    margin-left: -0.75em;
+    text-align: left;
+    outline: none;
+    color: 	#ff867b;
+    font-size: 28px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active {
+    background-color: #f7faff;
+}
+
+.collapsible:hover {
+    background-color: #ccc;
+}
+
+.collapsible:after {
+     content: '\FE3E'; /* Unicode character for "plus" sign (+) */
+     font-size: 28px;
+     color: #ff867b;
+     float: right;
+     margin-left: 5px;
+}
+.active:after {
+  content: "\FE3D"; /* Unicode character for "minus" sign (-) */
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  background-color: #f7faff;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}

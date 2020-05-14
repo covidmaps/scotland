@@ -1,6 +1,6 @@
 /*
 TODO:
- [] Add description to table describing data is from start of the year
+ [X] Add description to table describing data is from start of the year
  [] reformat table to have columns of COVID,  Non-INST, OTHER etc
  [X] Add more grid lines to single line graphs
  [X] vertical lines to indicate when lockdown started
@@ -19,9 +19,9 @@ TODO:
  [] move scroll bar to right hand side
  [] Remove ratio rows from table and make pie chart
  [] Add 'contact-us' button
- [] replace all covid/coronavirus to COVID-19
+ [X] replace all covid/coronavirus to COVID-19
  [] Add happy data (?)
- [] Add dropdown for map select
+ [] Add dropdown for map district select
  [] make 'how to use' into expandable dropdown that collapses instead of hides
 */
 
@@ -190,7 +190,8 @@ function create_table(properties, id)
     }
     table_string += "</table>";
     document.getElementById("chooseHint").style.display="none";
-    document.getElementById("howTo").style.display="none";
+    document.getElementById("howToCol").classList.remove("active");
+    document.getElementById("howToCol").nextElementSibling.style.maxHeight = null;
     return table_string;
 }
 
@@ -208,7 +209,6 @@ function show_data(properties, id) {
                 d3.select("#graph").select("svg").remove();
 
                 graph_init(res, id);
-                console.log(hboScrolled, ladScrolled);
 
                 if (!ladScrolled){
                     ladScrolled = true;
@@ -219,9 +219,7 @@ function show_data(properties, id) {
         {
             // Give Doc Name
             // TODO: Get dict of ID to HBO name
-            console.log(idToHBO[id]);
             document.getElementById('graphTitleHBO').innerHTML = idToHBO[id];
-            console.log(hboScrolled, ladScrolled);
 
             graph_init(res, id);
         }
@@ -255,7 +253,6 @@ function select(d) {
 
     // Only scroll to HBO title if not already done so
     if(!hboScrolled){
-        console.log("hbo scroll beginss")
         hboScrolled = true;
     }
 }

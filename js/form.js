@@ -1,6 +1,16 @@
 area = 'sco'
 lad='national'
 
+function toggle_collapse(){
+    var coll = document.getElementById("howToCol");
+    coll.classList.toggle("active");
+    var content = coll.nextElementSibling;
+    if (content.style.maxHeight){
+        content.style.maxHeight = null;
+    } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+    }
+}
 
 function update_lad_select() {
     /*
@@ -61,6 +71,9 @@ function change_area() {
     document.getElementById("chooseHint").style.display="block";
     document.getElementById("ladDoc").style.display="none";
     document.getElementById('hoverText').style.display = 'none';
+    document.getElementById("howToCol").classList.toggle("active");
+    document.getElementById("howToCol").nextElementSibling.style.maxHeight = document.getElementById("howToCol").nextElementSibling.scrollHeight + "px";
+
 
     d3.select('#download').html("");
     //var resolution_select = document.getElementById('resolution');
