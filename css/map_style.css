@@ -330,11 +330,6 @@ select:-moz-focusring {
   text-shadow: 0 0 0 #000;
 }
 
-.zoomBTN {
-    background-color: #f7faff;
-    border-radius:3px;
-}
-
 /* Style the button that is used to open and close the collapsible content */
 .collapsible {
     background-color: #f7faff;
