@@ -1,7 +1,6 @@
 /*
 TODO:
  [X] Add description to table describing data is from start of the year
- [] reformat table to have columns of COVID,  Non-INST, OTHER etc
  [X] Add more grid lines to single line graphs
  [X] vertical lines to indicate when lockdown started
         [X] ISSUE: x-axis not showing days since 01/01/2020 actually showing 7 days earlier than that
@@ -15,14 +14,15 @@ TODO:
  [X] Add magnifying glass to hint zoom (on click removed Orkney and Shetland)
  [X] Hide 'How To' once country selected
  [X] Don't have report names look like link
- [] Change blue from fill to border on highlight
- [] move scroll bar to right hand side
- [] Remove ratio rows from table and make pie chart
- [] Add 'contact-us' button
+ [-] Change blue from fill to border on highlight
+ [-] move scroll bar to right hand side
  [X] replace all covid/coronavirus to COVID-19
+ [X] make 'how to use' into expandable dropdown that collapses instead of hides
+ [] Remove ratio rows from table and make pie chart
+ [] reformat table to have columns of COVID,  Non-INST, OTHER etc
+ [] Add 'contact-us' button
  [] Add happy data (?)
  [] Add dropdown for map district select
- [] make 'how to use' into expandable dropdown that collapses instead of hides
 */
 
 // get the width of the area we're displaying in
