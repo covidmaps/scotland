@@ -1,8 +1,9 @@
 /*
 TODO:
  [] reformat table to have columns of COVID,  Non-INST, OTHER etc
- [] Add more grid lines to single line graphs
- [] vertical lines to indicate when lockdown started (i.e at day 70 after jan1st or whenever it started) might be something i'd consider if they were my graphs
+ [X] Add more grid lines to single line graphs
+ [X] vertical lines to indicate when lockdown started
+        [] ISSUE: x-axis not showing days since 01/01/2020 actually showing 7 days earlier than that
  [] Cite sources
  [X] Add comparison to criteria selection for what the ratio is
  [] remove dropshadows (?)

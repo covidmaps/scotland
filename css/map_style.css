@@ -117,8 +117,7 @@ tr:hover {background-color: #ffb5ae;}
     width: 40%;
     float:left;
     background-color: #f7faff;
-    border-right: 2px solid;
-    border-image: linear-gradient( to bottom, #ff867b, #7bb2ff) 30 70%;
+    border-right: 1px solid lightgrey;
     margin-left: -5px;
     margin-top: -19px;
 }

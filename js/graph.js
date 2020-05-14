@@ -196,7 +196,7 @@ function multi_line_graph(file, graphID){
     d3.select("#selectButton").style("display", "block");
 
     // set the dimensions and margins of the graph
-    var margin = {top: 10, right: 40, bottom: 100, left: 40},
+    var margin = {top: 10, right: 40, bottom: 120, left: 40},
         width = 500 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
@@ -301,6 +301,16 @@ function multi_line_graph(file, graphID){
                 .style("stroke-width", 2)
                 .style("fill", "none");
 
+        // Add line lockdown began (83 days)
+        svg.append("line")
+        .attr("x1", 83)  //<<== change your code here
+        .attr("y1", 0)
+        .attr("x2", 83)  //<<== and here
+        .attr("y2", height)
+        .style("stroke-width", 2)
+        .style("stroke", '#ff867b')
+        .style("fill", "none");
+
         // Initialize line with group a
         var line = svg
           .append('g')
@@ -379,6 +389,9 @@ function multi_line_graph(file, graphID){
 
         svg.append("circle").attr("cx",25).attr("cy",height+80).attr("r", 6).style("fill", "#666666");
         svg.append("text").attr("x", 35).attr("y", height+85).text("UK Avg").style("font-size", "15px").attr("alignment-baseline","middle");
+
+        svg.append("circle").attr("cx",25).attr("cy",height+100).attr("r", 6).style("fill", "#ff867b");
+        svg.append("text").attr("x", 35).attr("y", height+105).text("Lockdown Begins").style("font-size", "15px").attr("alignment-baseline","middle");
 
         // When the button is changed, run the updateChart function
         d3.select("#selectButton").on("change", function(d) {
