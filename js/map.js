@@ -265,10 +265,9 @@ function prettify(input){
 
 // Change selected area from dropdown
 function select_from_dropdown(){
+
     var area_select = document.getElementById('areaSelect');
     var id = area_select.options[area_select.selectedIndex].value;
-
-    console.log(id);
 
     g.selectAll(".area").each(function(d) {
         if (id == d3.select(this).attr('id')){
@@ -292,6 +291,9 @@ function select(d) {
     if (res == 'hbo'){
         highlightBoard(d.id);
     }
+
+    // Update select area dropdown
+    d3.select('#areaSelect').node().value = d.id;
 
     // add the area properties to the data_table section
     d3.select("#data_table")

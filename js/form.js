@@ -90,10 +90,41 @@ function change_area() {
     load_data(f, units);
 }
 
+// Remove all options in the dropdown
+function clean_select() {
+    var len = document.getElementById("areaSelect").length;
+    for (var i = len-1; i >= 0; --i){
+        document.getElementById("areaSelect").remove(i);
+    }
+}
+
+// Populate all options in the select menu
 function populate_res_select()
 {
-    var districts = Object.values(idToName);
-    var keys = Object.keys(idToName);
+    get_resolution();
+    clean_select();
+
+    var districts, keys = [];
+
+    if (res == 'lad'){
+        districts = Object.values(idToName);
+        keys = Object.keys(idToName);
+    } else {
+        var messyKeys = Object.keys(idToHBO);
+
+        // Create unique arrays
+        for (var i = 0; i < messyKeys.length; ++i){
+            if (districts == null){
+                keys.push(messyKeys[i]);
+                districts = [idToHBO[messyKeys[i]]];
+            }
+            if (!districts.includes(idToHBO[messyKeys[i]])){
+                keys.push(messyKeys[i]);
+                districts.push(idToHBO[messyKeys[i]]);
+            }
+        }
+    }
+
 
     for (var i = 0; i < districts.length; ++i) {
         // Create an Option object
@@ -106,6 +137,7 @@ function populate_res_select()
         // Add an Option object to Drop Down List Box
         document.getElementById('areaSelect').options.add(opt);
     }
+
 
 }
 
@@ -122,6 +154,7 @@ d3.select("#top_level").on('change', function(){
 
 d3.select("#resolution").on('change', function(){
     change_area();
+    populate_res_select();
 });
 
 d3.select("#areaSelect").on('change', function(){
