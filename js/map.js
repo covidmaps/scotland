@@ -23,8 +23,8 @@ TODO:
  [X] Add 'contact-us' button
  [] Add happy data (?)
  [X] Add dropdown for map district select
- [] Make select box flush
- [] Add explanation of colour grading in intro
+ [X] Make select box flush
+ [X] Add explanation of colour grading in intro
 */
 
 // get the width of the area we're displaying in
