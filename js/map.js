@@ -22,7 +22,9 @@ TODO:
  [X] reformat table to have columns of COVID,  Non-INST, OTHER etc
  [X] Add 'contact-us' button
  [] Add happy data (?)
- [] Add dropdown for map district select
+ [X] Add dropdown for map district select
+ [] Make select box flush
+ [] Add explanation of colour grading in intro
 */
 
 // get the width of the area we're displaying in
@@ -143,6 +145,8 @@ function deselect() {
     d3.select("#data_table")
         .html("");
     document.getElementById('hoverText').innerHTML = '';
+    document.getElementById('ladDoc').style.display = 'none';
+    document.getElementById('hboDoc').style.display = 'none';
 
 }
 
@@ -268,6 +272,10 @@ function select_from_dropdown(){
 
     var area_select = document.getElementById('areaSelect');
     var id = area_select.options[area_select.selectedIndex].value;
+
+    if (id == '-') {
+        deselect();
+    }
 
     g.selectAll(".area").each(function(d) {
         if (id == d3.select(this).attr('id')){

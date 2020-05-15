@@ -104,27 +104,25 @@ function populate_res_select()
     get_resolution();
     clean_select();
 
-    var districts, keys = [];
+    var districts = ['-'];
+    var keys = ['-'];
 
     if (res == 'lad'){
-        districts = Object.values(idToName);
-        keys = Object.keys(idToName);
+        districtList = Object.values(idToName);
+        keysList = Object.keys(idToName);
+        districts = districts.concat(districtList);
+        keys = keys.concat(keysList);
     } else {
         var messyKeys = Object.keys(idToHBO);
 
         // Create unique arrays
         for (var i = 0; i < messyKeys.length; ++i){
-            if (districts == null){
-                keys.push(messyKeys[i]);
-                districts = [idToHBO[messyKeys[i]]];
-            }
             if (!districts.includes(idToHBO[messyKeys[i]])){
                 keys.push(messyKeys[i]);
                 districts.push(idToHBO[messyKeys[i]]);
             }
         }
     }
-
 
     for (var i = 0; i < districts.length; ++i) {
         // Create an Option object
