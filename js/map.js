@@ -181,11 +181,26 @@ function init(width, height) {
 function create_table(properties, id)
 {
     table_string = "<table>";
+    console.log(mapStats);
     if (id != undefined){
         var keys = Object.keys(mapStats);
-        table_string += "<th>Property</th><th>Value</th>";
+        var covidKeys = [];
+        var totalKeys = [];
+        // Extract COVID-19 properties
         for (var i = 0; i < keys.length; i++) {
-            table_string += "<tr><td>" + prettify(keys[i]) + "</td><td>" + mapStats[keys[i]][id] + "</td></tr>";
+            if (keys[i].includes("covid") && !keys[i].includes("ratio")){
+                covidKeys.push(keys[i]);
+            }
+            if (keys[i].includes("all") && !keys[i].includes("ratio")){
+                totalKeys.push(keys[i]);
+            }
+        }
+        table_string += "<th>Property</th><th>COVID-19</th><th>Total</th>";
+        for (var i = 0; i < covidKeys.length; i++) {
+            if (keys[i].includes("covid") && !keys[i].includes("ratio")){
+                console.log(keys[i]);
+            }
+            table_string += "<tr><td>" + prettify(covidKeys[i]) + "</td><td>" + mapStats[covidKeys[i]][id] + "</td><td>" + mapStats[totalKeys[i]][id] + "</td></tr>";
         }
     }
     table_string += "</table>";
@@ -500,9 +515,9 @@ window.addEventListener('resize', redraw);
 // Return a better looking version of property header
 var prettyProps = {'lad':"District", "all_deaths_hospital": "Total Hospital Deaths", 'all_deaths_carehome': "Total Carehome Deaths",
                 'all_deaths_non-institution': "Total Non-Institution Deaths", 'all_deaths_other': "Total Other Deaths",
-            'all_deaths_total': "Total Deaths", 'covid_deaths_hospital': "COVID Hospital Deaths",
-        'covid_deaths_carehome': "COVID Carehome Deaths", 'covid_deaths_non-institution': "COVID Non-Institution Deaths",
-    'covid_deaths_other': "COVID Other Deaths", 'covid_deaths_total': "COVID Total Deaths",
+            'all_deaths_total': "Total Deaths", 'covid_deaths_hospital': "Hospital Deaths",
+        'covid_deaths_carehome': "Carehome Deaths", 'covid_deaths_non-institution': "Non-Institution Deaths",
+    'covid_deaths_other': "Other Deaths", 'covid_deaths_total': "Total Deaths",
     'ratio_hospital_death_covid': "COVID hospital deaths (%)", 'ratio_carehome_death_covid': "COVID Carehome Deaths (%)",
     'ratio_total_death_covid': "Total COVID Deaths (%)"}
 
