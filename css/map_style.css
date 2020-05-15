@@ -127,6 +127,7 @@ tr:hover {background-color: #ffb5ae;}
     width: 60%;
     float: right;
     margin-left:40%;
+    margin-top:-0.3%;
     position:fixed;
 }
 
@@ -152,7 +153,9 @@ tr:hover {background-color: #ffb5ae;}
 
 .selectMenu {
     position: absolute;
+    margin-left:-0.4em;
     border: 1px solid lightgrey;
+    border-top: 0px solid lightgrey;
     background-color:  #f7faff;
     width:auto;
 }
