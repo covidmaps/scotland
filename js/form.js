@@ -61,12 +61,16 @@ function update_resolution_select() {
     */
     //options_string += '<option value="oa">Output Areas</option>';
     d3.select('#resolution').html(options_string);
+
+    p
 }
 
 
 function change_area() {
     // remove all previous content from webpage
     d3.selectAll("*").select("svg").remove();
+
+    populate_res_select();
 
     document.getElementById("chooseHint").style.display="block";
     document.getElementById("ladDoc").style.display="none";
@@ -86,6 +90,57 @@ function change_area() {
     load_data(f, units);
 }
 
+// Remove all options in the dropdown
+function clean_select() {
+    var len = document.getElementById("areaSelect").length;
+    for (var i = len-1; i >= 0; --i){
+        document.getElementById("areaSelect").remove(i);
+    }
+}
+
+// Populate all options in the select menu
+function populate_res_select()
+{
+    get_resolution();
+    clean_select();
+
+    var districts, keys = [];
+
+    if (res == 'lad'){
+        districts = Object.values(idToName);
+        keys = Object.keys(idToName);
+    } else {
+        var messyKeys = Object.keys(idToHBO);
+
+        // Create unique arrays
+        for (var i = 0; i < messyKeys.length; ++i){
+            if (districts == null){
+                keys.push(messyKeys[i]);
+                districts = [idToHBO[messyKeys[i]]];
+            }
+            if (!districts.includes(idToHBO[messyKeys[i]])){
+                keys.push(messyKeys[i]);
+                districts.push(idToHBO[messyKeys[i]]);
+            }
+        }
+    }
+
+
+    for (var i = 0; i < districts.length; ++i) {
+        // Create an Option object
+        var opt = document.createElement("option");
+
+        // Assign text and value to Option object
+        opt.text = districts[i];
+        opt.value = keys[i];
+
+        // Add an Option object to Drop Down List Box
+        document.getElementById('areaSelect').options.add(opt);
+    }
+
+
+}
+
 d3.select('#lad').on('change', function(){
     update_resolution_select();
     change_area();
@@ -99,6 +154,11 @@ d3.select("#top_level").on('change', function(){
 
 d3.select("#resolution").on('change', function(){
     change_area();
+    populate_res_select();
+});
+
+d3.select("#areaSelect").on('change', function(){
+    select_from_dropdown();
 });
 
 d3.select("#criteria").on('change', function(){

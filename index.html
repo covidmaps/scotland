@@ -86,24 +86,28 @@
             <div class="overlay">
                 <div class = "selectMenu">
                     <div class = "left_side">
-                        <h4> Local Authority vs Health Board</h4>
-                            <select name="resolution" id="resolution" class="round" style="margin-left:10%">
+                        <h4 style="text-align: center;"> Local Authority vs Health Board <br>
+                            <select name="resolution" id="resolution" class="round" style="margin-left:0%">
                                 <option value="lad">Local Authority Districts</option>
                                 <option value="hbo">Health Boards</option>
+                            </select>
+                            </h4>
+                            <p style="text-align: center; margin-left:2%"> Selected Area <br>
+                            <select name="areaSelect" id="areaSelect" class="round" style="margin-left:9%">
                             </select>
                         </p>
                     </div>
                     <div class ="mid_side">
                         <div id="criteriaBox">
-                        <h4 style="text-align: center"> Grade The Nation By A Data Metric </h4>
-                        <!-- <p> Select a Covid-19 metric and watch the map change color. -->
-                                <select name="criteria" id="criteria" class="round">
-                                    <option value="ratio_total_death_covid">Ratio of COVID-19 Deaths To All Deaths</option>
-                                    <option value="ratio_carehome_death_covid">Ratio of COVID-19 Care Home Deaths To All Carehome Deaths</option>
-                                    <option value="ratio_hospital_death_covid">Ratio of Hospital COVID-19 Deaths To All Hospital Deaths</option>
-                                </select>
-                                <div id = "grad"></div>
-                                <p style="margin-left:20%;margin-bottom:0%">Worst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Best</p>
+                            <h4 style="text-align: center"> Grade The Nation By A Data Metric </h4>
+                            <!-- <p> Select a Covid-19 metric and watch the map change color. -->
+                            <select name="criteria" id="criteria" class="round" style="margin-top:3%">
+                                <option value="ratio_total_death_covid">Ratio of COVID-19 Deaths To All Deaths</option>
+                                <option value="ratio_carehome_death_covid">Ratio of COVID-19 Care Home Deaths To All Carehome Deaths</option>
+                                <option value="ratio_hospital_death_covid">Ratio of Hospital COVID-19 Deaths To All Hospital Deaths</option>
+                            </select>
+                            <div id = "grad"></div>
+                            <p style="margin-left:30%;margin-bottom:3%">Highest&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lowest</p>
                         </div>
                     </div>
                     <div class="right_side">
@@ -116,8 +120,12 @@
                 <section id="map" class="mapBorder">
                 </section>
             </div>
-                <button id="zoom_in" style="top: 30%;right: 5%;position:fixed;">+</button>
-                <button id="zoom_out" style="top: 33%;right: 5%;position:fixed;">-</button>
+            <button id="zoom_in" class="zoomBTN" style="top: 40%;left: 43%;">+</button>
+            <button id="zoom_out" class="zoomBTN" style="top: 44%;left: 43%;">-</button>
+            <div class="contactUS">
+
+                <p>Got Feedback? <a href="mailto:dummyemail@covidmaps.com?subject=CovidMaps Feedback:" target="_blank" rel="noopener noreferrer">Email Us!</a></p>
+            </div>
         </div>
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
