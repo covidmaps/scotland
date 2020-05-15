@@ -263,6 +263,21 @@ function prettify(input){
     return prettyProps[input];
 }
 
+// Change selected area from dropdown
+function select_from_dropdown(){
+    var area_select = document.getElementById('areaSelect');
+    var id = area_select.options[area_select.selectedIndex].value;
+
+    console.log(id);
+
+    g.selectAll(".area").each(function(d) {
+        if (id == d3.select(this).attr('id')){
+            select(d);
+        }
+    });
+}
+
+
 // select a map area
 function select(d) {
     // get the id of the selected map area

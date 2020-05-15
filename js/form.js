@@ -61,12 +61,16 @@ function update_resolution_select() {
     */
     //options_string += '<option value="oa">Output Areas</option>';
     d3.select('#resolution').html(options_string);
+
+    p
 }
 
 
 function change_area() {
     // remove all previous content from webpage
     d3.selectAll("*").select("svg").remove();
+
+    populate_res_select();
 
     document.getElementById("chooseHint").style.display="block";
     document.getElementById("ladDoc").style.display="none";
@@ -86,6 +90,25 @@ function change_area() {
     load_data(f, units);
 }
 
+function populate_res_select()
+{
+    var districts = Object.values(idToName);
+    var keys = Object.keys(idToName);
+
+    for (var i = 0; i < districts.length; ++i) {
+        // Create an Option object
+        var opt = document.createElement("option");
+
+        // Assign text and value to Option object
+        opt.text = districts[i];
+        opt.value = keys[i];
+
+        // Add an Option object to Drop Down List Box
+        document.getElementById('areaSelect').options.add(opt);
+    }
+
+}
+
 d3.select('#lad').on('change', function(){
     update_resolution_select();
     change_area();
@@ -99,6 +122,10 @@ d3.select("#top_level").on('change', function(){
 
 d3.select("#resolution").on('change', function(){
     change_area();
+});
+
+d3.select("#areaSelect").on('change', function(){
+    select_from_dropdown();
 });
 
 d3.select("#criteria").on('change', function(){

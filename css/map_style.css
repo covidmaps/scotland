@@ -154,21 +154,23 @@ tr:hover {background-color: #ffb5ae;}
     position: absolute;
     border: 1px solid lightgrey;
     background-color:  #f7faff;
-    height:8.5%;
+    width:auto;
 }
 
 .left_side{
     float:left;
     width:auto;
+    padding-left:5px;
     margin-right:10px;
 }
 
 .mid_side {
-    border-left: 1px solid lightgrey;
     display:flex;
+    border-left: 1px solid lightgrey;
     flex-wrap: wrap;
-    width: 40%;
+    height:auto;
     padding-left: 10px;
+    padding-right: 10px;
 }
 
 
@@ -186,8 +188,8 @@ tr:hover {background-color: #ffb5ae;}
 
 #grad {
   height: 3px;
-  margin-top:1%;
-  margin-left:20%;
+  margin-top:2%;
+  margin-left:30%;
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient(to right, red , white); /* Standard syntax (must be last) */
   width: 125px;
