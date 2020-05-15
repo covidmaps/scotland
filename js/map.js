@@ -23,6 +23,7 @@ TODO:
  [] Add 'contact-us' button
  [] Add happy data (?)
  [] Add dropdown for map district select
+ [] Add slider zoom
 */
 
 // get the width of the area we're displaying in
@@ -186,21 +187,37 @@ function create_table(properties, id)
         var keys = Object.keys(mapStats);
         var covidKeys = [];
         var totalKeys = [];
-        // Extract COVID-19 properties
+        var ratios = [];
+        // Extract each seperate property
         for (var i = 0; i < keys.length; i++) {
             if (keys[i].includes("covid") && !keys[i].includes("ratio")){
                 covidKeys.push(keys[i]);
             }
-            if (keys[i].includes("all") && !keys[i].includes("ratio")){
+            else if (keys[i].includes("all") && !keys[i].includes("ratio")){
                 totalKeys.push(keys[i]);
             }
         }
-        table_string += "<th>Property</th><th>COVID-19</th><th>Total</th>";
+
+        // Calculate ratios
+        for (var i = 0; i < covidKeys.length; i++) {
+            var ratio = Number(Math.round(((mapStats[covidKeys[i]][id]/mapStats[totalKeys[i]][id])*100)+'e2')+'e-2');
+            if (Number.isNaN(ratio)){
+                ratios.push('0');
+            } else{
+                ratios.push(ratio);
+            }
+        }
+        table_string += "<th>Property</th><th>COVID-19</th><th>Total</th><th>Ratio (%)</th>";
         for (var i = 0; i < covidKeys.length; i++) {
             if (keys[i].includes("covid") && !keys[i].includes("ratio")){
                 console.log(keys[i]);
             }
-            table_string += "<tr><td>" + prettify(covidKeys[i]) + "</td><td>" + mapStats[covidKeys[i]][id] + "</td><td>" + mapStats[totalKeys[i]][id] + "</td></tr>";
+            table_string +=
+                "<tr><td>" + prettify(covidKeys[i]) +
+                "</td><td>" + mapStats[covidKeys[i]][id] +
+                "</td><td>" + mapStats[totalKeys[i]][id] +
+                "</td><td>" + ratios[i] +
+                "</td></tr>";
         }
     }
     table_string += "</table>";
