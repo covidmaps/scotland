@@ -380,6 +380,13 @@ select:-moz-focusring {
     border:1px solid lightgrey;
     background-color: #ff867b;
 }
+
 .zoomBTN:active {
     background-color: #7bb2ff;
+}
+
+.contactUS {
+    position: fixed;
+    right:0;
+    bottom:0;
 }

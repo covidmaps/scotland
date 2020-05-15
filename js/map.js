@@ -18,12 +18,11 @@ TODO:
  [-] move scroll bar to right hand side
  [X] replace all covid/coronavirus to COVID-19
  [X] make 'how to use' into expandable dropdown that collapses instead of hides
- [] Remove ratio rows from table and make pie chart
- [] reformat table to have columns of COVID,  Non-INST, OTHER etc
- [] Add 'contact-us' button
+ [X] Remove ratio rows from table and make pie chart
+ [X] reformat table to have columns of COVID,  Non-INST, OTHER etc
+ [X] Add 'contact-us' button
  [] Add happy data (?)
  [] Add dropdown for map district select
- [] Add slider zoom
 */
 
 // get the width of the area we're displaying in
