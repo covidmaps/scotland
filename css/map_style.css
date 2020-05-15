@@ -370,3 +370,16 @@ select:-moz-focusring {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
 }
+
+.zoomBTN{
+    border-radius:7px;
+    color:black;
+    font-size:14px;
+    position:fixed;
+    min-width: 3em;
+    border:1px solid lightgrey;
+    background-color: #ff867b;
+}
+.zoomBTN:active {
+    background-color: #7bb2ff;
+}
