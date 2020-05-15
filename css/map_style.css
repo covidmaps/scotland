@@ -44,6 +44,7 @@ h3 {
 }
 
 h4 {
+  margin:0;
   font-size: 14px;
   color: #666666;
 }
@@ -151,10 +152,9 @@ tr:hover {background-color: #ffb5ae;}
 
 .selectMenu {
     position: absolute;
-    padding: 10px;
     border: 1px solid lightgrey;
     background-color:  #f7faff;
-    height:14%;
+    height:8.5%;
 }
 
 .left_side{
@@ -174,9 +174,9 @@ tr:hover {background-color: #ffb5ae;}
 
 .hoverText{
     display:none;
+    position:absolute;
     width:auto;
-    max-width: 20%;
-    margin-top:3%;
+    margin-top:14%;
     padding: 1%;
     margin-left: 3%;
     background-color:#7bb2ff;
@@ -186,7 +186,7 @@ tr:hover {background-color: #ffb5ae;}
 
 #grad {
   height: 3px;
-  margin-top:2%;
+  margin-top:1%;
   margin-left:20%;
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient(to right, red , white); /* Standard syntax (must be last) */
