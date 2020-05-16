@@ -1,33 +1,5 @@
 /*
 TODO:
- [X] Add description to table describing data is from start of the year
- [X] Add more grid lines to single line graphs
- [X] vertical lines to indicate when lockdown started
-        [X] ISSUE: x-axis not showing days since 01/01/2020 actually showing 7 days earlier than that
- [X] Cite sources
- [X] Add comparison to criteria selection for what the ratio is
- [X] remove dropshadows (?)
- [X] Fix LHS table height not changing
- [X] All caps inconsitency
- [X] Scroll broken (?)
- [X] Move map selectors to RHS in a grey box
- [X] Add magnifying glass to hint zoom (on click removed Orkney and Shetland)
- [X] Hide 'How To' once country selected
- [X] Don't have report names look like link
- [-] Change blue from fill to border on highlight
- [-] move scroll bar to right hand side
- [X] replace all covid/coronavirus to COVID-19
- [X] make 'how to use' into expandable dropdown that collapses instead of hides
- [X] Remove ratio rows from table and make pie chart
- [X] reformat table to have columns of COVID,  Non-INST, OTHER etc
- [X] Add 'contact-us' button
- [] Add happy data (?)
- [X] Add dropdown for map district select
- [X] Make select box flush
- [X] Add explanation of colour grading in intro
- [X] Remove total hospital patients graph in HBO
- [X] Rephrase “Total” in the bottom table. It should be called “Total Deaths (All causes)”
- [X] Add new headline at the top that tells you how many people have died from Covid-19 in each LAD
  [] Fix the blue colouring to border not fill color
 */
 
