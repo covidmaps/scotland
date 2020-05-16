@@ -1,30 +1,6 @@
 /*
 TODO:
- [X] Add description to table describing data is from start of the year
- [X] Add more grid lines to single line graphs
- [X] vertical lines to indicate when lockdown started
-        [X] ISSUE: x-axis not showing days since 01/01/2020 actually showing 7 days earlier than that
- [X] Cite sources
- [X] Add comparison to criteria selection for what the ratio is
- [X] remove dropshadows (?)
- [X] Fix LHS table height not changing
- [X] All caps inconsitency
- [X] Scroll broken (?)
- [X] Move map selectors to RHS in a grey box
- [X] Add magnifying glass to hint zoom (on click removed Orkney and Shetland)
- [X] Hide 'How To' once country selected
- [X] Don't have report names look like link
- [-] Change blue from fill to border on highlight
- [-] move scroll bar to right hand side
- [X] replace all covid/coronavirus to COVID-19
- [X] make 'how to use' into expandable dropdown that collapses instead of hides
- [X] Remove ratio rows from table and make pie chart
- [X] reformat table to have columns of COVID,  Non-INST, OTHER etc
- [X] Add 'contact-us' button
- [] Add happy data (?)
- [X] Add dropdown for map district select
- [X] Make select box flush
- [X] Add explanation of colour grading in intro
+ [] Fix the blue colouring to border not fill color
 */
 
 // get the width of the area we're displaying in
@@ -181,6 +157,24 @@ function init(width, height) {
         .on('click', deselect);
 }
 
+// Populate the death toll
+function populate_deathToll(id){
+
+    // Get colour of district
+    g.selectAll(".area").each(function(d) {
+        if (id == d3.select(this).attr('id')){
+            district_color = d3.select(this).attr('fill');
+        }
+    });
+
+    // Update text
+    var deathTollText = mapStats["covid_deaths_total"][id];
+    document.getElementById('deathTollText').innerHTML = deathTollText;
+
+    // Update background
+    document.getElementById('deathToll').style.backgroundColor = district_color;
+}
+
 // create a HTML table to display any properties about the selected item
 function create_table(properties, id)
 {
@@ -210,7 +204,7 @@ function create_table(properties, id)
                 ratios.push(ratio);
             }
         }
-        table_string += "<th>Property</th><th>COVID-19</th><th>Total</th><th>Ratio (%)</th>";
+        table_string += "<th>Property</th><th>COVID-19</th><th>Total Deaths (All causes)</th><th>Ratio of COVID-19 to Total (%)</th>";
         for (var i = 0; i < covidKeys.length; i++) {
             if (keys[i].includes("covid") && !keys[i].includes("ratio")){
                 console.log(keys[i]);
@@ -240,8 +234,8 @@ function show_data(properties, id) {
                 // Give Doc Name
                 document.getElementById('graphTitleLAD').innerHTML = idToName[id];
 
-                // remove any existing graphs
-                d3.select("#graph").select("svg").remove();
+                // Populate total deaths box
+                populate_deathToll(id);
 
                 graph_init(res, id);
 

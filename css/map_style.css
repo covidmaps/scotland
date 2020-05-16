@@ -395,3 +395,15 @@ select:-moz-focusring {
     right:0;
     bottom:0;
 }
+
+.deathToll{
+    margin-left:35%;
+    margin-right:35%;
+    width:30%;
+    padding:0;
+    text-align: center;
+    color:black;
+    font-size:40px;
+    border-radius:10px;
+    background-color:#ff867b;
+}
