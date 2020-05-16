@@ -25,10 +25,10 @@ TODO:
  [X] Add dropdown for map district select
  [X] Make select box flush
  [X] Add explanation of colour grading in intro
- [] Remove total hospital patients graph in HBO
- [] Rephrase “Total” in the bottom table. It should be called “Total Deaths (All causes)”
+ [X] Remove total hospital patients graph in HBO
+ [X] Rephrase “Total” in the bottom table. It should be called “Total Deaths (All causes)”
  [] Add new headline at the top that tells you how many people have died from Covid-19 in each LAD
- [] Fix the blue colouring to border not fill color 
+ [] Fix the blue colouring to border not fill color
 */
 
 // get the width of the area we're displaying in
@@ -214,7 +214,7 @@ function create_table(properties, id)
                 ratios.push(ratio);
             }
         }
-        table_string += "<th>Property</th><th>COVID-19</th><th>Total</th><th>Ratio (%)</th>";
+        table_string += "<th>Property</th><th>COVID-19</th><th>Total Deaths (All causes)</th><th>Ratio of COVID-19 to Total (%)</th>";
         for (var i = 0; i < covidKeys.length; i++) {
             if (keys[i].includes("covid") && !keys[i].includes("ratio")){
                 console.log(keys[i]);
