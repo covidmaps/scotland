@@ -215,11 +215,11 @@ tr:hover {background-color: #ffb5ae;}
 }
 
 .selected {
-    fill: #7bb2ff;
-    background-color: black;
-    /*stroke: black;
-    stroke-width: 2;
-    stroke-linejoin: round;*/
+    /*fill: #7bb2ff;
+    background-color: black;*/
+    stroke: #7bb2ff;
+    stroke-width: 3;
+    stroke-linejoin: round;
 }
 
 .selectButton{
