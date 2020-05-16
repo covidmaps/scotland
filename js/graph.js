@@ -35,8 +35,6 @@ function graph_init(res, id){
         document.getElementById("howToCol").classList.remove("active");
         document.getElementById("howToCol").nextElementSibling.style.maxHeight = null;
 
-        removeGraphs();
-
         if (res == 'lad'){
             document.getElementById("ladDoc").style.display = "block";
             multi_line_graph("/g_mobility/"+id+".csv", "#graphGMS");

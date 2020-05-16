@@ -126,6 +126,7 @@ function deselect() {
     document.getElementById('hoverText').innerHTML = '';
     document.getElementById('ladDoc').style.display = 'none';
     document.getElementById('hboDoc').style.display = 'none';
+    removeGraphs();
 
 }
 
@@ -284,6 +285,8 @@ function select_from_dropdown(){
 
 // select a map area
 function select(d) {
+
+    removeGraphs();
     // get the id of the selected map area
     var id = "#" + d.id;
     // remove the selected class from any other selected areas
