@@ -49,7 +49,6 @@ function graph_init(res, id){
 
             var health_board = hboDistricts[id];
 
-            singe_line_graph("/hbo/" + health_board + "_hospital_all.csv", "#hospital_allGraph", "Total Hospital Patients");
             singe_line_graph("/hbo/" + health_board + "_icu.csv", "#icuGraph", "ICU Patients");
             singe_line_graph("/hbo/" + health_board + "_hospital_covid.csv", "#hospital_covidGraph", "Total Hospital COVID-19 patients");
             singe_line_graph("/hbo/" + health_board + "_cases.csv", "#casesGraph", "Total Cumulative COVID-19 Patients");

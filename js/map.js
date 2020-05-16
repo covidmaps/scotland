@@ -25,6 +25,10 @@ TODO:
  [X] Add dropdown for map district select
  [X] Make select box flush
  [X] Add explanation of colour grading in intro
+ [] Remove total hospital patients graph in HBO
+ [] Rephrase “Total” in the bottom table. It should be called “Total Deaths (All causes)”
+ [] Add new headline at the top that tells you how many people have died from Covid-19 in each LAD
+ [] Fix the blue colouring to border not fill color 
 */
 
 // get the width of the area we're displaying in
