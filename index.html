@@ -129,16 +129,8 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>
         <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
-
-        <script>
-        // Check for mobile user agent
-        function isMobileDevice() {
-            return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-        };
-        if (isMobileDevice()) {
-            alert("Sorry this website is currently not supported on this device. For best experience try on a desktop browser.");
-        }
-        </script>
+        
+        <script src="js/filter.js"></script>
         <script src="js/map.js"></script>
         <script src="js/lads.js"></script>
         <script src="js/form.js"></script>
