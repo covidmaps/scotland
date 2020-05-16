@@ -27,7 +27,7 @@ TODO:
  [X] Add explanation of colour grading in intro
  [X] Remove total hospital patients graph in HBO
  [X] Rephrase “Total” in the bottom table. It should be called “Total Deaths (All causes)”
- [] Add new headline at the top that tells you how many people have died from Covid-19 in each LAD
+ [X] Add new headline at the top that tells you how many people have died from Covid-19 in each LAD
  [] Fix the blue colouring to border not fill color
 */
 
@@ -185,6 +185,24 @@ function init(width, height) {
         .on('click', deselect);
 }
 
+// Populate the death toll
+function populate_deathToll(id){
+
+    // Get colour of district
+    g.selectAll(".area").each(function(d) {
+        if (id == d3.select(this).attr('id')){
+            district_color = d3.select(this).attr('fill');
+        }
+    });
+
+    // Update text
+    var deathTollText = mapStats["covid_deaths_total"][id];
+    document.getElementById('deathTollText').innerHTML = deathTollText;
+
+    // Update background
+    document.getElementById('deathToll').style.backgroundColor = district_color;
+}
+
 // create a HTML table to display any properties about the selected item
 function create_table(properties, id)
 {
@@ -244,8 +262,8 @@ function show_data(properties, id) {
                 // Give Doc Name
                 document.getElementById('graphTitleLAD').innerHTML = idToName[id];
 
-                // remove any existing graphs
-                d3.select("#graph").select("svg").remove();
+                // Populate total deaths box
+                populate_deathToll(id);
 
                 graph_init(res, id);
 
