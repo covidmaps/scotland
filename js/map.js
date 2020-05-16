@@ -1,6 +1,9 @@
 /*
 TODO:
  [] Fix the blue colouring to border not fill color
+ [] delete dummyCSV files
+ [] delete all root csv
+ [] dont delete ipynb files
 */
 
 // get the width of the area we're displaying in
