@@ -39,7 +39,7 @@ function graph_init(res, id){
 
         if (res == 'lad'){
             document.getElementById("ladDoc").style.display = "block";
-            multi_line_graph("/g_mobility/"+id+".csv", "#graphGMS");
+            multi_line_graph("/g_mobility/"+id+".csv", "#graphGMS", id);
             singe_line_graph("/lad/total_covid_deaths/"+ id+ ".csv", "#covidDTGraph", "Total Covid Deaths");
             bar_graph("/lad/loc_deaths/"+id+".csv", "#barGraph");
         }
@@ -189,7 +189,7 @@ function singe_line_graph(file, graphID, graphName){
 
 }
 
-function multi_line_graph(file, graphID){
+function multi_line_graph(file, graphID, id){
 
     // show google dropdown select
     d3.select("#selectButton").style("display", "block");
@@ -364,7 +364,7 @@ function multi_line_graph(file, graphID){
                 .y(function(d) { return y(+d.value) })
               )
 
-          svg.select("#lgndText").remove();
+          // Update legend chosen region circle colour
           svg.append("circle").transition()
               .duration(1000)
               .attr("id","lgndCircle")
@@ -372,14 +372,9 @@ function multi_line_graph(file, graphID){
               .attr("cy",height+80)
               .attr("r", 6)
               .style("fill", myColor(selectedGroup));
-          svg.append("text")
-            .attr("id", "lgndText")
-            .attr("x", width/2-40)
-            .attr("y", height+85)
-            .text(dict2[selectedGroup])
-            .style("font-size", "15px")
-            .attr("alignment-baseline","middle");
         }
+
+        // Legend chosen region
         svg.append("circle").transition()
             .duration(1000)
             .attr("id","lgndCircle")
@@ -392,13 +387,15 @@ function multi_line_graph(file, graphID){
           .attr("id", "lgndText")
           .attr("x", width/2-40)
           .attr("y", height+85)
-          .text(dict2[allGroup[0]])
+          .text(idToName[id])
           .style("font-size", "15px")
           .attr("alignment-baseline","middle");
 
+        // Legend 'UK Avg'
         svg.append("circle").attr("cx",25).attr("cy",height+80).attr("r", 6).style("fill", "#666666");
         svg.append("text").attr("x", 35).attr("y", height+85).text("UK Avg").style("font-size", "15px").attr("alignment-baseline","middle");
 
+        // Legend 'Lockdown Begins'
         svg.append("circle").attr("cx",25).attr("cy",height+100).attr("r", 6).style("fill", "#ff867b");
         svg.append("text").attr("x", 35).attr("y", height+105).text("Lockdown Begins").style("font-size", "15px").attr("alignment-baseline","middle");
 
