@@ -1,6 +1,7 @@
 /*
 TODO:
     [] Add disclaimer in 'How it works' section
+    [] Remove gridlines (?)
 */
 
 // get the width of the area we're displaying in
