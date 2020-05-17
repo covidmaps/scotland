@@ -241,6 +241,7 @@ function singe_line_graph(file, graphID, graphName)
     })
 
 }
+
 // Function 3.6
 // Generate a multi-line graph with a dropdown
 function multi_line_graph(file, graphID, id)
