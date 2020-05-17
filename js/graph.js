@@ -26,7 +26,7 @@ function graph_init(res, id)
             document.getElementById("ladDoc").style.display = "block";
 
             // Google mobility graph
-            multi_line_graph("/g_mobility/"+id+".csv", "#graphGMS");
+            multi_line_graph("/g_mobility/"+id+".csv", "#graphGMS", id);
 
             // Total COVID-19 deaths per week graph
             singe_line_graph("/lad/total_covid_deaths/" + id + ".csv",
