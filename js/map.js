@@ -234,7 +234,7 @@ function create_table(properties, id)
                     (mapStats[covidKeys[i]][id]/mapStats[totalKeys[i]][id])*100;
 
             // Round the percentage to 2 decimal places
-            var ratio = Number(Math.round(+'e2')+'e-2');
+            var ratio = Number(Math.round(percentage+'e2')+'e-2');
             if (Number.isNaN(ratio))
             {
                 ratios.push('0');
