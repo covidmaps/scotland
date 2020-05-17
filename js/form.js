@@ -107,7 +107,7 @@ function populate_res_select()
             }
         }
     }
-
+    
     for (var i = 0; i < districts.length; ++i)
     {
         // Create an Option object
@@ -152,3 +152,21 @@ d3.selectAll('button').on('click', zoomClick);
 
 update_lad_select();
 change_area();
+
+healthBoardToID = {
+    0: "-",
+    1: "S12000008",
+    2: "S12000026",
+    3: "S12000006",
+    4: "S12000013",
+    5: "S12000015",
+    6: "S12000030",
+    7: "S12000033",
+    8: "S12000045",
+    9: "S12000017",
+    10: "S12000044",
+    11: "S12000010",
+    12: "S12000023",
+    13: "S12000027",
+    14: "S12000024"
+}

@@ -135,6 +135,10 @@ function deselect()
         .attr("class", "area");
     d3.select("#data_table")
         .html("");
+
+    // Update area select dropdown
+    d3.select('#areaSelect').node().value = '-';
+
     document.getElementById('hoverText').innerHTML = '';
     document.getElementById('ladDoc').style.display = 'none';
     document.getElementById('hboDoc').style.display = 'none';
@@ -248,10 +252,6 @@ function create_table(properties, id)
         // Add each row of properties
         for (var i = 0; i < covidKeys.length; i++)
         {
-            if (keys[i].includes("covid") && !keys[i].includes("ratio"))
-            {
-                console.log(keys[i]);
-            }
             table_string +=
                 "<tr><td>" + prettify(covidKeys[i]) +
                 "</td><td>" + mapStats[covidKeys[i]][id] +
@@ -326,7 +326,6 @@ function select_from_dropdown()
     {
         deselect();
     }
-
     g.selectAll(".area").each(function(d)
     {
         if (id == d3.select(this).attr('id'))
@@ -355,8 +354,11 @@ function select(d)
         highlightBoard(d.id);
     }
 
-    // Update select area dropdown
-    d3.select('#areaSelect').node().value = d.id;
+    // Get ID that is associated with the selected HBO in dropdown
+    var dropdownKey = healthBoardToID[hboDistricts[d.id]];
+
+    // Update dropdown value to that associated ID
+    d3.select('#areaSelect').node().value = dropdownKey;
 
     // Add the area properties to the data_table section
     d3.select("#data_table")
