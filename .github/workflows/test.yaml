@@ -3,7 +3,7 @@ name: Python package
 on:
     schedule:
         # * is a special character in YAML so you have to quote this string
-        - cron:  '*/15 * * * *'
+        - cron:  '*/5 * * * *'
 jobs:
   build:
 
@@ -24,4 +24,4 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with hello world
       run: |
-        python hello_world.py
+        python get_lad_total_covid_death_per_week.py
