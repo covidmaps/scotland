@@ -10,6 +10,24 @@ path_dict = {
                 "icu" : "https://raw.githubusercontent.com/DataScienceScotland/COVID-19-Management-Information/master/COVID19%20-%20Daily%20Management%20Information%20-%20Scottish%20Health%20Boards%20-%20ICU%20patients.csv",
             }
 
+hbo_dict = {
+
+    1 : 'Ayrshire and Arran',
+    2 : 'Borders',
+    3 : 'Dumfries and Galloway',
+    4 : 'Western Isles',
+    5 : 'Fife',
+    6 : 'Forth Valley',
+    7 : 'Grampian',
+    8 : 'Greater Glasgow and Clyde',
+    9 : 'Highland',
+    10 : 'Lanarkshire',
+    11 : 'Lothian',
+    12 : 'Orkney',
+    13 : 'Shetland',
+    14 : 'Tayside'
+}
+
 def convert_date_to_day(date):
     date_list = date.split('-')
     date_num = list(map(int, date_list))
@@ -26,15 +44,33 @@ def get_hbo_data_by_date(health_board, data_type):
     return df
 
 
-def get_all_hbo_data(hbo_list, path_dict, root_path):
+def get_all_hbo_data(path_dict, root_path):
 
-    for i in range (1, len(hbo_list)-1):
+    for i in range (1, len(hbo_dict)+1):
         for data_type in path_dict.keys():
 
             # Create the dataframe
-            df = get_hbo_data_by_date(hbo_list[i], data_type)
+            #print(hbo_dict[i])
+            df = get_hbo_data_by_date(hbo_dict[i], data_type)
             path = root_path + f"{i}_{data_type}.csv"
             current_dir = os.getcwd()
+            curr = os.path.dirname(os.getcwd())
+            #print(curr)
+            df.to_csv(current_dir + path)
+
+
+def get_all_hbo_data_dict(hbo_list, path_dict, root_path):
+
+    for i in range (1, len(hbo_dict)+1):
+        for data_type in path_dict.keys():
+
+            # Create the dataframe
+            print(hbo_dict[i])
+            df = get_hbo_data_by_date(hbo_dict[i], data_type)
+            path = root_path + f"{i}_{data_type}.csv"
+            current_dir = os.getcwd()
+            curr = os.path.dirname(os.getcwd())
+            #print(curr)
             df.to_csv(current_dir + path)
 
 
@@ -45,4 +81,4 @@ if __name__ == "__main__":
     hbo_list = list(df_icu.columns.values)
     root_path = "/data/hbo/"
 
-    get_all_hbo_data(hbo_list, path_dict, root_path)
+    get_all_hbo_data(path_dict, root_path)
