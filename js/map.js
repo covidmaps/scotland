@@ -2,6 +2,7 @@
 TODO:
     [] Add disclaimer in 'How it works' section
     [] Remove gridlines (?)
+    [] Add national totals
 */
 
 // get the width of the area we're displaying in

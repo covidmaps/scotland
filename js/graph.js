@@ -241,12 +241,10 @@ function singe_line_graph(file, graphID, graphName)
     })
 
 }
-
 // Function 3.6
 // Generate a multi-line graph with a dropdown
-function multi_line_graph(file, graphID)
+function multi_line_graph(file, graphID, id)
 {
-
     // Show google dropdown select
     d3.select("#selectButton").style("display", "block");
 
@@ -439,8 +437,7 @@ function multi_line_graph(file, graphID)
                 .y(function(d) { return y(+d.value) })
               )
 
-          // Update legend
-          svg.select("#lgndText").remove();
+          // Update legend chosen region circle colour
           svg.append("circle").transition()
               .duration(1000)
               .attr("id","lgndCircle")
@@ -448,13 +445,6 @@ function multi_line_graph(file, graphID)
               .attr("cy",height+80)
               .attr("r", 6)
               .style("fill", myColor(selectedGroup));
-          svg.append("text")
-            .attr("id", "lgndText")
-            .attr("x", width/2-40)
-            .attr("y", height+85)
-            .text(dict2[selectedGroup])
-            .style("font-size", "15px")
-            .attr("alignment-baseline","middle");
         }
 
         // Add legend (selected area)
@@ -470,7 +460,7 @@ function multi_line_graph(file, graphID)
           .attr("id", "lgndText")
           .attr("x", width/2-40)
           .attr("y", height+85)
-          .text(dict2[allGroup[0]])
+          .text(idToName[id])
           .style("font-size", "15px")
           .attr("alignment-baseline","middle");
 
