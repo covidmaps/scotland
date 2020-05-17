@@ -1,6 +1,6 @@
 /*
 TODO:
-    [] Add disclaimer in 'How it works' section
+    [X] Add disclaimer in 'How it works' section
     [] Remove gridlines (?)
     [] Add national totals
 */
