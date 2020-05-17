@@ -1,7 +1,7 @@
 name: Python package
 
 on:
-    shedule:
+    schedule:
         - cron:'*/5 * * * *'
 jobs:
   build:
