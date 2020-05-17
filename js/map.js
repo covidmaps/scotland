@@ -1,9 +1,5 @@
 /*
 TODO:
- [] Fix the blue colouring to border not fill color
- [] delete dummyCSV files
- [] delete all root csv
- [] dont delete ipynb files
 */
 
 // get the width of the area we're displaying in
@@ -39,6 +35,7 @@ var zoom = d3.behavior.zoom()
     .scaleExtent([1, 8])
     .on("zoom", zoomed);
 
+// Controls the zoom from the '+' and '-' buttons
 function zoomedBUTTON() {
     g.attr("transform",
         "translate(" + zoom.translate() + ")" +
@@ -46,6 +43,7 @@ function zoomedBUTTON() {
     );
 }
 
+// Controls the zoom when scrolling
 function zoomed() {
   g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 }
@@ -64,6 +62,7 @@ function interpolateZoom (translate, scale) {
    });
 }
 
+// Controls the zoom when double clicked
 function zoomClick() {
    var clicked = d3.event.target,
        direction = 1,
