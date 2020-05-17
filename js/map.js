@@ -1,9 +1,6 @@
 /*
 TODO:
- [X] Fix the blue colouring to border not fill color
- [X] delete dummyCSV files
- [X] delete all root csv
- [X] dont delete ipynb files
+    [] Add national totals
 */
 
 // get the width of the area we're displaying in
