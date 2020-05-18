@@ -109,11 +109,11 @@ function transform()
 }
 
 // Function 2.5
-// Import and read the required JSON file
+// Import and read the required data file
 function readJSON(file)
 {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://raw.githubusercontent.com/covidmaps/scotland/master/json/sco/"+ /*res*/ file +".json", false ); // false for synchronous request
+    xmlHttp.open( "GET", "https://raw.githubusercontent.com/covidmaps/scotland/master/data/lad/"+ file +".json", false ); // false for synchronous request
     xmlHttp.send( null );
     mapStats = JSON.parse(xmlHttp.responseText);
 }
@@ -637,7 +637,7 @@ function load_data(filename, u)
     deselect();
 
     //Import the map data
-    readJSON("new_test3");
+    readJSON("table_data");
 
     //Import the array of interpolated colors
     interpolated =
