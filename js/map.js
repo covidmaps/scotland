@@ -234,7 +234,7 @@ function create_table(properties, id)
                     (mapStats[covidKeys[i]][id]/mapStats[totalKeys[i]][id])*100;
 
             // Round the percentage to 2 decimal places
-            var ratio = Number(Math.round(percentage+'e2')+'e-2');
+            var ratio = Math.round(percentage);
             if (Number.isNaN(ratio))
             {
                 ratios.push('0');
@@ -247,7 +247,7 @@ function create_table(properties, id)
         // Add column headers
         table_string += "<th>Property</th><th>COVID-19</th>"
         table_string += "<th>Total Deaths (All causes)</th>"
-        table_string += "<th>Ratio of COVID-19 to Total (%)</th>";
+        table_string += "<th>Ratio of COVID-19 to Total</th>";
 
         // Add each row of properties
         for (var i = 0; i < covidKeys.length; i++)
@@ -256,7 +256,7 @@ function create_table(properties, id)
                 "<tr><td>" + prettify(covidKeys[i]) +
                 "</td><td>" + mapStats[covidKeys[i]][id] +
                 "</td><td>" + mapStats[totalKeys[i]][id] +
-                "</td><td>" + ratios[i] +
+                "</td><td>" + ratios[i] +  '%' +
                 "</td></tr>";
         }
     }
