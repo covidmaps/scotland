@@ -4,6 +4,7 @@ import zipfile
 from io import BytesIO
 from zipfile import ZipFile
 from urllib.request import urlopen
+from urllib.error import HTTPError
 import datetime
 import urllib.request, urllib.error
 import os.path
@@ -27,21 +28,24 @@ def get_total_num_covid_deaths_per_week(path):
 
     week_num = get_week_num()-1
     url = path + "covid-deaths-data-week-%d.zip" % week_num
-    conn = urllib.request.urlopen(url)
+    try:
+        conn = urllib.request.urlopen(url)
+        if conn.getcode() == 200:
 
-    if conn.getcode() == 200:
+            zipfile = ZipFile(BytesIO(conn.read()))
+            data_table_path = 'covid-deaths-data-week-%d_Table 1 - COVID deaths.csv' % week_num
+            print(data_table_path)
+            idx_start = np.where(df_covid_deaths['Unnamed: 1'] == 'Aberdeen City')[0][0]
+            idx_end = idx_start + 32
+            df_covid_deaths_trimmed = df_covid_deaths.iloc[idx_start:idx_end,1:week_num+2]
+            df_covid_deaths_trimmed = df_covid_deaths_trimmed.set_index('Unnamed: 1')
 
-        zipfile = ZipFile(BytesIO(conn.read()))
-        data_table_path = 'covid-deaths-data-week-%d_Table 1 - COVID deaths.csv' % week_num
-        print(data_table_path)
-        df_covid_deaths = pd.read_csv(zipfile.open(data_table_path),header = 3, encoding='unicode-escape')
-        idx_start = np.where(df_covid_deaths['Unnamed: 1'] == 'Aberdeen City')[0][0]
-        idx_end = idx_start + 32
-        df_covid_deaths_trimmed = df_covid_deaths.iloc[idx_start:idx_end,1:week_num+2]
-        df_covid_deaths_trimmed = df_covid_deaths_trimmed.set_index('Unnamed: 1')
-
-        return df_covid_deaths_trimmed
-
+            return df_covid_deaths_trimmed
+    
+    # Catch error and print to shell
+    except urllib.error.HTTPError as err:
+        print("HTTP Error: " + str(err.code))
+    
 
 def get_total_deaths_for_lad(df_covid_deaths_per_week, lad_name):
 
@@ -68,7 +72,12 @@ def populate_total_num_covid_deaths_per_week(df_covid_deaths_per_week, lad_dict,
 def wrapper():
 
     df_covid_deaths_per_week = get_total_num_covid_deaths_per_week(path)
-    populate_total_num_covid_deaths_per_week(df_covid_deaths_per_week, lad_dict, '/data/lad/total_covid_deaths/')
+
+    # Only continue with data handling if data was successfuly retrieved
+    if (df_covid_deaths_per_week is None):
+        print ("Stopping Execution")
+    else:
+        populate_total_num_covid_deaths_per_week(df_covid_deaths_per_week, lad_dict, '/data/lad/total_covid_deaths/')
 
 
 if __name__ == "__main__":
