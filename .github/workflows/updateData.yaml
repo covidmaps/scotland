@@ -25,7 +25,3 @@ jobs:
     - name: update LAD data
       run: |
         python get_lad_total_covid_death_per_week.py
-   # - name: update HBO data
-   #   run: |
-   #     python hbo_daily.py
-         	
