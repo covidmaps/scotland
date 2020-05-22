@@ -35,17 +35,18 @@ def get_total_num_covid_deaths_per_week(path):
             zipfile = ZipFile(BytesIO(conn.read()))
             data_table_path = 'covid-deaths-data-week-%d_Table 1 - COVID deaths.csv' % week_num
             print(data_table_path)
+            df_covid_deaths = pd.read_csv(zipfile.open(data_table_path),header = 3, encoding='unicode-escape')
             idx_start = np.where(df_covid_deaths['Unnamed: 1'] == 'Aberdeen City')[0][0]
             idx_end = idx_start + 32
             df_covid_deaths_trimmed = df_covid_deaths.iloc[idx_start:idx_end,1:week_num+2]
             df_covid_deaths_trimmed = df_covid_deaths_trimmed.set_index('Unnamed: 1')
 
             return df_covid_deaths_trimmed
-    
+
     # Catch error and print to shell
     except urllib.error.HTTPError as err:
         print("HTTP Error: " + str(err.code))
-    
+
 
 def get_total_deaths_for_lad(df_covid_deaths_per_week, lad_name):
 
