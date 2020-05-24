@@ -46,6 +46,12 @@ function graph_init(res, id)
             var health_board = hboDistricts[id];
 
             // Total ICU Patients graph
+            singe_line_graph("/hbo/" + health_board + "_new_cases.csv",
+                                "#newCasesGraph",
+                                "New Cases"
+                            );
+
+            // Total ICU Patients graph
             singe_line_graph("/hbo/" + health_board + "_icu.csv",
                                 "#icuGraph",
                                 "ICU Patients"
@@ -95,6 +101,7 @@ function removeGraphs()
     d3.select("#hospital_covidGraph").select("svg").remove();
     d3.select("#casesGraph").select("svg").remove();
     d3.select("#barGraph").select("svg").remove();
+    d3.select("#newCasesGraph").select("svg").remove();
 }
 
 // Function 3.5
