@@ -90,13 +90,18 @@ def convert_all_types(df_all):
 def wrapper():
 
     week = get_week_num()
-    df_death_locations_trimmed = get_death_locations_df(path, 20)
+    #df_death_locations_trimmed = get_death_locations_df(path, 20)
 
 
     df_all = create_all_data_df(path)
-    df_all = convert_all_types(df_all)
+    df_send = convert_all_types(df_all)
 
 
     headings = ['lad', 'covid_deaths_carehome', 'covid_deaths_non-institution', 'covid_deaths_hospital', 'covid_deaths_other', 'covid_deaths_total', 'all_deaths_carehome', 'all_deaths_non-institution', 'all_deaths_hospital', 'all_deaths_other', 'all_deaths_total']
     df_all[headings].replace({',':''}, regex=True)
-    df_all.to_json('data/lad/table_data.json')
+    df_send.to_json('data/lad/table_data.json')
+
+
+if __name__ == "__main__":
+
+    wrapper()
