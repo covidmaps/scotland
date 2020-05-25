@@ -1,4 +1,4 @@
-name: Update HBO Data
+name: Update HBO Daily Data
 
 on:
     schedule:
