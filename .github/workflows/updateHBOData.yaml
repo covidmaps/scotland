@@ -25,9 +25,6 @@ jobs:
     - name: run HBO daily
       run: |
         python hbo_daily.py
-    - name: run HBO new cases
-      run: |
-        python get_hbo_new_cases.py
     - name: Commit files
       run: |
         git config --local user.email "calummcmeekin@me.com"
