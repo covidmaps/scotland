@@ -348,15 +348,19 @@ function select(d)
     d3.select(id)
         .attr("class", "selected area")
 
+    var dropdownKey;
     // If HBO selected then highlight all other districts in that area
     if (res == 'hbo')
     {
         highlightBoard(d.id);
+
+        // Get ID that is associated with the selected HBO in dropdown
+        dropdownKey = healthBoardToID[hboDistricts[d.id]];
     }
-
-    // Get ID that is associated with the selected HBO in dropdown
-    var dropdownKey = healthBoardToID[hboDistricts[d.id]];
-
+    else
+    {
+        dropdownKey = d.id;
+    }
     // Update dropdown value to that associated ID
     d3.select('#areaSelect').node().value = dropdownKey;
 
