@@ -377,7 +377,23 @@ function multi_line_graph(file, graphID, id)
                 return y(+d.uk_retail_and_recreation_percent_change_from_baseline)
                 })
                 )
-                .attr("stroke", "#ff867b")
+                .attr("stroke", "#b14d49")
+                .style("stroke-width", 2)
+                .style("fill", "none");
+
+        // Add line for when phase 1 began
+        var linePhaseOne = svg
+            .append("g")
+            .append("path")
+              .datum(data)
+              .attr("d", d3.line()
+                .x(function(d) { return x('144') })
+                .y(function(d)
+                {
+                return y(+d.uk_retail_and_recreation_percent_change_from_baseline)
+                })
+                )
+                .attr("stroke", "#ff564f")
                 .style("stroke-width", 2)
                 .style("fill", "none");
 
@@ -445,6 +461,15 @@ function multi_line_graph(file, graphID, id)
                 .y(function(d) { return y(+d.value) })
               )
 
+          // Update phase 1 line
+          linePhaseOne.datum(dataFilterBase)
+              .transition()
+              .duration(1000)
+              .attr("d", d3.line()
+                .x(function(d) { return x('144') })
+                .y(function(d) { return y(+d.value) })
+              )
+
           // Update legend chosen region circle colour
           svg.append("circle").transition()
               .duration(1000)
@@ -490,11 +515,24 @@ function multi_line_graph(file, graphID, id)
             .attr("cx",25)
             .attr("cy",height+100)
             .attr("r", 6)
-            .style("fill", "#ff867b");
+            .style("fill", "#b14d49");
         svg.append("text")
             .attr("x", 35)
             .attr("y", height+105)
             .text("Lockdown Begins")
+            .style("font-size", "15px")
+            .attr("alignment-baseline","middle");
+
+        // Update legend (Phase 1 begins)
+        svg.append("circle")
+            .attr("cx",width/2-50)
+            .attr("cy",height+100)
+            .attr("r", 6)
+            .style("fill", "#ff564f");
+        svg.append("text")
+            .attr("x", width/2-40)
+            .attr("y", height+105)
+            .text("Phase 1 Begins")
             .style("font-size", "15px")
             .attr("alignment-baseline","middle");
 
