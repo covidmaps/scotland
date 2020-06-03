@@ -21,7 +21,6 @@ function graph_init(res, id)
 
         if (res == 'lad')
         {
-
             // Display the new doc
             document.getElementById("ladDoc").style.display = "block";
 
@@ -31,13 +30,13 @@ function graph_init(res, id)
             // Total COVID-19 deaths per week graph
             singe_line_graph("/lad/total_covid_deaths/" + id + ".csv",
                                 "#covidDTGraph",
-                                "Total Covid Deaths"
+                                "Total Covid-19 Deaths"
                             );
 
             // Total COVID-19 deaths by location
             bar_graph("/lad/loc_deaths/"+id+".csv", "#barGraph");
         }
-        else
+        if (res == 'hbo')
         {
             // Display the new doc
             document.getElementById("hboDoc").style.display = "block";
@@ -67,6 +66,22 @@ function graph_init(res, id)
             singe_line_graph("/hbo/" + health_board + "_cases.csv",
                                 "#casesGraph",
                                 "Total Cumulative COVID-19 Patients");
+        }
+        if (res == 'nat')
+        {
+            // Display the new doc
+            document.getElementById("natDoc").style.display = "block";
+
+            document.getElementById('deathTollTextNAT').innerHTML = "2100";
+
+            // Get selected health board
+            var health_board = hboDistricts["S12000027"];
+
+            // Total ICU Patients graph
+            singe_line_graph("/hbo/" + health_board + "_new_cases.csv",
+                                "#totalCovidCases",
+                                "New Cases"
+                            );
         }
     }
 
@@ -102,6 +117,7 @@ function removeGraphs()
     d3.select("#casesGraph").select("svg").remove();
     d3.select("#barGraph").select("svg").remove();
     d3.select("#newCasesGraph").select("svg").remove();
+    d3.select("#totalCovidCases").select("svg").remove();
 }
 
 // Function 3.5

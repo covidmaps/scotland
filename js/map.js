@@ -142,6 +142,7 @@ function deselect()
     document.getElementById('hoverText').innerHTML = '';
     document.getElementById('ladDoc').style.display = 'none';
     document.getElementById('hboDoc').style.display = 'none';
+    document.getElementById('natDoc').style.display = 'none';
 
 }
 
@@ -279,7 +280,7 @@ function show_data(properties, id)
     d3.select("#selectButton").style("display", "none");
 
     // Only proceed if a district has been selected
-    if (id != null)
+    if (id != null || res == "nat")
     {
         if (res == 'lad')
         {
@@ -294,13 +295,22 @@ function show_data(properties, id)
 
                 return create_table(properties, id);
         }
-        else
+        if (res == "hbo")
         {
             // Give Doc Name
             document.getElementById('graphTitleHBO').innerHTML = idToHBO[id];
 
             // Construct required graphs (calling function 3.1)
             graph_init(res, id);
+        }
+        // If selected res is 'nat' then load 'nat' form
+        if (res == "nat")
+        {
+            // Give Doc Name
+            document.getElementById('graphTitleNAT').innerHTML = "Scotland";
+
+            // Construct required graphs (calling function 3.1)
+            graph_init(res, "blank");
         }
     }
 
@@ -423,17 +433,29 @@ function toggle_doc()
     var criteria_chooser = document.getElementById("criteria");
     var ladDoc = document.getElementById("ladDoc");
     var hboDoc = document.getElementById("hboDoc");
+    var natDoc = document.getElementById("natDoc");
     var criteria_box = document.getElementById("criteriaBox");
 
-    if (res === 'hbo') {
-        criteria_chooser.style.display = "none";
-        criteria_box.style.display = "none";
-        ladDoc.style.display="none";
-    }
-    else {
+    if (res === 'lad')
+    {
         criteria_chooser.style.display = "inline-block";
         criteria_box.style.display = "inline-block";
         hboDoc.style.display="none";
+        natDoc.style.display="none";
+    }
+    if (res == "hbo")
+    {
+        criteria_chooser.style.display = "none";
+        criteria_box.style.display = "none";
+        ladDoc.style.display="none";
+        natDoc.style.display="none";
+    }
+    if (res === 'nat')
+    {
+        criteria_chooser.style.display = "inline-block";
+        criteria_box.style.display = "inline-block";
+        hboDoc.style.display="none";
+        ladDoc.style.display="none";
     }
 }
 
@@ -516,7 +538,7 @@ function sort()
 // Goes through each district and assigns correct colour
 function colourMap()
 {
-    if (res == "lad")
+    if (res != "hbo")
     {
         g.selectAll(".area").each(function(d)
         {

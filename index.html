@@ -97,27 +97,40 @@
                 <section id="casesGraph"></section>
                 <a href="https://www.gov.scot/publications/coronavirus-covid-19-trends-in-daily-data/" target="_blank"> <p class='src'> All data obtained from the Scottish Government </p></a>
             </div>
+            <div id="natDoc" class = "doc">
+                <h2 id="reportTitleNAT">Data Report - <strong id="graphTitleNAT" class = "graphTitle"></strong></h2>
+                <h3>Total COVID-19 Deaths</h3>
+                <div id="deathTollNAT" class="deathToll"> <p id="deathTollTextNAT"></p></div>
+                <h3>Total Number of New COVID-19 Cases per Day</h3>
+                <section id="totalCovidCases"></section>
+                <h3>Total ICU Patients (confirmed or suspected of COVID-19)</h3>
+                <p style="font-size:12px"> No data is shown if the number is less than 5. </p>
+                <a href="https://www.gov.scot/publications/coronavirus-covid-19-trends-in-daily-data/" target="_blank"> <p class='src'> All data obtained from the Scottish Government </p></a>
+            </div>
         </div>
 
         <div id="right_column">
             <div class="overlay">
                 <div class = "selectMenu">
                     <div class = "left_side">
-                        <h4 style="text-align: center;"> Local Authority vs Health Board <br>
+                        <h4 style="text-align: center;"> Resolution <br>
                             <select name="resolution" id="resolution" class="round" style="margin-left:0%">
                                 <option value="lad">Local Authority Districts</option>
                                 <option value="hbo">Health Boards</option>
+                                <option value="nat">National</option>
                             </select>
                             </h4>
-                            <p style="text-align: center; margin-left:2%"> Selected Area <br>
-                            <select name="areaSelect" id="areaSelect" class="round" style="margin-left:9%">
-                            </select>
+                            <div id="selectedArea">
+                                <p style="text-align: center; margin-left:2%"> Selected Area <br>
+                                <select name="areaSelect" id="areaSelect" class="round" style="margin-left:9%">
+                                </select>
+                            </div>
                         </p>
                     </div>
                     <div class ="mid_side">
                         <div id="criteriaBox">
                             <h4 style="text-align: center"> Grade The Nation By A Data Metric </h4>
-                            <!-- <p> Select a Covid-19 metric and watch the map change color. -->
+                            <!-- Select a Covid-19 metric and watch the map change color. -->
                             <select name="criteria" id="criteria" class="round" style="margin-top:3%">
                                 <option value="ratio_total_death_covid">Ratio of COVID-19 Deaths To All Deaths</option>
                                 <option value="ratio_carehome_death_covid">Ratio of COVID-19 Care Home Deaths To All Carehome Deaths</option>

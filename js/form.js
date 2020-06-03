@@ -79,6 +79,8 @@ function clean_select()
 // Populate all options in the select menu
 function populate_res_select()
 {
+    document.getElementById('selectedArea').style.display = 'block';
+
     get_resolution();
     clean_select();
 
@@ -93,7 +95,7 @@ function populate_res_select()
         districts = districts.concat(districtList);
         keys = keys.concat(keysList);
     }
-    else
+    if (res == 'hbo')
     {
         var messyKeys = Object.keys(idToHBO);
 
@@ -107,7 +109,12 @@ function populate_res_select()
             }
         }
     }
-    
+    // Hide the 'Selected Area' dropdown as not needed
+    if (res == 'nat')
+    {
+        document.getElementById('selectedArea').style.display = 'none';
+    }
+
     for (var i = 0; i < districts.length; ++i)
     {
         // Create an Option object
@@ -134,6 +141,7 @@ d3.select("#top_level").on('change', function(){
 d3.select("#resolution").on('change', function(){
     change_area();
     populate_res_select();
+
 });
 
 d3.select("#areaSelect").on('change', function(){
