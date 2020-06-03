@@ -59,6 +59,34 @@ def get_all_hbo_data(path_dict, root_path):
             df.to_csv(current_dir + path)
 
 
+def get_total_hbo_cases(path_dict, root_path):
+    totals = {}
+
+    totalArray = []
+
+    for i in range (1, len(hbo_dict)+1):
+        df = get_hbo_data_by_date(hbo_dict[i], 'cases')
+
+        # Convert value from object to int for summing
+        df['value'] = df['value'].astype(str).astype(int)
+
+        # Add value to totalCases array
+        totalArray.append(df['value'].tail(1).sum())
+
+    # Total number of cases
+    totalCasesSum = np.sum(totalArray)
+    totals['cases'] = [totalCasesSum]
+
+
+    df_totals = pd.DataFrame(totals, columns = ['cases'])#, 'hospital_covid', 'hospital_all', 'icu'])
+
+    current_dir = os.getcwd()
+
+    df_totals.to_csv(current_dir + root_path + "totals.csv")
+
+    print (df_totals)
+
+
 def get_all_hbo_data_dict(hbo_list, path_dict, root_path):
 
     for i in range (1, len(hbo_dict)+1):
@@ -82,3 +110,4 @@ if __name__ == "__main__":
     root_path = "/data/hbo/"
 
     get_all_hbo_data(path_dict, root_path)
+    get_total_hbo_cases(path_dict, root_path)
