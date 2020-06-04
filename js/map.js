@@ -1,8 +1,8 @@
 /*
 TODO:
-    [X] Add disclaimer in 'How it works' section
-    [] Remove gridlines (?)
-    [] Add national totals
+    [X] Add national totals
+    [] Add national testing numbers
+    [] For NAT stop deselct from removing NAT doc
 */
 
 // get the width of the area we're displaying in
@@ -113,9 +113,9 @@ function transform()
 function readJSON(file)
 {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://raw.githubusercontent.com/covidmaps/scotland/master/data/lad/"+ file +".json", false ); // false for synchronous request
+    xmlHttp.open( "GET", "https://raw.githubusercontent.com/covidmaps/scotland/national-page/data/"+ file +".json", false ); // false for synchronous request
     xmlHttp.send( null );
-    mapStats = JSON.parse(xmlHttp.responseText);
+    return JSON.parse(xmlHttp.responseText);
 }
 
 // Function 2.6
@@ -200,6 +200,18 @@ function populate_deathToll(id)
 
     // Update background
     document.getElementById('deathToll').style.backgroundColor = district_color;
+}
+
+// Function 2.30
+// imports the NAT json and populates the stat boxes
+function populate_nat()
+{
+    natStats = readJSON("hbo/totals");
+
+    console.log(natStats['cases'][0])
+    document.getElementById('deathTollTextNAT').innerHTML = natStats['cases'][0];
+    document.getElementById('icuTextNAT').innerHTML = natStats['icu'][0];
+
 }
 
 // Function 2.10
@@ -311,6 +323,8 @@ function show_data(properties, id)
 
             // Construct required graphs (calling function 3.1)
             graph_init(res, "blank");
+
+            populate_nat();
         }
     }
 
@@ -663,7 +677,7 @@ function load_data(filename, u)
     deselect();
 
     //Import the map data
-    readJSON("table_data");
+    mapStats = readJSON("lad/table_data");
 
     //Import the array of interpolated colors
     interpolated =

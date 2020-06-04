@@ -72,15 +72,13 @@ function graph_init(res, id)
             // Display the new doc
             document.getElementById("natDoc").style.display = "block";
 
-            document.getElementById('deathTollTextNAT').innerHTML = "2100";
-
             // Get selected health board
-            var health_board = hboDistricts["S12000027"];
+            var health_board = hboDistricts["S12000018"];
 
             // Total ICU Patients graph
-            singe_line_graph("/hbo/" + health_board + "_new_cases.csv",
+            singe_line_graph("/hbo/daily_nat_totals.csv",
                                 "#totalCovidCases",
-                                "New Cases"
+                                "Daily Cases"
                             );
         }
     }
@@ -140,7 +138,7 @@ function singe_line_graph(file, graphID, graphName)
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
     // Read the data
-    d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/master/data"
+    d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/national-page/data"
             +file,
 
       // When reading the csv variables must be formatted
@@ -155,9 +153,9 @@ function singe_line_graph(file, graphID, graphName)
         // Add X axis - it is a date format
         var x = d3.scaleTime()
           .domain(d3.extent(data, function(d) { return d.date; }))
-          .range([ 0, width]);
+          .range([ 1, width]);
 
-        // LAD and HBO have different X axis scales
+        // LAD has different X axis scales
         if (res == 'lad')
         {
             // Add the X Axis
@@ -188,7 +186,7 @@ function singe_line_graph(file, graphID, graphName)
             .call(d3.axisBottom(x).ticks(10))
             .selectAll("text")
             .style("text-anchor", "end")
-            .attr("dx", "-.8em")
+            .attr("dx", "-.10em")
             .attr("dy", ".15em")
             .attr("transform", "rotate(-65)");
 
@@ -200,7 +198,6 @@ function singe_line_graph(file, graphID, graphName)
             .attr("y", height+60)
             .text("Day");
         }
-
 
         // Add the X gridlines
         svg.append("g")

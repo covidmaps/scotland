@@ -402,6 +402,7 @@ select:-moz-focusring {
     width:30%;
     padding:0;
     text-align: center;
+    padding-right:10px;
     color:black;
     font-size:40px;
     border-radius:10px;
