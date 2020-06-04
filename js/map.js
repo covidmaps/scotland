@@ -2,7 +2,9 @@
 TODO:
     [X] Add national totals
     [] Add national testing numbers
+    [] Add national death numbers
     [] For NAT stop deselct from removing NAT doc
+    [] Add note that NAT icu beds is not accurate given certain HBO's reporting '*'
 */
 
 // get the width of the area we're displaying in
