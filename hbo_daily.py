@@ -10,6 +10,8 @@ path_dict = {
                 "icu" : "https://raw.githubusercontent.com/DataScienceScotland/COVID-19-Management-Information/master/COVID19%20-%20Daily%20Management%20Information%20-%20Scottish%20Health%20Boards%20-%20ICU%20patients.csv",
             }
 
+path_test = "https://raw.githubusercontent.com/DataScienceScotland/COVID-19-Management-Information/master/COVID19%20-%20Daily%20Management%20Information%20-%20Scotland%20-%20Testing.csv"
+
 hbo_dict = {
 
     1 : 'Ayrshire and Arran',
@@ -76,7 +78,6 @@ def get_total_hbo_cases(path_dict, root_path):
         # On first run through create the array that will store all totals
         # for each day
         if (i == 1):
-            print (len(df.index))
             totalArray = np.zeros(len(df.index))
 
         # Convert value from object to int for summing
@@ -87,10 +88,7 @@ def get_total_hbo_cases(path_dict, root_path):
         # date with that of every health board and then saving the result as csv
         numpyDF = df.to_numpy()
         values = df['value'].to_numpy()
-        print ("VAL: " + str(values))
         totalArray = np.add(totalArray,values)
-        print ("TOT BEFORE: " + str(totalArray))
-        print ("TOT: " + str(totalArray))
 
         # Get total COVID-19 cases today
         lastTwo = df['value'].tail(2)
@@ -113,21 +111,57 @@ def get_total_hbo_cases(path_dict, root_path):
     newCasesTotalSum = np.sum(newCasesTotal)
     icuTotalsSum = np.sum(icuTotals)
 
+    # Get testing data
+    cum_pos_tests, cum_neg_test, cum_test, df_daily_tests, df_daily_pos =  get_test_data(path_dict, root_path)
+
     totals['cases'] = [totalCasesSum]
     totals['daily'] = [newCasesTotalSum]
     totals['icu'] = [icuTotalsSum]
+    totals['cum_pos_test'] = cum_pos_tests
+    totals['cum_neg_test'] = cum_neg_test
+    totals['cum_test'] = cum_test
 
     # Convert numpy arrays to panda's dataframes
-    df_totals = pd.DataFrame(totals, columns = ['cases', 'daily', 'icu'])
+    df_totals = pd.DataFrame(totals, columns = ['cases', 'daily', 'icu', 'cum_pos_test', 'cum_neg_test', 'cum_test'])
     df_daily_totals = pd.DataFrame(numpyDF, columns = ['date', 'value'])
 
     current_dir = os.getcwd()
 
-    print (df_daily_totals.dtypes)
-
     # Save dataframes
     df_daily_totals.to_csv(current_dir + root_path + "daily_nat_totals.csv")
+    df_daily_pos.to_csv(current_dir + root_path + "daily_pos.csv")
+    df_daily_tests.to_csv(current_dir + root_path + "daily_tests.csv")
     df_totals.to_json(current_dir + root_path + "totals.json")
+
+
+# Gets all the test data for Scotland
+def get_test_data(path_dict, root_path):
+    df = pd.read_csv(path_test)
+
+    df = df[['Date', "Testing - Cumulative people tested for COVID-19 - Negative", "Testing - Cumulative people tested for COVID-19 - Positive", "Testing - Cumulative people tested for COVID-19 - Total", "Testing - Daily people found positive"]]
+    df = df.rename(columns={'Date':'date', "Testing - Cumulative people tested for COVID-19 - Negative":'cum_neg_test', "Testing - Cumulative people tested for COVID-19 - Positive":'cum_pos_test', "Testing - Cumulative people tested for COVID-19 - Total":"cum_test", "Testing - Daily people found positive":"daily_pos_test"})
+
+    # Take the final value for the cumulative tests
+    cum_pos_tests = df['cum_pos_test'].tail(1).astype(str).astype(int).sum()
+    cum_neg_test = df['cum_neg_test'].tail(1).astype(str).astype(int).sum()
+    cum_test = df['cum_test'].tail(1).astype(str).astype(int).sum()
+
+    # return dataframe with just date and daily_pos_test fields
+    df_daily = df[['date', "cum_neg_test", "cum_pos_test"]]
+
+    df = df[['date', 'daily_pos_test']]
+    df['daily_pos_test'] = df['daily_pos_test'].astype(object)
+    df = df.rename(columns={'daily_pos_test':'value'})
+
+    df_daily['cum_neg_test'] = df_daily['cum_neg_test'].astype(object)
+    df_daily['cum_pos_test'] = df_daily['cum_pos_test'].astype(object)
+
+    df_daily = df_daily.drop(['date'], axis=1)
+
+    print (df)
+
+    return cum_pos_tests, cum_neg_test, cum_test, df_daily, df
+
 
 
 def get_all_hbo_data_dict(hbo_list, path_dict, root_path):

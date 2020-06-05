@@ -80,6 +80,19 @@ function graph_init(res, id)
                                 "#totalCovidCases",
                                 "Daily Cases"
                             );
+
+            // Total pos tests graph
+            singe_line_graph("/hbo/daily_pos.csv",
+                                "#totalCovidPosTests",
+                                "Daily Positive Tests"
+                            );
+            // Stacked bar plot for positive vs negative tests
+/*
+            stacked_bar_graph("/hbo/daily_pos.csv",
+                                "#stackedTests",
+                                "Stacked Tests"
+                            );
+                            */
         }
     }
 
@@ -116,6 +129,8 @@ function removeGraphs()
     d3.select("#barGraph").select("svg").remove();
     d3.select("#newCasesGraph").select("svg").remove();
     d3.select("#totalCovidCases").select("svg").remove();
+    d3.select("#totalCovidPosTests").select("svg").remove();
+    d3.select("#stackedTests").select("svg").remove();
 }
 
 // Function 3.5
@@ -630,6 +645,80 @@ function bar_graph(file, graphID)
 
     })
 
+}
+
+// Function 3.8
+// Generates a stacked bar graph
+function stacked_bar_graph(file, graphID)
+{
+    // set the dimensions and margins of the graph
+    var margin = {top: 10, right: 30, bottom: 20, left: 50},
+        width = 460 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    var svg = d3.select(graphID)
+      .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+
+    // Parse the Data
+    d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/national-page/data/hbo/daily_tests.csv", function(data) {
+
+      // List of subgroups = header of the csv files = soil condition here
+      var subgroups = data.columns.slice(1)
+
+      // List of groups = species here = value of the first column called group -> I show them on the X axis
+      var groups = d3.map(data, function(d){return(d.date)}).keys()
+
+      console.log(subgroups);
+
+      // Add X axis
+      var x = d3.scaleBand()
+          .domain(groups)
+          .range([0, width])
+          .padding([0.2])
+      svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x).tickSizeOuter(0));
+
+        console.log(d.key)
+      // Add Y axis
+      var y = d3.scaleLinear()
+        .domain([0, 200])
+        .range([ height, 0 ]);
+      svg.append("g")
+        .call(d3.axisLeft(y));
+
+      // color palette = one color per subgroup
+      var color = d3.scaleOrdinal()
+        .domain(subgroups)
+        .range(['#e41a1c','#377eb8','#4daf4a'])
+
+      //stack the data? --> stack per subgroup
+      var stackedData = d3.stack()
+        .keys(subgroups)
+        (data)
+
+      // Show the bars
+      svg.append("g")
+        .selectAll("g")
+        // Enter in the stack data = loop key per key = group per group
+        .data(stackedData)
+        .enter().append("g")
+          .attr("fill", function(d) { return color(d.key); })
+          .selectAll("rect")
+          // enter a second time = loop subgroup per subgroup to add all rectangles
+          .data(function(d) { return d; })
+          .enter().append("rect")
+            .attr("x", function(d) { return x(d.data.group); })
+            .attr("y", function(d) { return y(d[1]); })
+            .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+            .attr("width",x.bandwidth())
+    })
 }
 
 prettifyFilter = {

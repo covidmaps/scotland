@@ -213,7 +213,25 @@ function populate_nat()
     console.log(natStats['cases'][0])
     document.getElementById('deathTollTextNAT').innerHTML = natStats['cases'][0];
     document.getElementById('icuTextNAT').innerHTML = natStats['icu'][0];
+    document.getElementById('testsTotalTextNAT').innerHTML = natStats['cum_test'][0];
 
+    modifyTestLines(natStats['cum_pos_test'][0], natStats['cum_neg_test'][0])
+}
+
+// Function 2.31
+// Changes the ratio of the widths of the two lines under the number of tests
+function modifyTestLines(pos_tests, neg_tests)
+{
+    ratio_pos = pos_tests / (pos_tests + neg_tests)
+
+    width_pos_line = 30*ratio_pos;
+    width_neg_line = 30-width_pos_line;
+
+    document.getElementById("positiveLine").style.width = width_pos_line.toString() + '%';
+    document.getElementById("negativeLine").style.width = width_neg_line.toString() + '%';
+
+    document.getElementById("posTestsP").innerHTML = Math.round(width_pos_line).toString() + '%'
+    document.getElementById("negTestsP").innerHTML = Math.round(width_neg_line).toString() + '%'
 }
 
 // Function 2.10

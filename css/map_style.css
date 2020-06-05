@@ -408,3 +408,22 @@ select:-moz-focusring {
     border-radius:10px;
     background-color:#ff867b;
 }
+
+.testLine {
+    height:0.5em;
+    width:30%;
+    padding-left:10px;
+    margin:0;
+    display:inline-block;
+    background-color: #ff867b
+}
+
+.testLineP {
+    margin:0;
+    margin-left:16%;
+    padding:0;
+}
+
+.lineBox {
+    display: inline-block;
+}
