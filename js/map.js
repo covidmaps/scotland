@@ -230,8 +230,8 @@ function modifyTestLines(pos_tests, neg_tests)
     document.getElementById("positiveLine").style.width = width_pos_line.toString() + '%';
     document.getElementById("negativeLine").style.width = width_neg_line.toString() + '%';
 
-    document.getElementById("posTestsP").innerHTML = Math.round(width_pos_line).toString() + '%'
-    document.getElementById("negTestsP").innerHTML = Math.round(width_neg_line).toString() + '%'
+    document.getElementById("posTestsP").innerHTML = Math.round(ratio_pos*100).toString() + '%'
+    document.getElementById("negTestsP").innerHTML = Math.round(100-ratio_pos*100).toString() + '%'
 }
 
 // Function 2.10
