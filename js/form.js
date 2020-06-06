@@ -114,7 +114,6 @@ function populate_res_select()
     if (res == 'nat')
     {
         document.getElementById('selectedArea').style.display = 'none';
-        parsed = 0
     }
 
     for (var i = 0; i < districts.length; ++i)
@@ -143,7 +142,7 @@ d3.select("#top_level").on('change', function(){
 d3.select("#resolution").on('change', function(){
     change_area();
     populate_res_select();
-
+    parsed = 0
 });
 
 d3.select("#areaSelect").on('change', function(){
