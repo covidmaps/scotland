@@ -394,7 +394,7 @@ function double_line_graph(file, graphID, graphName)
       .attr("text-anchor", "end")
       .attr("x", 225)
       .attr("y", height+60)
-      .text("Day");
+      .text("Week Beginning");
 
       // Add the legend for cases
       svg.append("circle")
