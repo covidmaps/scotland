@@ -210,8 +210,8 @@ function populate_nat()
 {
     natStats = readJSON("hbo/totals");
 
-    console.log(natStats['cases'][0])
-    document.getElementById('deathTollTextNAT').innerHTML = natStats['cases'][0];
+    document.getElementById('casesTollTextNAT').innerHTML = natStats['cases'][0];
+    document.getElementById('deathTollTextNAT').innerHTML = natStats['cum_deaths'][0];
     document.getElementById('icuTextNAT').innerHTML = natStats['icu'][0];
     document.getElementById('testsTotalTextNAT').innerHTML = natStats['cum_test'][0];
 

@@ -11,6 +11,7 @@ path_dict = {
             }
 
 path_test = "https://raw.githubusercontent.com/DataScienceScotland/COVID-19-Management-Information/master/COVID19%20-%20Daily%20Management%20Information%20-%20Scotland%20-%20Testing.csv"
+path_death = "https://raw.githubusercontent.com/DataScienceScotland/COVID-19-Management-Information/master/COVID19%20-%20Daily%20Management%20Information%20-%20Scotland%20-%20Deaths.csv"
 
 hbo_dict = {
 
@@ -112,7 +113,8 @@ def get_total_hbo_cases(path_dict, root_path):
     icuTotalsSum = np.sum(icuTotals)
 
     # Get testing data
-    cum_pos_tests, cum_neg_test, cum_test, df_daily_tests, df_daily_pos =  get_test_data(path_dict, root_path)
+    cum_pos_tests, cum_neg_test, cum_test, df_daily_tests, df_daily_pos =  get_test_data()
+    cum_deaths, df_deaths = get_death_data()
 
     totals['cases'] = [totalCasesSum]
     totals['daily'] = [newCasesTotalSum]
@@ -120,10 +122,14 @@ def get_total_hbo_cases(path_dict, root_path):
     totals['cum_pos_test'] = cum_pos_tests
     totals['cum_neg_test'] = cum_neg_test
     totals['cum_test'] = cum_test
+    totals['cum_deaths'] = cum_deaths
 
     # Convert numpy arrays to panda's dataframes
-    df_totals = pd.DataFrame(totals, columns = ['cases', 'daily', 'icu', 'cum_pos_test', 'cum_neg_test', 'cum_test'])
+    df_totals = pd.DataFrame(totals, columns = ['cases', 'daily', 'icu', 'cum_pos_test', 'cum_neg_test', 'cum_test', 'cum_deaths'])
     df_daily_totals = pd.DataFrame(numpyDF, columns = ['date', 'value'])
+
+    # Add cumulative cases to deaths graph
+    df_deaths['cases'] = df_daily_totals['value']
 
     current_dir = os.getcwd()
 
@@ -131,11 +137,12 @@ def get_total_hbo_cases(path_dict, root_path):
     df_daily_totals.to_csv(current_dir + root_path + "daily_nat_totals.csv")
     df_daily_pos.to_csv(current_dir + root_path + "daily_pos.csv")
     df_daily_tests.to_csv(current_dir + root_path + "daily_tests.csv")
+    df_deaths.to_csv(current_dir + root_path + "daily_deaths.csv")
     df_totals.to_json(current_dir + root_path + "totals.json")
 
 
 # Gets all the test data for Scotland
-def get_test_data(path_dict, root_path):
+def get_test_data():
     df = pd.read_csv(path_test)
 
     df = df[['Date', "Testing - Cumulative people tested for COVID-19 - Negative", "Testing - Cumulative people tested for COVID-19 - Positive", "Testing - Cumulative people tested for COVID-19 - Total", "Testing - Daily people found positive"]]
@@ -158,9 +165,21 @@ def get_test_data(path_dict, root_path):
 
     df_daily = df_daily.drop(['date'], axis=1)
 
-    print (df)
-
     return cum_pos_tests, cum_neg_test, cum_test, df_daily, df
+
+# Gets all daily death data for Scotland
+def get_death_data():
+    df = pd.read_csv(path_death)
+
+    df = df.rename(columns={'Date':'date', "Number of COVID-19 confirmed deaths registered to date":"value"})
+
+    cum_deaths = df['value'].tail(1).astype(str).astype(int).sum()
+
+    df['value'] = df['value'].astype(object);
+
+    print (cum_deaths, df)
+
+    return cum_deaths, df
 
 
 
