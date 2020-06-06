@@ -1,10 +1,5 @@
 /*
 TODO:
-    [X] Add national totals
-    [] Add national testing numbers
-    [] Add national death numbers
-    [] For NAT stop deselct from removing NAT doc
-    [] Add note that NAT icu beds is not accurate given certain HBO's reporting '*'
 */
 
 // get the width of the area we're displaying in
@@ -142,9 +137,14 @@ function deselect()
     d3.select('#areaSelect').node().value = '-';
 
     document.getElementById('hoverText').innerHTML = '';
-    document.getElementById('ladDoc').style.display = 'none';
-    document.getElementById('hboDoc').style.display = 'none';
-    document.getElementById('natDoc').style.display = 'none';
+
+    // Only hide the doc if the res isn't NAT
+    if (res != 'nat')
+    {
+        document.getElementById('ladDoc').style.display = 'none';
+        document.getElementById('hboDoc').style.display = 'none';
+        document.getElementById('natDoc').style.display = 'none';
+    }
 
 }
 
