@@ -662,7 +662,7 @@ function redraw()
 {
     compute_size();
 
-    d3.select("svg").remove();
+    d3.select("#map").select("svg").remove();
 
     init(width, height);
     draw(boundaries);
