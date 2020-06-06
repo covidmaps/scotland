@@ -116,7 +116,7 @@ tr:hover {background-color: #ffb5ae;}
     height:auto;
     width: 40%;
     float:left;
-    overflow: hidden;
+    overflow: scroll;
     background-color: #f7faff;
     border-right: 1px solid lightgrey;
     border-bottom: 1px solid lightgrey;
