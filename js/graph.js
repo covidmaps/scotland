@@ -308,6 +308,8 @@ function scatter_plot(file, graphID, graphName)
     });
 }
 
+// Function 3.9
+// Generate a double line scatter plot with tootlip on hover
 function double_scatter_plot(file, graphID, graphName)
 {
     // Set the dimensions and margins of the graph
@@ -453,14 +455,6 @@ function double_scatter_plot(file, graphID, graphName)
               .attr("dx", "-.8em")
               .attr("dy", ".15em")
               .attr("transform", "rotate(-65)");
-
-              // Add X axis label
-              svg.append("text")
-              .attr("class", "x label")
-              .attr("text-anchor", "end")
-              .attr("x", 250)
-              .attr("y", height+60)
-              .text("Week Beginning");
         }
         else
         {
@@ -474,15 +468,28 @@ function double_scatter_plot(file, graphID, graphName)
               .attr("dx", "-.10em")
               .attr("dy", ".15em")
               .attr("transform", "rotate(-65)");
-
-              // Add X axis label
-              svg.append("text")
-              .attr("class", "x label")
-              .attr("text-anchor", "end")
-              .attr("x", 225)
-              .attr("y", height+60)
-              .text("Day");
       }
+      if (res != "hbo")
+      {
+          // Add X axis label
+          svg.append("text")
+          .attr("class", "x label")
+          .attr("text-anchor", "end")
+          .attr("x", 280)
+          .attr("y", height+60)
+          .text("Week Beginning");
+      }
+      else
+      {
+          // Add X axis label
+          svg.append("text")
+          .attr("class", "x label")
+          .attr("text-anchor", "end")
+          .attr("x", 225)
+          .attr("y", height+60)
+          .text("Day");
+      }
+
 
       // Add the legend
       svg.append("circle")
@@ -508,144 +515,6 @@ function double_scatter_plot(file, graphID, graphName)
               .attr("alignment-baseline","middle");
       }
     });
-}
-
-
-function double_line_graph(file, graphID, graphName)
-{
-    // Set the dimensions and margins of the graph
-    var margin = {top: 10, right: 40, bottom: 100, left: 40},
-        width = 500 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
-
-    // parse the date / time
-    var parseTime = d3.timeParse("%Y-%m-%d");
-
-    // set the ranges
-    var x = d3.scaleTime().range([0, width]);
-    var y = d3.scaleLinear().range([height, 0]);
-
-    // define the 1st line
-    var valueline = d3.line()
-        .x(function(d) { return x(d.date); })
-        .y(function(d) { return y(d.cases); });
-
-    // define the 2nd line
-    var valueline2 = d3.line()
-        .x(function(d) { return x(d.date); })
-        .y(function(d) { return y(d.value); });
-
-      // Append the svg object to the body of the page
-      var svg = d3.select(graphID)
-        .append("svg")
-        .attr("preserveAspectRatio", "xMinYMin meet")
-        .attr("viewBox", "0 0 550 400")
-        .classed("svg-content-responsive", true)
-        .append("g")
-          .attr("transform",
-                "translate(" + margin.left + "," + margin.top + ")");
-
-    // Get the data
-    d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/national-page/data"
-            +file, function(error, data) {
-      if (error) throw error;
-
-      // format the data
-      data.forEach(function(d) {
-          d.date = parseTime(d.date);
-          d.cases = +d.cases;
-          d.value = +d.value;
-      });
-
-      // Scale the range of the data
-      x.domain(d3.extent(data, function(d) { return d.date; }));
-      y.domain([0, d3.max(data, function(d) {
-    	  return Math.max(d.cases, d.value); })]);
-
-      // Add the X gridlines
-      svg.append("g")
-        .attr("class", "grid")
-        .attr("transform", "translate(0," + height + ")")
-        .call(make_x_gridlines(d3.scaleTime().range([0, width]))
-            .tickSize(-height)
-            .tickFormat("")
-        )
-
-      // add the Y gridlines
-      svg.append("g")
-      .attr("class", "grid")
-      .call(make_y_gridlines(d3.scaleLinear().range([height, 0]))
-        .tickSize(-width)
-        .tickFormat("")
-      )
-
-      // Add the valueline path.
-      svg.append("path")
-          .data([data])
-          .attr("fill", "none")
-          .attr("stroke-width", 3)
-          .attr("stroke", "#ff867b")
-          .attr("class", "line")
-          .attr("d", valueline);
-
-      // Add the valueline2 path.
-      svg.append("path")
-          .data([data])
-          .attr("fill", "none")
-          .attr("class", "line")
-          .attr("stroke-width", 3)
-          .style("stroke", "red")
-          .attr("d", valueline2);
-
-      // Add the X Axis
-      svg.append("g")
-          .attr("transform", "translate(0," + height + ")")
-          .call(d3.axisBottom(x))
-          .selectAll("text")
-          .style("text-anchor", "end")
-          .attr("dx", "-.8em")
-          .attr("dy", ".15em")
-          .attr("transform", "rotate(-65)");
-
-      // Add the Y Axis
-      svg.append("g")
-          .call(d3.axisLeft(y).ticks(20));
-
-      // Add X axis label
-      svg.append("text")
-      .attr("class", "x label")
-      .attr("text-anchor", "end")
-      .attr("x", 225)
-      .attr("y", height+60)
-      .text("Week Beginning");
-
-      // Add the legend for cases
-      svg.append("circle")
-          .attr("cx",75)
-          .attr("cy",height+80)
-          .attr("r", 6)
-          .style("fill", "#ff867b");
-      svg.append("text")
-          .attr("x", 85)
-          .attr("y", height+85)
-          .text("Cumulative Cases")
-          .style("font-size", "15px")
-          .attr("alignment-baseline","middle");
-
-      // Add the legend for deaths
-      svg.append("circle")
-          .attr("cx",220)
-          .attr("cy",height+80)
-          .attr("r", 6)
-          .style("fill", "red");
-      svg.append("text")
-          .attr("x", 230)
-          .attr("y", height+85)
-          .text("Cumulative Deaths")
-          .style("font-size", "15px")
-          .attr("alignment-baseline","middle");
-
-  });
 }
 
 // Function 3.6
