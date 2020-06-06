@@ -386,7 +386,7 @@ function double_line_graph(file, graphID, graphName)
 
       // Add the Y Axis
       svg.append("g")
-          .call(d3.axisLeft(y));
+          .call(d3.axisLeft(y).ticks(20));
 
       // Add X axis label
       svg.append("text")
