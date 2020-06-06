@@ -77,7 +77,7 @@ function graph_init(res, id)
 
 
             // Total COVID-19 deaths graph
-            double_line_graph("/hbo/daily_deaths.csv",
+            double_scatter_plot("/hbo/daily_deaths.csv",
                                 "#daiyCOVIDDeaths",
                                 "Daily COVID-19 deaths"
                             );
@@ -307,6 +307,209 @@ function scatter_plot(file, graphID, graphName)
       }
     });
 }
+
+function double_scatter_plot(file, graphID, graphName)
+{
+    // Set the dimensions and margins of the graph
+    var margin = {top: 10, right: 40, bottom: 100, left: 40},
+        width = 500 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
+
+    // parse the date / time
+    var parseTime = d3.timeParse("%Y-%m-%d");
+    var formatTime = d3.timeFormat("%e %B");
+
+    // set the ranges
+    var x = d3.scaleTime().range([0, width]);
+    var y = d3.scaleLinear().range([height, 0]);
+
+    // define the 1st line
+    var valueline = d3.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.value); });
+
+    // define the 2nd line
+    var valueline2 = d3.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.cases); });
+
+    var div = d3.select(graphID).append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+    // Append the svg object to the body of the page
+    var svg = d3.select(graphID)
+      .append("svg")
+      .attr("preserveAspectRatio", "xMinYMin meet")
+      .attr("viewBox", "0 0 550 400")
+      .classed("svg-content-responsive", true)
+      .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+
+    // Get the data
+    d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/national-page/data"
+            +file, function(error, data) {
+      if (error) throw error;
+
+      // format the data
+      data.forEach(function(d) {
+          d.date = parseTime(d.date);
+          d.value = +d.value;
+      });
+
+      // scale the range of the data
+      x.domain(d3.extent(data, function(d) { return d.date; }));
+      y.domain([0, d3.max(data, function(d) {
+    	  return Math.max(d.cases+20, d.value+20); })]);
+
+      // Add the X gridlines
+      svg.append("g")
+        .attr("class", "grid")
+        .attr("transform", "translate(0," + height + ")")
+        .call(make_x_gridlines(d3.scaleTime().range([0, width]))
+            .tickSize(-height)
+            .tickFormat("")
+        )
+
+        // add the Y gridlines
+        svg.append("g")
+        .attr("class", "grid")
+        .call(make_y_gridlines(d3.scaleLinear().range([height, 0]))
+          .tickSize(-width)
+          .tickFormat("")
+        )
+
+      // add the valueline path.
+      svg.append("path")
+         .data([data])
+         .attr("class", "line")
+         .attr("d", valueline);
+
+     // add the valueline 2 path.
+     svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", valueline2);
+
+      // add the dots with tooltips for line 1
+      svg.selectAll("dot")
+         .data(data)
+       .enter().append("circle")
+         .attr("fill", "#7bb2ff")
+         .attr("r", 3.5)
+         .attr("cx", function(d) { return x(d.date); })
+         .attr("cy", function(d) { return y(d.value); })
+         .on("mouseover", function(d) {
+           div.transition()
+             .duration(200)
+             .style("opacity", .9);
+           div.html(formatTime(d.date) + "<br/>" + d.value)
+             .style("left", (d3.event.pageX) + "px")
+             .style("top", (d3.event.pageY - 28) + "px");
+           })
+         .on("mouseout", function(d) {
+           div.transition()
+             .duration(500)
+             .style("opacity", 0);
+           });
+
+       // add the dots with tooltips for line 2
+       svg.selectAll("dot")
+          .data(data)
+        .enter().append("circle")
+          .attr("fill", "#7bb2ff")
+          .attr("r", 3.5)
+          .attr("cx", function(d) { return x(d.date); })
+          .attr("cy", function(d) { return y(d.cases); })
+          .on("mouseover", function(d) {
+            div.transition()
+              .duration(200)
+              .style("opacity", .9);
+            div.html(formatTime(d.date) + "<br/>" + d.cases)
+              .style("left", (d3.event.pageX) + "px")
+              .style("top", (d3.event.pageY - 28) + "px");
+            })
+          .on("mouseout", function(d) {
+            div.transition()
+              .duration(500)
+              .style("opacity", 0);
+            });
+
+        // add the Y Axis
+        svg.append("g")
+           .call(d3.axisLeft(y));
+
+         // LAD has different X axis scales
+         if (res == 'lad')
+         {
+              // Add the X Axis
+              svg.append("g")
+              .attr("class", "axis")
+              .attr("transform", "translate(0," + height + ")")
+              .call(d3.axisBottom(x).ticks(5))
+              .selectAll("text")
+              .style("text-anchor", "end")
+              .attr("dx", "-.8em")
+              .attr("dy", ".15em")
+              .attr("transform", "rotate(-65)");
+
+              // Add X axis label
+              svg.append("text")
+              .attr("class", "x label")
+              .attr("text-anchor", "end")
+              .attr("x", 250)
+              .attr("y", height+60)
+              .text("Week Beginning");
+        }
+        else
+        {
+              // Add the X Axis
+              svg.append("g")
+              .attr("class", "axis")
+              .attr("transform", "translate(0," + height + ")")
+              .call(d3.axisBottom(x).ticks(10))
+              .selectAll("text")
+              .style("text-anchor", "end")
+              .attr("dx", "-.10em")
+              .attr("dy", ".15em")
+              .attr("transform", "rotate(-65)");
+
+              // Add X axis label
+              svg.append("text")
+              .attr("class", "x label")
+              .attr("text-anchor", "end")
+              .attr("x", 225)
+              .attr("y", height+60)
+              .text("Day");
+      }
+
+      // Add the legend
+      svg.append("circle")
+          .attr("cx",150)
+          .attr("cy",height+80)
+          .attr("r", 6)
+          .style("fill", "#ff867b");
+      svg.append("text")
+          .attr("x", 160)
+          .attr("y", height+85)
+          .text(graphName)
+          .style("font-size", "15px")
+          .attr("alignment-baseline","middle");
+
+      // If retrieved data doesn't exist say:
+      if (d3.max(data, function(d) { return +d.value; }) == null)
+      {
+          svg.append("text")
+              .attr("x", width/2 - 95)
+              .attr("y", height/2 - 7)
+              .text("Insignificant Data (less than 5)")
+              .style("font-size", "20px")
+              .attr("alignment-baseline","middle");
+      }
+    });
+}
+
 
 function double_line_graph(file, graphID, graphName)
 {
