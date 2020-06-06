@@ -212,27 +212,40 @@ function scatter_plot(file, graphID, graphName)
          .attr("class", "line")
          .attr("d", valueline);
 
-      // add the dots with tooltips
-      svg.selectAll("dot")
-         .data(data)
-       .enter().append("circle")
-         .attr("fill", "#7bb2ff")
-         .attr("r", 3.5)
-         .attr("cx", function(d) { return x(d.date); })
-         .attr("cy", function(d) { return y(d.value); })
-         .on("mouseover", function(d) {
-           div.transition()
-             .duration(200)
-             .style("opacity", .9);
-           div.html(formatTime(d.date) + "<br/>" + d.value)
-             .style("left", (d3.event.pageX) + "px")
-             .style("top", (d3.event.pageY - 28) + "px");
-           })
-         .on("mouseout", function(d) {
-           div.transition()
-             .duration(500)
-             .style("opacity", 0);
-           });
+      // If retrieved data doesn't exist say:
+      if (d3.max(data, function(d) { return +d.value; }) == null)
+      {
+             svg.append("text")
+                 .attr("x", width/2 - 95)
+                 .attr("y", height/2 - 7)
+                 .text("Insignificant Data (less than 5)")
+                 .style("font-size", "20px")
+                 .attr("alignment-baseline","middle");
+      }
+      else
+      {
+          // add the dots with tooltips
+          svg.selectAll("dot")
+             .data(data)
+           .enter().append("circle")
+             .attr("fill", "#7bb2ff")
+             .attr("r", 3.5)
+             .attr("cx", function(d) { return x(d.date); })
+             .attr("cy", function(d) { return y(d.value); })
+             .on("mouseover", function(d) {
+               div.transition()
+                 .duration(200)
+                 .style("opacity", .9);
+               div.html(formatTime(d.date) + "<br/>" + d.value)
+                 .style("left", (d3.event.pageX) + "px")
+                 .style("top", (d3.event.pageY - 28) + "px");
+               })
+             .on("mouseout", function(d) {
+               div.transition()
+                 .duration(500)
+                 .style("opacity", 0);
+               });
+        }
 
         // add the Y Axis
         svg.append("g")
@@ -294,17 +307,6 @@ function scatter_plot(file, graphID, graphName)
           .text(graphName)
           .style("font-size", "15px")
           .attr("alignment-baseline","middle");
-
-      // If retrieved data doesn't exist say:
-      if (d3.max(data, function(d) { return +d.value; }) == null)
-      {
-          svg.append("text")
-              .attr("x", width/2 - 95)
-              .attr("y", height/2 - 7)
-              .text("Insignificant Data (less than 5)")
-              .style("font-size", "20px")
-              .attr("alignment-baseline","middle");
-      }
     });
 }
 
