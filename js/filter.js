@@ -4,5 +4,5 @@ function isMobileDevice() {
 };
 
 if (isMobileDevice()) {
-    alert("Sorry, this website is currently not supported on this device. For best experience try on a desktop browser.");
+    alert("For the best experience using this website we recommend that you use a desktop browser.");
 }
