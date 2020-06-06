@@ -28,7 +28,7 @@ function graph_init(res, id)
             multi_line_graph("/g_mobility/"+id+".csv", "#graphGMS", id);
 
             // Total COVID-19 deaths per week graph
-            singe_line_graph("/lad/total_covid_deaths/" + id + ".csv",
+            scatter_plot("/lad/total_covid_deaths/" + id + ".csv",
                                 "#covidDTGraph",
                                 "Total Covid-19 Deaths"
                             );
@@ -45,25 +45,25 @@ function graph_init(res, id)
             var health_board = hboDistricts[id];
 
             // Total ICU Patients graph
-            singe_line_graph("/hbo/" + health_board + "_new_cases.csv",
+            scatter_plot("/hbo/" + health_board + "_new_cases.csv",
                                 "#newCasesGraph",
                                 "New Cases"
                             );
 
             // Total ICU Patients graph
-            singe_line_graph("/hbo/" + health_board + "_icu.csv",
+            scatter_plot("/hbo/" + health_board + "_icu.csv",
                                 "#icuGraph",
                                 "ICU Patients"
                             );
 
             // Total Hospital COVID-19 Patients graph
-            singe_line_graph("/hbo/" + health_board + "_hospital_covid.csv",
+            scatter_plot("/hbo/" + health_board + "_hospital_covid.csv",
                                 "#hospital_covidGraph",
                                 "Total Hospital COVID-19 patients"
                             );
 
             // Total Cumulative COVID-19 Cases graph
-            singe_line_graph("/hbo/" + health_board + "_cases.csv",
+            scatter_plot("/hbo/" + health_board + "_cases.csv",
                                 "#casesGraph",
                                 "Total Cumulative COVID-19 Patients");
         }
@@ -80,12 +80,6 @@ function graph_init(res, id)
             double_line_graph("/hbo/daily_deaths.csv",
                                 "#daiyCOVIDDeaths",
                                 "Daily COVID-19 deaths"
-                            );
-
-            // Total COVID-19 cases graph
-            singe_line_graph("/hbo/daily_nat_totals.csv",
-                                "#totalCovidCases",
-                                "Daily Cases"
                             );
 
             // Total pos tests graph
@@ -145,101 +139,64 @@ function removeGraphs()
 }
 
 // Function 3.5
-// Generate a single line graph
-function singe_line_graph(file, graphID, graphName)
+// Generate a scatter plot with tootltip on mouse hover
+function scatter_plot(file, graphID, graphName)
 {
-
     // Set the dimensions and margins of the graph
     var margin = {top: 10, right: 40, bottom: 100, left: 40},
         width = 500 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
-    // Append the svg object to the body of the page
-    var svg = d3.select(graphID)
-      .append("svg")
-      .attr("preserveAspectRatio", "xMinYMin meet")
-      .attr("viewBox", "0 0 550 400")
-      .classed("svg-content-responsive", true)
+    // parse the date / time
+    var parseTime = d3.timeParse("%Y-%m-%d");
+    var formatTime = d3.timeFormat("%e %B");
+
+    // set the ranges
+    var x = d3.scaleTime().range([0, width]);
+    var y = d3.scaleLinear().range([height, 0]);
+
+    // define the line
+    var valueline = d3.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.value); });
+
+    var div = d3.select(graphID).append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+    // append the svg obgect to the body of the page
+    // appends a 'group' element to 'svg'
+    // moves the 'group' element to the top left margin
+    var svg = d3.select(graphID).append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
-    // Read the data
+
+    // Get the data
     d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/national-page/data"
-            +file,
+            +file, function(error, data) {
+      if (error) throw error;
 
-      // When reading the csv variables must be formatted
-      function(d)
-      {
-        return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
-      },
+      // format the data
+      data.forEach(function(d) {
+          d.date = parseTime(d.date);
+          d.value = +d.value;
+      });
 
-      // Using the loaded dataset
-      function(data) {
+      // scale the range of the data
+      x.domain(d3.extent(data, function(d) { return d.date; }));
+      y.domain([0, d3.max(data, function(d) { return d.value; })+10]);
 
-        // Add X axis - it is a date format
-        var x = d3.scaleTime()
-          .domain(d3.extent(data, function(d) { return d.date; }))
-          .range([ 1, width]);
-
-        // LAD has different X axis scales
-        if (res == 'lad')
-        {
-            // Add the X Axis
-            svg.append("g")
-            .attr("class", "axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x).ticks(5))
-            .selectAll("text")
-            .style("text-anchor", "end")
-            .attr("dx", "-.8em")
-            .attr("dy", ".15em")
-            .attr("transform", "rotate(-65)");
-
-            // Add X axis label
-            svg.append("text")
-            .attr("class", "x label")
-            .attr("text-anchor", "end")
-            .attr("x", 250)
-            .attr("y", height+60)
-            .text("Week Beginning");
-        }
-        else
-        {
-            // Add the X Axis
-            svg.append("g")
-            .attr("class", "axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x).ticks(10))
-            .selectAll("text")
-            .style("text-anchor", "end")
-            .attr("dx", "-.10em")
-            .attr("dy", ".15em")
-            .attr("transform", "rotate(-65)");
-
-            // Add X axis label
-            svg.append("text")
-            .attr("class", "x label")
-            .attr("text-anchor", "end")
-            .attr("x", 225)
-            .attr("y", height+60)
-            .text("Day");
-        }
-
-        // Add the X gridlines
-        svg.append("g")
-          .attr("class", "grid")
-          .attr("transform", "translate(0," + height + ")")
-          .call(make_x_gridlines(d3.scaleTime().range([0, width]))
-              .tickSize(-height)
-              .tickFormat("")
-          )
-
-        // Add Y axis
-        var y = d3.scaleLinear()
-          .domain([0, d3.max(data, function(d) { return +d.value; })+5])
-          .range([ height, 0 ]);
-        svg.append("g")
-          .call(d3.axisLeft(y));
+      // Add the X gridlines
+      svg.append("g")
+        .attr("class", "grid")
+        .attr("transform", "translate(0," + height + ")")
+        .call(make_x_gridlines(d3.scaleTime().range([0, width]))
+            .tickSize(-height)
+            .tickFormat("")
+        )
 
         // add the Y gridlines
         svg.append("g")
@@ -249,43 +206,106 @@ function singe_line_graph(file, graphID, graphName)
           .tickFormat("")
         )
 
-        // Add the line
-        svg.append("path")
-          .datum(data)
-          .attr("fill", "none")
-          .attr("stroke", "#ff867b")
-          .attr("stroke-width", 4)
-          .attr("d", d3.line()
-            .x(function(d) { return x(d.date) })
-            .y(function(d) { return y(d.value) })
-            )
+      // add the valueline path.
+      svg.append("path")
+         .data([data])
+         .attr("class", "line")
+         .attr("d", valueline);
 
-        // Add the legend
-        svg.append("circle")
-            .attr("cx",150)
-            .attr("cy",height+80)
-            .attr("r", 6)
-            .style("fill", "#ff867b");
-        svg.append("text")
-            .attr("x", 160)
-            .attr("y", height+85)
-            .text(graphName)
-            .style("font-size", "15px")
-            .attr("alignment-baseline","middle");
+      // add the dots with tooltips
+      svg.selectAll("dot")
+         .data(data)
+       .enter().append("circle")
+         .attr("fill", "#7bb2ff")
+         .attr("r", 3.5)
+         .attr("cx", function(d) { return x(d.date); })
+         .attr("cy", function(d) { return y(d.value); })
+         .on("mouseover", function(d) {
+           div.transition()
+             .duration(200)
+             .style("opacity", .9);
+           div.html(formatTime(d.date) + "<br/>" + d.value)
+             .style("left", (d3.event.pageX) + "px")
+             .style("top", (d3.event.pageY - 28) + "px");
+           })
+         .on("mouseout", function(d) {
+           div.transition()
+             .duration(500)
+             .style("opacity", 0);
+           });
 
-        // If retrieved data doesn't exist say:
-        if (d3.max(data, function(d) { return +d.value; }) == null)
-        {
+        // add the Y Axis
+        svg.append("g")
+           .call(d3.axisLeft(y));
 
-            svg.append("text")
-                .attr("x", width/2 - 95)
-                .attr("y", height/2 - 7)
-                .text("Insignificant Data (less than 5)")
-                .style("font-size", "20px")
-                .attr("alignment-baseline","middle");
+         // LAD has different X axis scales
+         if (res == 'lad')
+         {
+              // Add the X Axis
+              svg.append("g")
+              .attr("class", "axis")
+              .attr("transform", "translate(0," + height + ")")
+              .call(d3.axisBottom(x).ticks(5))
+              .selectAll("text")
+              .style("text-anchor", "end")
+              .attr("dx", "-.8em")
+              .attr("dy", ".15em")
+              .attr("transform", "rotate(-65)");
+
+              // Add X axis label
+              svg.append("text")
+              .attr("class", "x label")
+              .attr("text-anchor", "end")
+              .attr("x", 250)
+              .attr("y", height+60)
+              .text("Week Beginning");
         }
-    })
+        else
+        {
+              // Add the X Axis
+              svg.append("g")
+              .attr("class", "axis")
+              .attr("transform", "translate(0," + height + ")")
+              .call(d3.axisBottom(x).ticks(10))
+              .selectAll("text")
+              .style("text-anchor", "end")
+              .attr("dx", "-.10em")
+              .attr("dy", ".15em")
+              .attr("transform", "rotate(-65)");
 
+              // Add X axis label
+              svg.append("text")
+              .attr("class", "x label")
+              .attr("text-anchor", "end")
+              .attr("x", 225)
+              .attr("y", height+60)
+              .text("Day");
+      }
+
+      // Add the legend
+      svg.append("circle")
+          .attr("cx",150)
+          .attr("cy",height+80)
+          .attr("r", 6)
+          .style("fill", "#ff867b");
+      svg.append("text")
+          .attr("x", 160)
+          .attr("y", height+85)
+          .text(graphName)
+          .style("font-size", "15px")
+          .attr("alignment-baseline","middle");
+
+      // If retrieved data doesn't exist say:
+      if (d3.max(data, function(d) { return +d.value; }) == null)
+      {
+          svg.append("text")
+              .attr("x", width/2 - 95)
+              .attr("y", height/2 - 7)
+              .text("Insignificant Data (less than 5)")
+              .style("font-size", "20px")
+              .attr("alignment-baseline","middle");
+      }
+    });
 }
 
 function double_line_graph(file, graphID, graphName)
@@ -864,177 +884,6 @@ function stacked_bar_graph(file, graphID)
             .attr("height", function(d) { return y(d[0]) - y(d[1]); })
             .attr("width",x.bandwidth())
     })
-}
-
-function scatter_plot(file, graphID, graphName)
-{
-    // Set the dimensions and margins of the graph
-    var margin = {top: 10, right: 40, bottom: 100, left: 40},
-        width = 500 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
-
-    // parse the date / time
-    var parseTime = d3.timeParse("%Y-%m-%d");
-    var formatTime = d3.timeFormat("%e %B");
-
-    // set the ranges
-    var x = d3.scaleTime().range([0, width]);
-    var y = d3.scaleLinear().range([height, 0]);
-
-    // define the line
-    var valueline = d3.line()
-        .x(function(d) { return x(d.date); })
-        .y(function(d) { return y(d.value); });
-
-    var div = d3.select(graphID).append("div")
-        .attr("class", "tooltip")
-        .style("opacity", 0);
-
-    // append the svg obgect to the body of the page
-    // appends a 'group' element to 'svg'
-    // moves the 'group' element to the top left margin
-    var svg = d3.select(graphID).append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-        .attr("transform",
-              "translate(" + margin.left + "," + margin.top + ")");
-
-    // Get the data
-    d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/national-page/data"
-            +file, function(error, data) {
-      if (error) throw error;
-
-      // format the data
-      data.forEach(function(d) {
-          d.date = parseTime(d.date);
-          d.value = +d.value;
-      });
-
-      // scale the range of the data
-      x.domain(d3.extent(data, function(d) { return d.date; }));
-      y.domain([0, d3.max(data, function(d) { return d.value; })+10]);
-
-      // Add the X gridlines
-      svg.append("g")
-        .attr("class", "grid")
-        .attr("transform", "translate(0," + height + ")")
-        .call(make_x_gridlines(d3.scaleTime().range([0, width]))
-            .tickSize(-height)
-            .tickFormat("")
-        )
-
-        // add the Y gridlines
-        svg.append("g")
-        .attr("class", "grid")
-        .call(make_y_gridlines(d3.scaleLinear().range([height, 0]))
-          .tickSize(-width)
-          .tickFormat("")
-        )
-
-      // add the valueline path.
-      svg.append("path")
-         .data([data])
-         .attr("class", "line")
-         .attr("d", valueline);
-
-      // add the dots with tooltips
-      svg.selectAll("dot")
-         .data(data)
-       .enter().append("circle")
-         .attr("fill", "#7bb2ff")
-         .attr("r", 3.5)
-         .attr("cx", function(d) { return x(d.date); })
-         .attr("cy", function(d) { return y(d.value); })
-         .on("mouseover", function(d) {
-           div.transition()
-             .duration(200)
-             .style("opacity", .9);
-           div.html(formatTime(d.date) + "<br/>" + d.value)
-             .style("left", (d3.event.pageX) + "px")
-             .style("top", (d3.event.pageY - 28) + "px");
-           })
-         .on("mouseout", function(d) {
-           div.transition()
-             .duration(500)
-             .style("opacity", 0);
-           });
-
-        // add the Y Axis
-        svg.append("g")
-           .call(d3.axisLeft(y));
-
-         // LAD has different X axis scales
-         if (res == 'lad')
-         {
-              // Add the X Axis
-              svg.append("g")
-              .attr("class", "axis")
-              .attr("transform", "translate(0," + height + ")")
-              .call(d3.axisBottom(x).ticks(5))
-              .selectAll("text")
-              .style("text-anchor", "end")
-              .attr("dx", "-.8em")
-              .attr("dy", ".15em")
-              .attr("transform", "rotate(-65)");
-
-              // Add X axis label
-              svg.append("text")
-              .attr("class", "x label")
-              .attr("text-anchor", "end")
-              .attr("x", 250)
-              .attr("y", height+60)
-              .text("Week Beginning");
-          }
-          else
-          {
-              // Add the X Axis
-              svg.append("g")
-              .attr("class", "axis")
-              .attr("transform", "translate(0," + height + ")")
-              .call(d3.axisBottom(x).ticks(10))
-              .selectAll("text")
-              .style("text-anchor", "end")
-              .attr("dx", "-.10em")
-              .attr("dy", ".15em")
-              .attr("transform", "rotate(-65)");
-
-              // Add X axis label
-              svg.append("text")
-              .attr("class", "x label")
-              .attr("text-anchor", "end")
-              .attr("x", 225)
-              .attr("y", height+60)
-              .text("Day");
-      }
-
-      // Add the legend
-      svg.append("circle")
-          .attr("cx",150)
-          .attr("cy",height+80)
-          .attr("r", 6)
-          .style("fill", "#ff867b");
-      svg.append("text")
-          .attr("x", 160)
-          .attr("y", height+85)
-          .text(graphName)
-          .style("font-size", "15px")
-          .attr("alignment-baseline","middle");
-
-      // If retrieved data doesn't exist say:
-      if (d3.max(data, function(d) { return +d.value; }) == null)
-      {
-
-          svg.append("text")
-              .attr("x", width/2 - 95)
-              .attr("y", height/2 - 7)
-              .text("Insignificant Data (less than 5)")
-              .style("font-size", "20px")
-              .attr("alignment-baseline","middle");
-      }
-
-    });
-
 }
 
 
