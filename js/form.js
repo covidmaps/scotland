@@ -1,5 +1,6 @@
 area = 'sco'
 lad='national'
+parsed = 0
 
 // Function 1.2
 // Toggle the collapsible 'How To'
@@ -113,6 +114,7 @@ function populate_res_select()
     if (res == 'nat')
     {
         document.getElementById('selectedArea').style.display = 'none';
+        parsed = 0
     }
 
     for (var i = 0; i < districts.length; ++i)
