@@ -182,6 +182,7 @@ function scatter_plot(file, graphID, graphName)
       // format the data
       var previousDate;
       var previousVal;
+      var dataTicks = 0;
 
       // If an intermediate data point is missing use the previous one
       data.forEach(function(d) {
@@ -191,6 +192,7 @@ function scatter_plot(file, graphID, graphName)
               d.value = +d.value;
               previousDate = d.date;
               previousVal = d.value;
+              dataTicks += 1;
           }
           else
           {
@@ -297,11 +299,15 @@ function scatter_plot(file, graphID, graphName)
         }
         else
         {
+              if (dataTicks > 10)
+              {
+                  dataTicks = 10;
+              }
               // Add the X Axis
               svg.append("g")
               .attr("class", "axis")
               .attr("transform", "translate(0," + height + ")")
-              .call(d3.axisBottom(x).ticks(10))
+              .call(d3.axisBottom(x).ticks(dataTicks))
               .selectAll("text")
               .style("text-anchor", "end")
               .attr("dx", "-.10em")
