@@ -308,9 +308,6 @@ function create_table(properties, id)
 function show_data(properties, id)
 {
 
-    // Hide google data dropdown select
-    d3.select("#selectButton").style("display", "none");
-
     // Only proceed if a district has been selected
     if (id != null || res == "nat")
     {
@@ -329,6 +326,9 @@ function show_data(properties, id)
         }
         if (res == "hbo")
         {
+            // Hide google data dropdown select
+            d3.select("#selectButton").style("display", "none");
+
             // Give Doc Name
             document.getElementById('graphTitleHBO').innerHTML = idToHBO[id];
 
@@ -338,6 +338,9 @@ function show_data(properties, id)
         // If selected res is 'nat' then load 'nat' form
         if (res == "nat")
         {
+            // Hide google data dropdown select
+            d3.select("#selectButton").style("display", "none");
+            
             // Give Doc Name
             document.getElementById('graphTitleNAT').innerHTML = "Scotland";
 
