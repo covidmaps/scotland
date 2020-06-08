@@ -110,7 +110,7 @@ function transform()
 function readJSON(file)
 {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://raw.githubusercontent.com/covidmaps/scotland/master/data/"+ file +".json", false ); // false for synchronous request
+    xmlHttp.open( "GET", "https://raw.githubusercontent.com/covidmaps/scotland/national-page/data/"+ file +".json", false ); // false for synchronous request
     xmlHttp.send( null );
     return JSON.parse(xmlHttp.responseText);
 }
