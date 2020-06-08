@@ -180,11 +180,33 @@ function scatter_plot(file, graphID, graphName)
       if (error) throw error;
 
       // format the data
+      var previousDate;
+      var previousVal;
+
+      // If an intermediate data point is missing use the previous one
       data.forEach(function(d) {
-          d.date = parseTime(d.date);
-          d.value = +d.value;
+          if (!isNaN(d.value))
+          {
+              d.date = parseTime(d.date);
+              d.value = +d.value;
+              previousDate = d.date;
+              previousVal = d.value;
+          }
+          else
+          {
+              d.date = previousDate;
+              d.value = previousVal;
+          }
       });
 
+      // Remove any NaN's or values less than 0
+      data = data.filter(function(d){
+          if (isNaN(d.value) || d.value < 0){
+              return false;
+          }
+          d.value = parseInt(d.value, 10);
+          return true;
+      });
       // scale the range of the data
       x.domain(d3.extent(data, function(d) { return d.date; }));
       y.domain([0, d3.max(data, function(d) { return d.value; })+10]);
