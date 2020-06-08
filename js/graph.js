@@ -175,7 +175,7 @@ function scatter_plot(file, graphID, graphName)
               "translate(" + margin.left + "," + margin.top + ")");
 
     // Get the data
-    d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/national-page/data"
+    d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/master/data"
             +file, function(error, data) {
       if (error) throw error;
 
@@ -380,7 +380,7 @@ function double_scatter_plot(file, graphID, graphName)
               "translate(" + margin.left + "," + margin.top + ")");
 
     // Get the data
-    d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/national-page/data"
+    d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/master/data"
             +file, function(error, data) {
       if (error) throw error;
 
@@ -949,7 +949,7 @@ function stacked_bar_graph(file, graphID)
               "translate(" + margin.left + "," + margin.top + ")");
 
     // Parse the Data
-    d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/national-page/data/hbo/daily_tests.csv", function(data) {
+    d3.csv("https://raw.githubusercontent.com/covidmaps/scotland/master/data/hbo/daily_tests.csv", function(data) {
 
       // List of subgroups = header of the csv files = soil condition here
       var subgroups = data.columns.slice(1)
