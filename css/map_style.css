@@ -115,7 +115,7 @@ tr:hover {background-color: #ffb5ae;}
     height:auto;
     width: 40%;
     float:left;
-    overflow: hidden;
+    overflow: scroll;
     background-color: #f7faff;
     border-right: 1px solid lightgrey;
     border-bottom: 1px solid lightgrey;
@@ -397,12 +397,52 @@ select:-moz-focusring {
 
 .deathToll{
     margin-left:35%;
-    margin-right:35%;
-    width:30%;
+    display:inline-block;
     padding:0;
-    text-align: center;
+    text-align:left;
+    padding-right:10px;
     color:black;
     font-size:40px;
     border-radius:10px;
     background-color:#ff867b;
+}
+
+.testLine {
+    height:0.5em;
+    width:30%;
+    padding-left:10px;
+    margin:0;
+    display:inline-block;
+    background-color: #ff867b
+}
+
+.testLineP {
+    margin:0;
+    margin-left:16%;
+    padding:0;
+}
+
+.lineBox {
+    display: inline-block;
+}
+
+
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 60px;
+    height: 28px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+
+.line {
+  fill: none;
+  stroke: #ff867b;
+  stroke-width: 2px;
 }

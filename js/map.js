@@ -1,8 +1,5 @@
 /*
 TODO:
-    [X] Add disclaimer in 'How it works' section
-    [] Remove gridlines (?)
-    [] Add national totals
 */
 
 // get the width of the area we're displaying in
@@ -113,9 +110,9 @@ function transform()
 function readJSON(file)
 {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://raw.githubusercontent.com/covidmaps/scotland/master/data/lad/"+ file +".json", false ); // false for synchronous request
+    xmlHttp.open( "GET", "https://raw.githubusercontent.com/covidmaps/scotland/master/data/"+ file +".json", false ); // false for synchronous request
     xmlHttp.send( null );
-    mapStats = JSON.parse(xmlHttp.responseText);
+    return JSON.parse(xmlHttp.responseText);
 }
 
 // Function 2.6
@@ -140,8 +137,14 @@ function deselect()
     d3.select('#areaSelect').node().value = '-';
 
     document.getElementById('hoverText').innerHTML = '';
-    document.getElementById('ladDoc').style.display = 'none';
-    document.getElementById('hboDoc').style.display = 'none';
+
+    // Only hide the doc if the res isn't NAT
+    if (res != 'nat')
+    {
+        document.getElementById('ladDoc').style.display = 'none';
+        document.getElementById('hboDoc').style.display = 'none';
+        document.getElementById('natDoc').style.display = 'none';
+    }
 
 }
 
@@ -199,6 +202,36 @@ function populate_deathToll(id)
 
     // Update background
     document.getElementById('deathToll').style.backgroundColor = district_color;
+}
+
+// Function 2.30
+// imports the NAT json and populates the stat boxes
+function populate_nat()
+{
+    natStats = readJSON("hbo/totals");
+
+    document.getElementById('casesTollTextNAT').innerHTML = natStats['cases'][0];
+    document.getElementById('deathTollTextNAT').innerHTML = natStats['cum_deaths'][0];
+    document.getElementById('icuTextNAT').innerHTML = natStats['icu'][0];
+    document.getElementById('testsTotalTextNAT').innerHTML = natStats['cum_test'][0];
+
+    modifyTestLines(natStats['cum_pos_test'][0], natStats['cum_neg_test'][0])
+}
+
+// Function 2.31
+// Changes the ratio of the widths of the two lines under the number of tests
+function modifyTestLines(pos_tests, neg_tests)
+{
+    ratio_pos = pos_tests / (pos_tests + neg_tests)
+
+    width_pos_line = 30*ratio_pos;
+    width_neg_line = 30-width_pos_line;
+
+    document.getElementById("positiveLine").style.width = width_pos_line.toString() + '%';
+    document.getElementById("negativeLine").style.width = width_neg_line.toString() + '%';
+
+    document.getElementById("posTestsP").innerHTML = Math.round(ratio_pos*100).toString() + '%'
+    document.getElementById("negTestsP").innerHTML = Math.round(100-ratio_pos*100).toString() + '%'
 }
 
 // Function 2.10
@@ -279,7 +312,7 @@ function show_data(properties, id)
     d3.select("#selectButton").style("display", "none");
 
     // Only proceed if a district has been selected
-    if (id != null)
+    if (id != null || res == "nat")
     {
         if (res == 'lad')
         {
@@ -294,13 +327,24 @@ function show_data(properties, id)
 
                 return create_table(properties, id);
         }
-        else
+        if (res == "hbo")
         {
             // Give Doc Name
             document.getElementById('graphTitleHBO').innerHTML = idToHBO[id];
 
             // Construct required graphs (calling function 3.1)
             graph_init(res, id);
+        }
+        // If selected res is 'nat' then load 'nat' form
+        if (res == "nat")
+        {
+            // Give Doc Name
+            document.getElementById('graphTitleNAT').innerHTML = "Scotland";
+
+            // Construct required graphs (calling function 3.1)
+            graph_init(res, "blank");
+
+            populate_nat();
         }
     }
 
@@ -423,17 +467,29 @@ function toggle_doc()
     var criteria_chooser = document.getElementById("criteria");
     var ladDoc = document.getElementById("ladDoc");
     var hboDoc = document.getElementById("hboDoc");
+    var natDoc = document.getElementById("natDoc");
     var criteria_box = document.getElementById("criteriaBox");
 
-    if (res === 'hbo') {
-        criteria_chooser.style.display = "none";
-        criteria_box.style.display = "none";
-        ladDoc.style.display="none";
-    }
-    else {
+    if (res === 'lad')
+    {
         criteria_chooser.style.display = "inline-block";
         criteria_box.style.display = "inline-block";
         hboDoc.style.display="none";
+        natDoc.style.display="none";
+    }
+    if (res == "hbo")
+    {
+        criteria_chooser.style.display = "none";
+        criteria_box.style.display = "none";
+        ladDoc.style.display="none";
+        natDoc.style.display="none";
+    }
+    if (res === 'nat')
+    {
+        criteria_chooser.style.display = "inline-block";
+        criteria_box.style.display = "inline-block";
+        hboDoc.style.display="none";
+        ladDoc.style.display="none";
     }
 }
 
@@ -516,7 +572,7 @@ function sort()
 // Goes through each district and assigns correct colour
 function colourMap()
 {
-    if (res == "lad")
+    if (res != "hbo")
     {
         g.selectAll(".area").each(function(d)
         {
@@ -606,7 +662,7 @@ function redraw()
 {
     compute_size();
 
-    d3.select("svg").remove();
+    d3.select("#map").select("svg").remove();
 
     init(width, height);
     draw(boundaries);
@@ -641,7 +697,7 @@ function load_data(filename, u)
     deselect();
 
     //Import the map data
-    readJSON("table_data");
+    mapStats = readJSON("lad/table_data");
 
     //Import the array of interpolated colors
     interpolated =
