@@ -79,7 +79,7 @@ function graph_init(res, id)
             // Total COVID-19 deaths graph
             double_scatter_plot("/hbo/daily_deaths.csv",
                                 "#daiyCOVIDDeaths",
-                                "Daily COVID-19 deaths"
+                                "Daily COVID-19 Deaths"
                             );
 
             // Total pos tests graph
@@ -415,6 +415,7 @@ function double_scatter_plot(file, graphID, graphName)
       // add the valueline path.
       svg.append("path")
          .data([data])
+         .attr("fill", "#7bb2ff")
          .attr("class", "line")
          .attr("d", valueline);
 
@@ -450,7 +451,7 @@ function double_scatter_plot(file, graphID, graphName)
        svg.selectAll("dot")
           .data(data)
         .enter().append("circle")
-          .attr("fill", "#7bb2ff")
+          .attr("fill", "#ff867b")
           .attr("r", 3.5)
           .attr("cx", function(d) { return x(d.date); })
           .attr("cy", function(d) { return y(d.cases); })
@@ -523,14 +524,26 @@ function double_scatter_plot(file, graphID, graphName)
 
       // Add the legend
       svg.append("circle")
-          .attr("cx",150)
+          .attr("cx",220)
+          .attr("cy",height+80)
+          .attr("r", 6)
+          .style("fill", "#7bb2ff");
+      svg.append("text")
+          .attr("x", 230)
+          .attr("y", height+85)
+          .text(graphName)
+          .style("font-size", "15px")
+          .attr("alignment-baseline","middle");
+      // Add the legend
+      svg.append("circle")
+          .attr("cx",40)
           .attr("cy",height+80)
           .attr("r", 6)
           .style("fill", "#ff867b");
       svg.append("text")
-          .attr("x", 160)
+          .attr("x", 50)
           .attr("y", height+85)
-          .text(graphName)
+          .text("Daily COVID-19 Cases")
           .style("font-size", "15px")
           .attr("alignment-baseline","middle");
 
