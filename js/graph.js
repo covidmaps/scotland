@@ -568,7 +568,7 @@ function multi_line_graph(file, graphID, id)
     d3.select("#selectButton").style("display", "block");
 
     // Set the dimensions and margins of the graph
-    var margin = {top: 10, right: 40, bottom: 120, left: 40},
+    var margin = {top: 10, right: 40, bottom: 130, left: 40},
         width = 500 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
@@ -708,6 +708,23 @@ function multi_line_graph(file, graphID, id)
                 .style("stroke-width", 2)
                 .style("fill", "none");
 
+        // Add line for when phase 2 began
+        var linePhaseTwo = svg
+            .append("g")
+            .append("path")
+              .datum(data)
+              .attr("d", d3.line()
+                .x(function(d) { return x('164') })
+                .y(function(d)
+                {
+                return y(+d.uk_retail_and_recreation_percent_change_from_baseline)
+                })
+                )
+                .attr("stroke", "#fbc7c7")
+                .style("stroke-width", 2)
+                .style("fill", "none");
+
+
         // Initialize line with group a
         var line = svg
           .append('g')
@@ -781,6 +798,15 @@ function multi_line_graph(file, graphID, id)
                 .y(function(d) { return y(+d.value) })
               )
 
+          // Update phase 2 line
+          linePhaseTwo.datum(dataFilterBase)
+              .transition()
+              .duration(1000)
+              .attr("d", d3.line()
+                .x(function(d) { return x('164') })
+                .y(function(d) { return y(+d.value) })
+              )
+
           // Update legend chosen region circle colour
           svg.append("circle").transition()
               .duration(1000)
@@ -844,6 +870,19 @@ function multi_line_graph(file, graphID, id)
             .attr("x", width/2-40)
             .attr("y", height+105)
             .text("Phase 1 Begins")
+            .style("font-size", "15px")
+            .attr("alignment-baseline","middle");
+
+        // Update legend (Phase 2 begins)
+        svg.append("circle")
+            .attr("cx",80)
+            .attr("cy",height+120)
+            .attr("r", 6)
+            .style("fill", "#fbc7c7");
+        svg.append("text")
+            .attr("x", 90)
+            .attr("y", height+125)
+            .text("Phase 2 Begins")
             .style("font-size", "15px")
             .attr("alignment-baseline","middle");
 
