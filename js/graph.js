@@ -677,6 +677,7 @@ function multi_line_graph(file, graphID, id)
                 .style("fill", "none");
 
         // Add line for when lockdown began
+        /*
         var lineLockdown = svg
             .append("g")
             .append("path")
@@ -691,6 +692,7 @@ function multi_line_graph(file, graphID, id)
                 .attr("stroke", "#b14d49")
                 .style("stroke-width", 2)
                 .style("fill", "none");
+        */
 
         // Add line for when phase 1 began
         var linePhaseOne = svg
@@ -781,6 +783,7 @@ function multi_line_graph(file, graphID, id)
               .attr("stroke", function(d){ return myColor(selectedGroup) })
 
           // Update lockdown line
+          /*
           lineLockdown.datum(dataFilterBase)
               .transition()
               .duration(1000)
@@ -788,6 +791,7 @@ function multi_line_graph(file, graphID, id)
                 .x(function(d) { return x('83') })
                 .y(function(d) { return y(+d.value) })
               )
+          */
 
           // Update phase 1 line
           linePhaseOne.datum(dataFilterBase)
@@ -848,6 +852,7 @@ function multi_line_graph(file, graphID, id)
             .attr("alignment-baseline","middle");
 
         // Update legend (Lockdown begins)
+        /*
         svg.append("circle")
             .attr("cx",25)
             .attr("cy",height+100)
@@ -859,15 +864,16 @@ function multi_line_graph(file, graphID, id)
             .text("Lockdown Begins")
             .style("font-size", "15px")
             .attr("alignment-baseline","middle");
+        */
 
         // Update legend (Phase 1 begins)
         svg.append("circle")
-            .attr("cx",width/2-50)
-            .attr("cy",height+100)
+            .attr("cx", 25 )
+            .attr("cy", height+100)
             .attr("r", 6)
             .style("fill", "#ff564f");
         svg.append("text")
-            .attr("x", width/2-40)
+            .attr("x", 35 )
             .attr("y", height+105)
             .text("Phase 1 Begins")
             .style("font-size", "15px")
@@ -875,13 +881,13 @@ function multi_line_graph(file, graphID, id)
 
         // Update legend (Phase 2 begins)
         svg.append("circle")
-            .attr("cx",80)
-            .attr("cy",height+120)
+            .attr("cx",width/2-50)
+            .attr("cy",height+100)
             .attr("r", 6)
             .style("fill", "#fbc7c7");
         svg.append("text")
-            .attr("x", 90)
-            .attr("y", height+125)
+            .attr("x", width/2-40)
+            .attr("y", height+105)
             .text("Phase 2 Begins")
             .style("font-size", "15px")
             .attr("alignment-baseline","middle");
