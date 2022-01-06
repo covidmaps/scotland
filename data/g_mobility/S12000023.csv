@@ -1,7 +1,7 @@
 ,time,retail_and_recreation_percent_change_from_baseline,grocery_and_pharmacy_percent_change_from_baseline,parks_percent_change_from_baseline,transit_stations_percent_change_from_baseline,workplaces_percent_change_from_baseline,residential_percent_change_from_baseline,uk_retail_and_recreation_percent_change_from_baseline,uk_grocery_and_pharmacy_percent_change_from_baseline,uk_parks_percent_change_from_baseline,uk_transit_stations_percent_change_from_baseline,uk_workplaces_percent_change_from_baseline,uk_residential_percent_change_from_baseline
 0,1,,,,,,,-61.0,-54.0,-36.0,-66.0,-49.0,11.0
 1,2,,,,,,,-15.0,1.0,-4.0,-28.0,-16.0,5.0
-2,242,,,,,-21.0,,,,,,,
+2,3,,,,,-72.0,,5.0,4.0,43.0,-42.0,-74.0,20.0
 3,243,,,,,-15.0,,,,,,,
 4,244,,,,,-15.0,,,,,,,
 5,245,,,,,-17.0,,,,,,,
@@ -27,7 +27,7 @@
 25,273,,,,,-19.0,,,,,,,
 26,274,,,,,-18.0,,,,,,,
 27,277,,,,,-17.0,,,,,,,
-28,278,,,,,-15.0,,0.0,5.0,24.0,-22.0,-39.0,8.0
+28,278,,,,,-15.0,,,,,,,
 29,279,,,,,-15.0,,2.0,12.0,45.0,-24.0,-35.0,7.0
 30,280,,,,,-20.0,,3.0,12.0,53.0,-23.0,-34.0,7.0
 31,281,,,,,-17.0,,-4.0,9.0,97.0,-5.0,-36.0,5.0
